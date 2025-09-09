@@ -1,0 +1,10 @@
+header
+{
+    box-shadow: #7198ef 0 0 11px;
+    position: sticky;
+    z-index: 10000;
+    top: 0;
+    border-bottom: 2px solid #fff0;
+    transition: box-shadow 0.3s ease,background-color 0.3s ease;
+    background: rgb(255 255 255 / .95);
+}

@@ -1,0 +1,92 @@
+section
+{
+    padding: 150px 0px;
+}
+
+
+.email
+{
+    position: relative;
+}
+.email i
+{
+  content: "";
+    width: 24px;
+    height: 24px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #33464f;
+   
+}
+
+.password
+{
+    position: relative;
+}
+.password i
+{
+    content: "";
+    font-family: "Bootstrap Icons"; 
+    width: 24px;
+    height: 24px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #33464f;
+}
+.forget-pass
+{
+    text-align: right;
+    padding-top: 10px;
+}
+.forget-pass a
+{
+    color: #33464f;
+}
+
+.register a 
+{
+    color: #33464f;
+}
+.register
+{
+    text-align: center;
+    padding-top: 10px;
+}
+/* Apply to all submit buttons */
+button[type="submit"] {
+  background-color: #33464f;   /* main color */
+  color: #fff;                 /* text color */
+  border: none;
+  border-radius: 8px;          /* rounded corners */
+  padding: 10px 20px;          /* vertical & horizontal padding */
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* subtle shadow */
+}
+
+button[type="submit"]:hover {
+  background-color: #2a3a44;  /* slightly darker on hover */
+  transform: translateY(-2px); /* small lift effect */
+  box-shadow: 0 6px 8px rgba(0,0,0,0.15);
+}
+
+button[type="submit"]:active {
+  background-color: #24333b;  /* even darker on click */
+  transform: translateY(0);
+  box-shadow: 0 3px 4px rgba(0,0,0,0.1);
+}
+
+button[type="submit"]:focus {
+  outline: none;               /* remove default outline */
+  box-shadow: 0 0 0 3px rgba(51,70,79,0.4); /* subtle focus ring */
+}
