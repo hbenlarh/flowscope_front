@@ -6,16 +6,17 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { Button } from '../shared/button/button';
 
 @Component({
   selector: 'app-register',
-  imports: [Header, Footer, FormsModule, ReactiveFormsModule, CommonModule],
+  imports: [Header, Footer, FormsModule, ReactiveFormsModule, CommonModule,Button],
   templateUrl: './register.html',
   styleUrl: './register.scss'
 })
 export class Register implements OnInit {
   signupForm!: FormGroup;
-  signupData = { first_name: '', last_name: '', password: '', email: '', role: '' };
+  signupData = { first_name: '', last_name: '', password: '', email: '' };
 
   constructor(private fb: FormBuilder, private http: HttpClient, private router: Router) { }
 
@@ -25,7 +26,7 @@ export class Register implements OnInit {
       first_name: ['', [Validators.required, Validators.minLength(3)]],
       last_name: ['', [Validators.required, Validators.minLength(3)]],
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
+      password: ['', [Validators.required,Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&+])[A-Za-z\d@$!%*?&+]{8,30}$/)]],
       confirmPassword: ['', [Validators.required]]
     }, {
       validator: this.passwordMatchValidator
@@ -43,16 +44,15 @@ export class Register implements OnInit {
       last_name: this.signupForm.get('last_name')?.value,
       password: this.signupForm.get('password')?.value,
       email: this.signupForm.get('email')?.value,
-      role: 'user'
     };
     console.log('Request Data:', this.signupData);
-    this.http.post('/api/client', this.signupData, { withCredentials: true })
+    this.http.post('/api/flowscope_core/client', this.signupData, { withCredentials: true })
       .subscribe(
         (response) => {
           console.log("hello");
           console.log(response);
           console.log(this.signupData);
-          this.router.navigate(['']); // Navigate after successful signup
+          this.router.navigate(['/login']); // Navigate after successful signup
         },
         (error) => {
           console.error(error);
