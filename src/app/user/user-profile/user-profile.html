@@ -1,0 +1,17 @@
+<div class="user">
+    <div class="row align-items-center mb-4 pb-2 border-bottom">
+        <div class="col-sm d-flex align-items-center mb-3 mb-sm-0">
+            <div class="bg-primary bg-opacity-25 text-primary rounded-circle d-flex align-items-center justify-content-center me-3"
+                style="width:64px; height:64px; font-weight:bold; font-size:1.25rem;">
+                {{user?.full_name?.substring(0, 2)}}
+            </div>
+            <div *ngIf="user">
+                <h1 class="h4 fw-bold text-dark mb-1">Welcome, {{ user.full_name }}!</h1>
+                <p class="text-muted mb-0">Dashboard overview</p>
+            </div>
+        </div>
+        <div class="col-sm-auto">
+            <app-button label="Logout"></app-button>
+        </div>
+    </div>
+</div>

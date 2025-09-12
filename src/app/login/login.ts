@@ -7,8 +7,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Button } from '../shared/button/button';
-import { Userdata } from '../services/userdata.model';      
-import { UserDataService } from '../services/userdata.service';
 
 
 @Component({
@@ -21,7 +19,7 @@ export class Login implements OnInit {
   loginForm!: FormGroup;
   signinData = { username: '', password: '' };
 
-  constructor(private fb: FormBuilder, private http: HttpClient, private router: Router,  private userDataService: UserDataService   ) { }
+  constructor(private fb: FormBuilder, private http: HttpClient, private router: Router) { }
 
   ngOnInit() {
     this.loginForm = this.fb.group({
@@ -50,18 +48,14 @@ export class Login implements OnInit {
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
     }).subscribe(
       (response: any) => {
-         console.log("im here ");
+        console.log("im here ");
         if (!response.is_admin) {
-
-          //  console.log(response.user);
-        console.log("im here good");
-        //  console.log(response);
-        //    console.log(response.user);
-        //   this.userDataService.setUser({
-        //   full_name: response.user.full_name,
-        //   email: response.user.email
-        // } as Userdata);
-          // this.router.navigate(['/Dashboard']);
+          console.log("im here good");
+          // this.userDataService.setUser({
+          //   full_name: response.client.full_name,
+          //   email: response.client.email
+          // } as Userdata);
+          this.router.navigate(['/Dashboard']);
         } else {
           this.router.navigate(['/']);
         }
