@@ -51,13 +51,9 @@ export class Login implements OnInit {
         console.log("im here ");
         if (!response.is_admin) {
           console.log("im here good");
-          // this.userDataService.setUser({
-          //   full_name: response.client.full_name,
-          //   email: response.client.email
-          // } as Userdata);
           this.router.navigate(['/Dashboard']);
         } else {
-          this.router.navigate(['/']);
+          this.router.navigate(['/admin/Dashboard']);
         }
 
       },

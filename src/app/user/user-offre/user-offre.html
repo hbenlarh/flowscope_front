@@ -9,31 +9,30 @@
                 </div>
                 <div class="form-group">
                     <label>Category:</label>
-                    <select formControlName="category_id"  class="form-control">
-                        <option value="" disabled selected>Select category</option>
-                        <option *ngFor="let cat of categories" [value]="cat.id">{{ cat.name }}</option>
-                    </select>
+                    <select class="form-control" formControlName="category_id">
+                        <option value="">Select a category</option>
+                        <optgroup *ngFor="let container of containers" [label]="container.name">
+                          <option *ngFor="let cat of container.categories" [value]="cat.category_id">
+                            {{ cat.name }}
+                          </option>
+                        </optgroup>
+                      </select>
                 </div>
-
                 <div class="form-group">
                     <label>Description:</label>
                     <textarea formControlName="description" class="form-control"></textarea>
                 </div>
-
                 <div class="form-group">
                     <label>URL:</label>
                     <input type="url" formControlName="url" class="form-control" />
                 </div>
-
                 <div class="form-group">
                     <label>File:</label>
                     <input type="file" (change)="onFileSelected($event)" class="form-control" />
                 </div>
-
                 <!-- Hidden fields bound to form -->
                 <input type="hidden" formControlName="file_name" />
                 <input type="hidden" formControlName="file_base64" />
-
                 <app-button label="Submit"></app-button>
             </form>
 

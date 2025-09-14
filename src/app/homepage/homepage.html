@@ -1,3 +1,23 @@
 <app-header></app-header>
+<section>
+    <div class="container">
 
+        <div *ngIf="offers.length === 0">
+            No offers available.
+        </div>
+        <div class="row">
+            <div class="offers-list" *ngIf="offers.length > 0">
+                <div *ngFor="let offer of offers" class="offer-card col-sm-4">
+                    <a href="ffer.url" target="_blank">
+                        <h3>{{ offer.name }}</h3>
+                        <div *ngIf="offer.file" class="img">
+                            <img [src]="'data:image/png;base64,' + offer.file" [alt]="offer.file_name" width="150" />
+                        </div>
+                        <p>{{ offer.description }}</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 <app-footer></app-footer>

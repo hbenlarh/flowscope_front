@@ -5,25 +5,30 @@ import { UserProfile } from '../user-profile/user-profile';
 import { Button } from '../../shared/button/button';
 import { OfferService } from '../../services/offer/offer';
 import { CategoryService, Category } from '../../services/category/category';
+import { CommonModule } from '@angular/common';
+import { forkJoin } from 'rxjs';
+import { ContainerService, Container } from '../../services/container/container.service';
 
 @Component({
   selector: 'app-user-offre',
-  imports: [ReactiveFormsModule, UserProfile, Button],
+  imports: [ReactiveFormsModule, UserProfile, Button,CommonModule],
   templateUrl: './user-offre.html',
   styleUrl: './user-offre.scss'
 })
 export class UserOffre {
   offreForm: FormGroup;
   categories: Category[] = [];
+  containers: Container[] = [];
 
-  constructor(private categoryService: CategoryService, private offerService: OfferService, private fb: FormBuilder) {
+  constructor(private ContainerService: ContainerService, private categoryService: CategoryService, private offerService: OfferService, private fb: FormBuilder) {
     this.offreForm = this.fb.group({
       name: ['', Validators.required],
-      categorie: ['', Validators.required],
+      category_id: ['', Validators.required], 
       description: ['', Validators.required],
       url: ['', [Validators.required, Validators.pattern('https?://.+')]],
       file_name: ['', Validators.required],
-      file_base64: ['', Validators.required] // here you’ll set the base64 string
+      file_base64: ['', Validators.required], // here you’ll set the base64 string
+      
     },);
   }
 
@@ -55,16 +60,25 @@ export class UserOffre {
 
       const reader = new FileReader();
       reader.onload = () => {
-        this.offreForm.patchValue({ file_base64: reader.result as string });
+        const base64String = (reader.result as string).split(',')[1]; // remove "data:image/png;base64,"
+        this.offreForm.patchValue({ file_base64: base64String });
       };
       reader.readAsDataURL(file);
     }
   }
 
   ngOnInit() {
-    this.categoryService.getCategories().subscribe({
-      next: (cats) => this.categories = cats,
-      error: (err) => console.error('Failed to load categories', err)
+    forkJoin({
+      categories: this.categoryService.getCategories(),
+      containers: this.ContainerService.getContainers()
+    }).subscribe({
+      next: ({ categories, containers }) => {
+        this.containers = containers.map(container => ({
+          ...container,
+          categories: categories.filter(cat => cat.container_id === container.container_id)
+        }));
+      },
+      error: (err) => console.error('Failed to load data', err)
     });
   }
 

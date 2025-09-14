@@ -31,7 +31,7 @@ export class AuthService {
   }
 
   fetchUser(): Observable<Userdata | null> {
-    return this.http.get<Userdata>('/api/flowscope_core/auth/me', { withCredentials: true })
+    return this.http.get<Userdata>('api/flowscope_core/client/me', { withCredentials: true })
       .pipe(
         tap(user => {
           this.user = user;

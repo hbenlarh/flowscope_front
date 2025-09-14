@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
+import { Offer } from '../models/offredata.model';
 
 @Injectable({
   providedIn: 'root'
@@ -13,4 +14,12 @@ export class OfferService {
   createOffer(data: any): Observable<any> {
     return this.http.post(this.apiUrl, data, { withCredentials: true });
   }
+  getOffers(): Observable<Offer[]> {
+    return this.http.get<{ offers: Offer[] }>(this.apiUrl, { withCredentials: true })
+      .pipe(
+        map(res => res.offers)
+      );
+  }
+
+  
 }
