@@ -1,1 +1,59 @@
-<p>dashboard works!</p>
+<section class="dashboard-section">
+  <div class="container-fluid">
+    <div class="row dashboard-layout">
+      <div class="col-md-3 order-md-1">
+        <app-menu></app-menu>
+      </div>
+      <div class="col-md-9 order-md-2">
+        <div class="main-content">
+          <div class="dashboard-header">
+            <h1>Hello {{ user?.full_name }}!</h1>
+            <p>Welcome back to your admin dashboard.</p>
+          </div>
+
+          <div class="cards">
+            <div class="card users">
+              <h3>Total Users</h3>
+              <p>{{ stats.users || 0 }}</p>
+            </div>
+            <div class="card containers">
+              <h3>Total Containers</h3>
+              <p>{{ stats.containers || 0 }}</p>
+            </div>
+            <div class="card categories">
+              <h3>Total Categories</h3>
+              <p>{{ stats.categories || 0 }}</p>
+            </div>
+            <div class="card offres">
+              <h3>Total Offers</h3>
+              <p>{{ stats.offers || 0 }}</p>
+            </div>
+          </div>
+
+          <div class="recent-activity">
+            <h2>Recent Activity</h2>
+            <ul>
+              <li>
+                <span class="activity-icon bi bi-person-plus"></span>
+                New user registration
+              </li>
+              <li>
+                <span class="activity-icon bi bi-box-seam"></span>
+                Container updated
+              </li>
+              <li>
+                <span class="activity-icon bi bi-tags"></span>
+                Category created
+              </li>
+              <li>
+                <span class="activity-icon bi bi-megaphone"></span>
+                Offer published
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<app-footer></app-footer>

@@ -71,6 +71,9 @@
                             </div>
                             <input type="password" id="confirmPassword" formControlName="confirmPassword"
                                 class="form-control" />
+                        </div>
+
+                        <div *ngIf="serverError" class="error text-danger mb-2">{{ serverError }}
                             <div
                                 *ngIf="signupForm.get('confirmPassword')?.invalid && signupForm.get('confirmPassword')?.touched">
                                 <small *ngIf="signupForm.get('confirmPassword')?.hasError('required')">Please confirm
@@ -80,7 +83,7 @@
                         </div>
 
                         <div class="form-group-btn">
-                            <app-button label="Sign Up" [disabled]="signupForm.invalid"></app-button>
+                            <app-button [label]="loading ? 'Signing up…' : 'Sign Up'" [disabled]="signupForm.invalid || loading"></app-button>
                         </div>
                         <p class="login">
 

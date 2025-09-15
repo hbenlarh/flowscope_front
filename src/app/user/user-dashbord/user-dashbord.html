@@ -1,15 +1,25 @@
-<section>
-    <div class="container">
-        <div class="box">
-          <app-user-profile></app-user-profile>
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="row">
+<section class="dashboard-section">
+    <div class="container-fluid">
+        <div class="row dashboard-layout">
+            <div class="col-md-3 order-md-1">
+              <app-user-menu></app-user-menu>
+            </div>
+
+            <div class="col-md-9 order-md-2">
+                <div class="main-content">
+                    <div class="dashboard-header">
+                        <h1>Hello {{ user?.full_name }}!</h1>
+                        <p>Welcome back to your dashboard.</p>
+                    </div>
+
+                    <app-user-profile></app-user-profile>
+
+                    <div class="row mt-4">
                         <div class="col-sm-6">
                             <div class="cards"> <a routerLink="/addOffre"
                                     class="card text-center text-primary bg-primary bg-opacity-10 p-3 text-decoration-none">
                                     <i class="bi bi-file-earmark-plus mb-2" style="font-size:1.5rem;"></i>
-                                    <div class="small fw-medium">New Offre</div>
+                                    <div class="small fw-medium">New Offer</div>
                                 </a></div>
                         </div>
                         <div class="col-sm-6">

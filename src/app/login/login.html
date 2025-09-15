@@ -27,13 +27,14 @@
                 <small *ngIf="password?.errors?.['required']">Password is required.</small>
               </div>
             </div>
+            <div *ngIf="serverError" class="error text-danger mb-2">{{ serverError }}</div>
             <p class="forget-pass">
               <a href="">
                 Forgot Password?
               </a>
             </p>
             <div class="form-group-btn text-center">
-               <app-button label="Login" [disabled]="loginForm.invalid"></app-button>
+               <app-button [label]="loading ? 'Logging in…' : 'Login'" [disabled]="loginForm.invalid || loading"></app-button>
             </div>
             <p class="register">
               don't have an account? please <a href="/register">  Register </a>

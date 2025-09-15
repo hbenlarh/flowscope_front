@@ -5,13 +5,17 @@ import { Userdata } from './userdata.model';
   providedIn: 'root'
 })
 export class UserDataService {
-  private userData!: Userdata;
+private userData: Userdata | null = null;  // allow null
 
   setUser(data: Userdata) {
     this.userData = data;
   }
 
-  getUser(): Userdata {
+  getUser(): Userdata | null{
     return this.userData;
+  }
+  clearUser() {
+    this.userData = null;
+    localStorage.removeItem('user');
   }
 }

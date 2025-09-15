@@ -18,6 +18,8 @@ import { Button } from '../shared/button/button';
 export class Login implements OnInit {
   loginForm!: FormGroup;
   signinData = { username: '', password: '' };
+  loading = false;
+  serverError = '';
 
   constructor(private fb: FormBuilder, private http: HttpClient, private router: Router) { }
 
@@ -37,7 +39,14 @@ export class Login implements OnInit {
   }
 
   signin() {
+    this.serverError = '';
+    if (this.loginForm.invalid || this.loading) {
+      this.loginForm.markAllAsTouched();
+      return;
+    }
 
+    this.loading = true;
+    this.loginForm.disable({ emitEvent: false });
     const body = new URLSearchParams();
     body.set('username', this.loginForm.get('email')?.value);
     body.set('password', this.loginForm.get('password')?.value);
@@ -48,17 +57,20 @@ export class Login implements OnInit {
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
     }).subscribe(
       (response: any) => {
-        console.log("im here ");
-        if (!response.is_admin) {
+        if (!response.client.is_admin) {
           console.log("im here good");
-          this.router.navigate(['/Dashboard']);
+           this.router.navigate(['/Dashboard']);
         } else {
-          this.router.navigate(['/admin/Dashboard']);
+           this.router.navigate(['/admin/Dashboard']);
         }
-
+        this.loading = false;
+        this.loginForm.enable({ emitEvent: false });
       },
       (error) => {
         console.error(error);
+        this.serverError = error?.error?.message || 'Login failed. Please check your credentials.';
+        this.loading = false;
+        this.loginForm.enable({ emitEvent: false });
         console.log("im here bad");
       }
     );

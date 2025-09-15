@@ -8,10 +8,12 @@ import { CategoryService, Category } from '../../services/category/category';
 import { CommonModule } from '@angular/common';
 import { forkJoin } from 'rxjs';
 import { ContainerService, Container } from '../../services/container/container.service';
+import { UserMenu } from '../user-menu/user-menu';
+import { Footer } from '../../shared/footer/footer';
 
 @Component({
   selector: 'app-user-offre',
-  imports: [ReactiveFormsModule, UserProfile, Button,CommonModule],
+  imports: [ReactiveFormsModule, Button, CommonModule, UserMenu, Footer],
   templateUrl: './user-offre.html',
   styleUrl: './user-offre.scss'
 })

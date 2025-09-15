@@ -1,0 +1,86 @@
+<section class="dashboard-section">
+  <div class="container-fluid">
+    <div class="row dashboard-layout">
+      <div class="col-md-3">
+        <app-menu></app-menu>
+      </div>
+      <div class="col-md-9">
+        <div class="main-content">
+          <div class="dashboard-header d-flex justify-content-between align-items-end flex-wrap gap-2">
+            <div>
+              <h1>Containers</h1>
+              <p>Manage your containers. Search, add, edit, and delete.</p>
+            </div>
+            <button class="btn btn-primary" (click)="openAdd()">Add Container</button>
+          </div>
+
+          <div class="card p-3 mb-3">
+            <div class="row g-2 align-items-end">
+              <div class="col-sm-6">
+                <label class="form-label">Search</label>
+                <input type="text" class="form-control" placeholder="Container name" [ngModel]="search()" (ngModelChange)="search.set($event)" />
+              </div>
+              <div class="col-sm-2 text-sm-end ms-auto">
+                <button class="btn btn-outline-secondary w-100" (click)="fetchContainers()" [disabled]="loading()">{{ loading() ? 'Refreshing…' : 'Refresh' }}</button>
+              </div>
+            </div>
+          </div>
+
+          <div *ngIf="errorMessage()" class="alert alert-danger">{{ errorMessage() }}</div>
+
+          <div class="table-responsive card p-0 overflow-hidden">
+            <table class="table mb-0 align-middle">
+              <thead class="table-light">
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Description</th>
+                  <th scope="col" class="text-end">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let c of filtered(); let i = index">
+                  <td>{{ i + 1 }}</td>
+                  <td>{{ c.name || '-' }}</td>
+                  <td>{{ c.description || '-' }}</td>
+                  <td class="text-end">
+                    <button class="btn btn-sm btn-outline-primary me-2" (click)="openEdit(c)">Edit</button>
+                    <button class="btn btn-sm btn-outline-danger" (click)="delete(c)" [disabled]="saving()">Delete</button>
+                  </td>
+                </tr>
+                <tr *ngIf="!loading() && filtered().length === 0">
+                  <td colspan="4" class="text-center text-muted py-4">No containers found.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Modal -->
+          <div class="modal-backdrop" *ngIf="showModal()" (click)="showModal.set(false)"></div>
+          <div class="modal-sheet" *ngIf="showModal()">
+            <div class="card p-3" (click)="$event.stopPropagation()">
+              <h5 class="mb-3">{{ isEdit() ? 'Edit Container' : 'Add Container' }}</h5>
+              <form [formGroup]="form" (ngSubmit)="save()">
+                <div class="mb-3">
+                  <label class="form-label">Name</label>
+                  <input type="text" class="form-control" formControlName="name" />
+                </div>
+                <div class="mb-3">
+                  <label class="form-label">Description</label>
+                  <textarea class="form-control" rows="3" formControlName="description"></textarea>
+                </div>
+                <div class="d-flex justify-content-end gap-2">
+                  <button class="btn btn-light" type="button" (click)="showModal.set(false)" [disabled]="saving()">Cancel</button>
+                  <button class="btn btn-primary" type="submit" [disabled]="saving() || form.invalid">{{ saving() ? 'Saving…' : 'Save' }}</button>
+                </div>
+              </form>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<app-footer></app-footer>

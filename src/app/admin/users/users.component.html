@@ -1,0 +1,73 @@
+<section class="dashboard-section">
+  <div class="container-fluid">
+    <div class="row dashboard-layout">
+      <div class="col-md-3">
+       <app-menu></app-menu>
+      </div>
+
+      <div class="col-md-9">
+        <div class="main-content">
+          <div class="dashboard-header">
+            <h1>Clients</h1>
+            <p>Search and filter the clients list.</p>
+          </div>
+
+          <div class="card p-3 mb-3">
+            <div class="row g-2 align-items-end">
+              <div class="col-sm-6">
+                <label class="form-label">Search</label>
+                <input type="text" class="form-control" placeholder="Name or email" [ngModel]="search()" (ngModelChange)="search.set($event)" />
+              </div>
+              <div class="col-sm-4">
+                <label class="form-label">Role</label>
+                <select class="form-select" [ngModel]="roleFilter()" (ngModelChange)="roleFilter.set($event)">
+                  <option value="all">All</option>
+                  <option value="admin">Admins</option>
+                  <option value="client">Clients</option>
+                </select>
+              </div>
+              <div class="col-sm-2 text-sm-end">
+                <button class="btn btn-primary w-100" (click)="fetchClients()" [disabled]="loading()">
+                  {{ loading() ? 'Refreshing…' : 'Refresh' }}
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div *ngIf="errorMessage()" class="alert alert-danger">{{ errorMessage() }}</div>
+
+          <div class="table-responsive card p-0 overflow-hidden">
+            <table class="table mb-0 align-middle">
+              <thead class="table-light">
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Email</th>
+                  <th scope="col">Role</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let c of filteredClients(); let i = index">
+                  <td>{{ i + 1 }}</td>
+                  <td>{{ c.full_name || '-' }}</td>
+                  <td>{{ c.email || '-' }}</td>
+                  <td>
+                    <span class="badge" [class.bg-success]="c.is_admin" [class.bg-secondary]="!c.is_admin">
+                      {{ c.is_admin ? 'Admin' : 'Client' }}
+                    </span>
+                  </td>
+                </tr>
+                <tr *ngIf="!loading() && filteredClients().length === 0">
+                  <td colspan="4" class="text-center text-muted py-4">No clients found.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<app-footer></app-footer>

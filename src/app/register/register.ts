@@ -17,6 +17,8 @@ import { Button } from '../shared/button/button';
 export class Register implements OnInit {
   signupForm!: FormGroup;
   signupData = { first_name: '', last_name: '', password: '', email: '' };
+  loading = false;
+  serverError = '';
 
   constructor(private fb: FormBuilder, private http: HttpClient, private router: Router) { }
 
@@ -39,6 +41,13 @@ export class Register implements OnInit {
     return password === confirmPassword ? null : { mismatch: true };
   }
   signup() {
+    this.serverError = '';
+    if (this.signupForm.invalid || this.loading) {
+      this.signupForm.markAllAsTouched();
+      return;
+    }
+    this.loading = true;
+    this.signupForm.disable({ emitEvent: false });
     this.signupData = {
       first_name: this.signupForm.get('first_name')?.value,
       last_name: this.signupForm.get('last_name')?.value,
@@ -52,10 +61,15 @@ export class Register implements OnInit {
           console.log("hello");
           console.log(response);
           console.log(this.signupData);
+          this.loading = false;
+          this.signupForm.enable({ emitEvent: false });
           this.router.navigate(['/login']); // Navigate after successful signup
         },
         (error) => {
           console.error(error);
+          this.serverError = error?.error?.message || 'Registration failed. Please try again.';
+          this.loading = false;
+          this.signupForm.enable({ emitEvent: false });
           console.log("im here bad");
         }
       );

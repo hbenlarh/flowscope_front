@@ -1,41 +1,55 @@
-<section>
-    <div class="container">
-        <div class="box">
-            <app-user-profile></app-user-profile>
-            <form [formGroup]="offreForm" (ngSubmit)="onSubmit()">
-                <div class="form-group">
-                    <label>Name:</label>
-                    <input type="text" formControlName="name" class="form-control" />
-                </div>
-                <div class="form-group">
-                    <label>Category:</label>
-                    <select class="form-control" formControlName="category_id">
-                        <option value="">Select a category</option>
-                        <optgroup *ngFor="let container of containers" [label]="container.name">
-                          <option *ngFor="let cat of container.categories" [value]="cat.category_id">
-                            {{ cat.name }}
-                          </option>
-                        </optgroup>
-                      </select>
-                </div>
-                <div class="form-group">
-                    <label>Description:</label>
-                    <textarea formControlName="description" class="form-control"></textarea>
-                </div>
-                <div class="form-group">
-                    <label>URL:</label>
-                    <input type="url" formControlName="url" class="form-control" />
-                </div>
-                <div class="form-group">
-                    <label>File:</label>
-                    <input type="file" (change)="onFileSelected($event)" class="form-control" />
-                </div>
-                <!-- Hidden fields bound to form -->
-                <input type="hidden" formControlName="file_name" />
-                <input type="hidden" formControlName="file_base64" />
-                <app-button label="Submit"></app-button>
-            </form>
+<section class="dashboard-section">
+  <div class="container-fluid">
+    <div class="row dashboard-layout">
+      <div class="col-md-3">
+        <app-user-menu></app-user-menu>
+      </div>
+      <div class="col-md-9">
+        <div class="main-content">
+          <div class="dashboard-header">
+            <h1>New Offer</h1>
+            <p>Create a new offer under a category.</p>
+          </div>
 
+          <div class="card p-3">
+            <form [formGroup]="offreForm" (ngSubmit)="onSubmit()" class="mt-3">
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <label class="form-label">Name</label>
+                  <input type="text" formControlName="name" class="form-control" />
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Category</label>
+                  <select class="form-select" formControlName="category_id">
+                    <option value="">Select a category</option>
+                    <optgroup *ngFor="let container of containers" [attr.label]="container.name">
+                      <option *ngFor="let cat of container.categories" [value]="cat.category_id">{{ cat.name }}</option>
+                    </optgroup>
+                  </select>
+                </div>
+                <div class="col-12">
+                  <label class="form-label">Description</label>
+                  <textarea formControlName="description" class="form-control" rows="4"></textarea>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">URL</label>
+                  <input type="url" formControlName="url" class="form-control" />
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">File</label>
+                  <input type="file" (change)="onFileSelected($event)" class="form-control" />
+                </div>
+              </div>
+              <input type="hidden" formControlName="file_name" />
+              <input type="hidden" formControlName="file_base64" />
+              <div class="mt-3">
+                <app-button label="Submit"></app-button>
+              </div>
+            </form>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 </section>
+<app-footer></app-footer>

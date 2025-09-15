@@ -1,13 +1,30 @@
-section
-{
-    background-color: #f3f4f6;
-    padding: 50px 0px;
-}
-.box
-{
-    background-color: #fff;
-    border-radius: 16px;
-    box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04);
-    padding: 30px;
+        :root {
+            --bg-main: #f0f2f5;
+            --bg-card: #ffffff;
+            --bg-sidebar: #2c3e50;
+            --text-dark: #333333;
+            --text-light: #ecf0f1;
+            --primary-color: #3498db;
+            --secondary-color: #e74c3c;
+            --border-color: #dddddd;
+            --shadow-light: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --footer-height: 90px;
+        }
 
-}
+        .dashboard-section {
+            min-height: calc(100vh - var(--footer-height));
+            display: block;
+            background-color: var(--bg-main);
+        }
+
+        .dashboard-layout {
+            min-height: calc(100vh - var(--footer-height));
+        }
+
+        .main-content {
+            flex-grow: 1;
+            padding: 40px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+        }

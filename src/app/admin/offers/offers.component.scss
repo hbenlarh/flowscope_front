@@ -1,0 +1,10 @@
+        :root { --footer-height: 90px; }
+        .dashboard-section { min-height: calc(100vh - var(--footer-height)); }
+        .dashboard-layout { min-height: calc(100vh - var(--footer-height)); }
+        .main-content { padding: 40px; }
+
+        .modal-backdrop { position: fixed; inset: 0; background: rgba(0,0,0,0.4); z-index: 1050; }
+        .modal-sheet { position: fixed; inset: 0; display: grid; place-items: center; padding: 16px; z-index: 1051; }
+        .modal-sheet .card { max-width: 640px; width: 100%; position: relative; }
+
+
