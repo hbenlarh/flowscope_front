@@ -12,18 +12,22 @@ import { AdminContainersComponent } from './admin/containers/containers.componen
 import { AdminCategoriesComponent } from './admin/categories/categories.component';
 import { AdminOffersComponent } from './admin/offers/offers.component';
 import { UserMyOffers } from './user/my-offers/my-offers';
+import { Logout } from './auth/logout/logout';
+import { AiCategories } from './ai-categories/ai-categories';
 
 export const routes: Routes = [
 {path : "",  component: Homepage},
 {path : "login",  component: Login},
 {path : "register", component: Register},
-{path : "Dashboard", component: UserDashbord, canActivate: [AuthGuard]},
+{path : "logout", component: Logout},
+{path : "ai-categories", component: AiCategories},
+{path : "user/Dashboard", component: UserDashbord, canActivate: [AuthGuard]},
 {path : "admin/Dashboard", component: DashboardComponent,canActivate: [AdminGuard]},
 {path : "admin/users", component: AdminUsersComponent, canActivate: [AdminGuard]},
 {path : "admin/containers", component: AdminContainersComponent, canActivate: [AdminGuard]},
 {path : "admin/categories", component: AdminCategoriesComponent, canActivate: [AdminGuard]},
 {path : "admin/offers", component: AdminOffersComponent, canActivate: [AdminGuard]},
-{path : "addOffre", component: UserOffre, canActivate: [AuthGuard]}
-,{path : "my-offers", component: UserMyOffers, canActivate: [AuthGuard]}
+{path : "user/addOffre", component: UserOffre, canActivate: [AuthGuard]},
+{path : "user/myoffers", component: UserMyOffers, canActivate: [AuthGuard]}
 
 ];

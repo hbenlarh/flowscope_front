@@ -59,7 +59,7 @@ export class Login implements OnInit {
       (response: any) => {
         if (!response.client.is_admin) {
           console.log("im here good");
-           this.router.navigate(['/Dashboard']);
+           this.router.navigate(['/user/Dashboard']);
         } else {
            this.router.navigate(['/admin/Dashboard']);
         }

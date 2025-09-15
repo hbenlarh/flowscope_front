@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Menu } from '../menu/menu';
+import { Footer } from '../../shared/footer/footer';
 
 interface OfferRow {
   id?: number | string;
@@ -20,7 +21,7 @@ interface OfferRow {
 @Component({
   selector: 'app-admin-offers',
   standalone: true,
-  imports: [CommonModule, FormsModule, Menu],
+  imports: [CommonModule, FormsModule, Menu, Footer],
   templateUrl: './offers.component.html',
   styleUrl: './offers.component.scss'
 })

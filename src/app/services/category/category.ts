@@ -9,6 +9,8 @@ export interface Category {
   description: string;
   container_id: number;
   is_active: boolean;
+  icon?: string; // Optional icon class for the category
+  count?: string; // Optional count to display for the category
 }
 
 export interface Container {

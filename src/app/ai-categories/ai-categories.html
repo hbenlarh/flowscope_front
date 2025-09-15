@@ -1,0 +1,37 @@
+<app-header></app-header>
+<section class="ai-categories-section">
+  <div class="container">
+    <div *ngIf="loading" class="loading-indicator">
+      <p>Loading categories...</p>
+    </div>
+
+    <div *ngIf="error" class="error-message">
+      <p>{{ error }}</p>
+    </div>
+
+    <div *ngIf="!loading && !error && containers.length === 0" class="no-data">
+      <p>No categories available.</p>
+    </div>
+
+    <div *ngFor="let container of containers" class="container-card">
+      <div class="container-header">
+        <h2>{{ container.name }}</h2>
+        <p>{{ container.description }}</p>
+      </div>
+
+      <div class="categories-grid">
+        <div *ngFor="let category of container.categories" class="category-card">
+          <div class="category-content">
+            <div class="icon-container">
+              <span class="category-icon" [ngClass]="category.icon">
+              </span>
+            </div>
+            <div class="category-name">{{ category.name }}</div>
+            <div class="category-count" *ngIf="category.count">({{ category.count }})</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<app-footer></app-footer>

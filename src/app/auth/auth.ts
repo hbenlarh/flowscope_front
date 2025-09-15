@@ -50,10 +50,23 @@ export class AuthService {
       );
   }
 
-  logout() {
-    this.user = null;
-    if (this.isBrowser()) {
-      localStorage.removeItem('user');
-    }
+  logout(): Observable<any> {
+    return this.http.post('api/flowscope_core/auth/logout', {}, { withCredentials: true })
+      .pipe(
+        tap(() => {
+          this.user = null;
+          if (this.isBrowser()) {
+            localStorage.removeItem('user');
+          }
+        }),
+        catchError(error => {
+          // Still clear local data even if API call fails
+          this.user = null;
+          if (this.isBrowser()) {
+            localStorage.removeItem('user');
+          }
+          return of(error);
+        })
+      );
   }
 }
