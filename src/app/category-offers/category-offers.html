@@ -1,0 +1,48 @@
+<app-header></app-header>
+<section>
+  <div class="container">
+    <div *ngIf="loading" class="loading-indicator">
+      Loading offers...
+    </div>
+
+    <div *ngIf="error" class="error-message">
+      {{ error }}
+    </div>
+
+    <div *ngIf="!loading && !error">
+      <div class="page-header">
+        <h2>{{ category?.name || 'Category' }}</h2>
+        <p *ngIf="category?.description">{{ category?.description }}</p>
+      </div>
+
+      <div class="search-container">
+        <input type="text" [(ngModel)]="searchTerm" (input)="onSearchChange()" placeholder="Search within this category..." class="search-input" />
+      </div>
+
+      <div *ngIf="filteredOffers.length === 0" class="no-results">No offers found.</div>
+
+      <div class="row" *ngIf="filteredOffers.length > 0">
+        <div class="offers-list row">
+          <div *ngFor="let offer of filteredOffers" class="col-md-4 col-sm-6 mb-4">
+            <div class="offer-card">
+              <div class="card-body">
+                <div class="offer-logo">
+                  <img *ngIf="offer.file" [src]="'data:' + (offer.file_extension === '.svg' ? 'image/svg+xml' : offer.file_extension === '.jpg' || offer.file_extension === '.jpeg' ? 'image/jpeg' : 'image/png') + ';base64,' + offer.file" [alt]="offer.file_name" />
+                  <img *ngIf="!offer.file" src="assets/placeholder-logo.svg" alt="Default logo" />
+                </div>
+                <h3 class="offer-title">{{ offer.name }}</h3>
+                <p class="offer-description">{{ offer.description | slice:0:120 }}{{ offer.description.length > 120 ? '...' : '' }}</p>
+              </div>
+              <div class="card-footer">
+                <a [href]="offer.url" target="_blank" class="visit-btn">VISIT</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<app-footer></app-footer>
+
+

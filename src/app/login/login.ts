@@ -59,9 +59,9 @@ export class Login implements OnInit {
       (response: any) => {
         if (!response.client.is_admin) {
           console.log("im here good");
-           this.router.navigate(['/user/Dashboard']);
+           this.router.navigate(['/user/dashboard']);
         } else {
-           this.router.navigate(['/admin/Dashboard']);
+           this.router.navigate(['/admin/dashboard']);
         }
         this.loading = false;
         this.loginForm.enable({ emitEvent: false });

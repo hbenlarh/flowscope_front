@@ -32,7 +32,7 @@ export class AuthService {
   }
 
   fetchUser(): Observable<Userdata | null> {
-    return this.http.get<Userdata>('api/flowscope_core/client/me', { withCredentials: true })
+    return this.http.get<Userdata>('/api/flowscope_core/client/me', { withCredentials: true })
       .pipe(
         tap(user => {
           this.user = user;
@@ -51,7 +51,7 @@ export class AuthService {
   }
 
   logout(): Observable<any> {
-    return this.http.post('api/flowscope_core/auth/logout', {}, { withCredentials: true })
+    return this.http.post('/api/flowscope_core/auth/logout', {}, { withCredentials: true })
       .pipe(
         tap(() => {
           this.user = null;

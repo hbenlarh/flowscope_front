@@ -88,10 +88,67 @@
             color: var(--primary-color);
         }
 
-        .card.users p { color: #3498db; }
-        .card.containers p { color: #2ecc71; }
-        .card.categories p { color: #f1c40f; }
-        .card.offres p { color: #e74c3c; }
+        .main-count {
+            font-size: 2rem;
+            font-weight: 700;
+            margin: 0 0 15px;
+            color: var(--primary-color);
+        }
+
+        .card.users .main-count { color: #3498db; }
+        .card.containers .main-count { color: #2ecc71; }
+        .card.categories .main-count { color: #f1c40f; }
+        .card.offres .main-count { color: #e74c3c; }
+
+        .category-breakdown {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .category-breakdown h4 {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin: 0 0 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .category-list {
+            max-height: 150px;
+            overflow-y: auto;
+        }
+
+        .category-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 5px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .category-item:last-child {
+            border-bottom: none;
+        }
+
+        .category-name {
+            font-size: 0.85rem;
+            color: #666;
+            flex: 1;
+            margin-right: 10px;
+        }
+
+        .category-count {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            background: #f8f9fa;
+            padding: 2px 8px;
+            border-radius: 12px;
+            min-width: 25px;
+            text-align: center;
+        }
 
         .recent-activity {
             margin-top: 40px;

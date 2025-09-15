@@ -36,6 +36,7 @@
                   <th scope="col">Name</th>
                   <th scope="col">Description</th>
                   <th scope="col">Container</th>
+                  <th scope="col" class="text-center">Offers</th>
                   <th scope="col" class="text-end">Actions</th>
                 </tr>
               </thead>
@@ -45,13 +46,16 @@
                   <td>{{ c.name || '-' }}</td>
                   <td>{{ c.description || '-' }}</td>
                   <td>{{ getContainerName(c) }}</td>
+                  <td class="text-center">
+                    <span class="badge bg-primary">{{ c.offers_count || 0 }}</span>
+                  </td>
                   <td class="text-end">
                     <button class="btn btn-sm btn-outline-primary me-2" (click)="openEdit(c)">Edit</button>
                     <button class="btn btn-sm btn-outline-danger" (click)="delete(c)" [disabled]="saving()">Delete</button>
                   </td>
                 </tr>
                 <tr *ngIf="!loading() && filtered().length === 0">
-                  <td colspan="5" class="text-center text-muted py-4">No categories found.</td>
+                  <td colspan="6" class="text-center text-muted py-4">No categories found.</td>
                 </tr>
               </tbody>
             </table>

@@ -5,12 +5,14 @@ import { Footer } from '../shared/footer/footer';
 import { ContainerService, Container } from '../services/container/container.service';
 import { CategoryService, Category } from '../services/category/category';
 import { OfferService } from '../services/offer/offer';
+import { Offer } from '../services/models/offredata.model';
 import { forkJoin } from 'rxjs';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-ai-categories',
   standalone: true,
-  imports: [CommonModule, Header, Footer],
+  imports: [CommonModule, Header, Footer, RouterModule],
   templateUrl: './ai-categories.html',
   styleUrl: './ai-categories.scss'
 })
@@ -46,7 +48,7 @@ export class AiCategories implements OnInit {
         const processedCategories = categories.map(category => ({
           ...category,
           icon: this.generateIconClass(category.name),
-          count: offerCountMap[category.category_id] || 0
+          count: String(offerCountMap[category.category_id] || 0)
         }));
 
         // Group categories by container

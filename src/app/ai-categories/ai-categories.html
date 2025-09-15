@@ -20,7 +20,7 @@
       </div>
 
       <div class="categories-grid">
-        <div *ngFor="let category of container.categories" class="category-card">
+        <a *ngFor="let category of container.categories" class="category-card" [routerLink]="['/categories', category.category_id]">
           <div class="category-content">
             <div class="icon-container">
               <span class="category-icon" [ngClass]="category.icon">
@@ -29,7 +29,7 @@
             <div class="category-name">{{ category.name }}</div>
             <div class="category-count" *ngIf="category.count">({{ category.count }})</div>
           </div>
-        </div>
+        </a>
       </div>
     </div>
   </div>

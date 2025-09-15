@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule, FormBuilder, FormGroup, Validators } 
 import { HttpClient } from '@angular/common/http';
 import { Menu } from '../menu/menu';
 import { Footer } from '../../shared/footer/footer';
+import { forkJoin } from 'rxjs';
 
 interface CategoryRow {
   id?: number | string;
@@ -11,6 +12,7 @@ interface CategoryRow {
   description?: string;
   container_id?: number | string;
   container_name?: string;
+  offers_count?: number;
 }
 
 interface ContainerOption { id: number | string; name: string; }
@@ -81,22 +83,36 @@ export class AdminCategoriesComponent implements OnInit {
     if (this.loading()) return;
     this.loading.set(true);
     this.errorMessage.set('');
-    this.http.get<any>('/api/flowscope_core/category', { withCredentials: true })
-      .subscribe({
-        next: (res) => {
-          const raw = Array.isArray(res) ? res : (res?.categories || res?.items || res?.data || res?.results || []);
-          const mapped: CategoryRow[] = (Array.isArray(raw) ? raw : []).map((c: any) => ({
-            id: c.category_id ?? c.id,
-            name: c.name ?? '',
-            description: c.description ?? '',
-            container_id: c.container_id ?? c.container?.container_id,
-            container_name: c.container?.name
-          }));
-          this.categories.set(mapped);
-          this.loading.set(false);
-        },
-        error: (err) => { this.errorMessage.set(err?.error?.message || 'Failed to load categories'); this.loading.set(false); }
-      });
+    
+    forkJoin({
+      categories: this.http.get<any>('/api/flowscope_core/category', { withCredentials: true }),
+      offers: this.http.get<any>('/api/flowscope_core/offer', { withCredentials: true })
+    }).subscribe({
+      next: ({ categories, offers }) => {
+        const categoriesRaw = Array.isArray(categories) ? categories : (categories?.categories || categories?.items || categories?.data || categories?.results || []);
+        const offersRaw = Array.isArray(offers) ? offers : (offers?.offers || offers?.items || offers?.data || offers?.results || []);
+        
+        // Count offers per category
+        const offerCountMap: { [categoryId: number]: number } = {};
+        offersRaw.forEach((offer: any) => {
+          if (offer.category_id) {
+            offerCountMap[offer.category_id] = (offerCountMap[offer.category_id] || 0) + 1;
+          }
+        });
+        
+        const mapped: CategoryRow[] = (Array.isArray(categoriesRaw) ? categoriesRaw : []).map((c: any) => ({
+          id: c.category_id ?? c.id,
+          name: c.name ?? '',
+          description: c.description ?? '',
+          container_id: c.container_id ?? c.container?.container_id,
+          container_name: c.container?.name,
+          offers_count: offerCountMap[c.category_id ?? c.id] || 0
+        }));
+        this.categories.set(mapped);
+        this.loading.set(false);
+      },
+      error: (err) => { this.errorMessage.set(err?.error?.message || 'Failed to load categories'); this.loading.set(false); }
+    });
   }
 
   openAdd(): void {

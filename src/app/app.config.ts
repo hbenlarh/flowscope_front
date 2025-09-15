@@ -2,7 +2,7 @@ import { ApplicationConfig, provideBrowserGlobalErrorListeners, provideZoneChang
 import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
-import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
+import { provideClientHydration } from '@angular/platform-browser';
 import { provideHttpClient,withFetch, withInterceptors } from '@angular/common/http';
 import { serverApiPrefixInterceptor } from './services/api.interceptor';
 import { AuthService } from './auth/auth';
