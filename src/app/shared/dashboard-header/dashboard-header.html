@@ -1,0 +1,17 @@
+<div class="dashboard-header-container">
+  <div class="container-fluid">
+    <div class="row align-items-center">
+      <div class="col-md-6">
+        <div class="dashboard-title">
+          <h1>{{ title }}</h1>
+          <p class="text-muted">{{ subtitle }}</p>
+        </div>
+      </div>
+      <div class="col-md-6 text-md-end" *ngIf="showLogo">
+        <div class="dashboard-logo">
+          <app-logo></app-logo>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

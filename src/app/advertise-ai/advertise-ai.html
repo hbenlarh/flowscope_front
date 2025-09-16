@@ -1,0 +1,107 @@
+<app-header></app-header>
+
+<section class="advertise-hero">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 mx-auto text-center">
+        <h1 class="hero-title">Advertise Your AI Service</h1>
+        <p class="hero-subtitle">Boost your AI service visibility and reach more customers with our premium advertising plans</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pricing-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <h2 class="section-title text-center mb-5">Choose Your Advertising Plan</h2>
+      </div>
+    </div>
+    
+    <div class="row justify-content-center">
+      <div class="col-lg-4 col-md-6 mb-4" *ngFor="let plan of pricingPlans">
+        <div class="pricing-card" [class.popular]="plan.isPopular">
+          <!-- Popular Badge -->
+          <div class="popular-badge" *ngIf="plan.isPopular">
+            <span>Most Popular</span>
+          </div>
+          
+          <!-- Plan Icon -->
+          <div class="plan-icon">
+            <i [class]="plan.icon"></i>
+          </div>
+          
+          <!-- Plan Header -->
+          <div class="plan-header">
+            <h3 class="plan-name">{{ plan.name }}</h3>
+            <p class="plan-description">{{ plan.description }}</p>
+          </div>
+          
+          <!-- Price -->
+          <div class="plan-price">
+            <span class="price-amount">${{ plan.price }}</span>
+            <span class="price-duration">{{ plan.duration }}</span>
+          </div>
+          
+          <!-- Features -->
+          <div class="plan-features">
+            <ul class="features-list">
+              <li *ngFor="let feature of plan.features" class="feature-item">
+                <i class="bi bi-check-circle-fill feature-check"></i>
+                <span class="feature-text">{{ feature }}</span>
+                <i class="bi bi-shield-check feature-badge" *ngIf="feature.includes('Gold checkmark')"></i>
+                <i class="bi bi-info-circle feature-info" *ngIf="feature.includes('Indexed on Google')"></i>
+              </li>
+            </ul>
+          </div>
+          
+          <!-- Action Button -->
+          <div class="plan-action">
+            <app-button 
+              [label]="plan.buttonText" 
+              [class]="plan.buttonClass"
+              (click)="selectPlan(plan)">
+            </app-button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Additional Info -->
+    <div class="row mt-5">
+      <div class="col-lg-8 mx-auto text-center">
+        <div class="additional-info">
+          <h4>Why Choose Our Advertising Plans?</h4>
+          <div class="row mt-4">
+            <div class="col-md-4 mb-3">
+              <div class="info-item">
+                <i class="bi bi-graph-up-arrow info-icon"></i>
+                <h5>Increased Visibility</h5>
+                <p>Get your AI service featured prominently across our platform</p>
+              </div>
+            </div>
+            <div class="col-md-4 mb-3">
+              <div class="info-item">
+                <i class="bi bi-people info-icon"></i>
+                <h5>Targeted Audience</h5>
+                <p>Reach AI enthusiasts and potential customers actively looking for solutions</p>
+              </div>
+            </div>
+            <div class="col-md-4 mb-3">
+              <div class="info-item">
+                <i class="bi bi-award info-icon"></i>
+                <h5>Premium Support</h5>
+                <p>Get dedicated support to maximize your advertising results</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<app-footer></app-footer>
+
+

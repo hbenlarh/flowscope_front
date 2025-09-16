@@ -6,11 +6,12 @@ import { RouterLink} from '@angular/router';
 import { Footer } from '../../shared/footer/footer';
 import { UserProfile } from '../user-profile/user-profile';
 import { UserMenu } from '../user-menu/user-menu';
+import { DashboardHeader } from '../../shared/dashboard-header/dashboard-header';
 
 
 @Component({
   selector: 'app-user-dashbord',
-  imports: [CommonModule, RouterLink,Footer,UserProfile,UserMenu],
+  imports: [CommonModule, RouterLink,Footer,UserProfile,UserMenu,DashboardHeader],
   templateUrl: './user-dashbord.html',
   styleUrl: './user-dashbord.scss'
 })

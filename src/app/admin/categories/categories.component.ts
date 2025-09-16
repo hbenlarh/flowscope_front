@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { Menu } from '../menu/menu';
 import { Footer } from '../../shared/footer/footer';
 import { forkJoin } from 'rxjs';
+import { DashboardHeader } from '../../shared/dashboard-header/dashboard-header';
 
 interface CategoryRow {
   id?: number | string;
@@ -20,7 +21,7 @@ interface ContainerOption { id: number | string; name: string; }
 @Component({
   selector: 'app-admin-categories',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, Menu,Footer],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, Menu,Footer,DashboardHeader],
   templateUrl: './categories.component.html',
   styleUrl: './categories.component.scss'
 })
@@ -84,35 +85,60 @@ export class AdminCategoriesComponent implements OnInit {
     this.loading.set(true);
     this.errorMessage.set('');
     
-    forkJoin({
-      categories: this.http.get<any>('/api/flowscope_core/category', { withCredentials: true }),
-      offers: this.http.get<any>('/api/flowscope_core/offer', { withCredentials: true })
-    }).subscribe({
-      next: ({ categories, offers }) => {
-        const categoriesRaw = Array.isArray(categories) ? categories : (categories?.categories || categories?.items || categories?.data || categories?.results || []);
-        const offersRaw = Array.isArray(offers) ? offers : (offers?.offers || offers?.items || offers?.data || offers?.results || []);
-        
-        // Count offers per category
-        const offerCountMap: { [categoryId: number]: number } = {};
-        offersRaw.forEach((offer: any) => {
-          if (offer.category_id) {
-            offerCountMap[offer.category_id] = (offerCountMap[offer.category_id] || 0) + 1;
-          }
-        });
-        
-        const mapped: CategoryRow[] = (Array.isArray(categoriesRaw) ? categoriesRaw : []).map((c: any) => ({
-          id: c.category_id ?? c.id,
-          name: c.name ?? '',
-          description: c.description ?? '',
-          container_id: c.container_id ?? c.container?.container_id,
-          container_name: c.container?.name,
-          offers_count: offerCountMap[c.category_id ?? c.id] || 0
-        }));
-        this.categories.set(mapped);
-        this.loading.set(false);
-      },
-      error: (err) => { this.errorMessage.set(err?.error?.message || 'Failed to load categories'); this.loading.set(false); }
-    });
+    // First fetch categories
+    this.http.get<any>('/api/flowscope_core/category', { withCredentials: true })
+      .subscribe({
+        next: (categories) => {
+          console.log('Categories API Response:', categories); // Debug log
+          const categoriesRaw = Array.isArray(categories) ? categories : (categories?.categories || categories?.items || categories?.data || categories?.results || []);
+          
+          // Then fetch offers to count them per category
+          this.http.get<any>('/api/flowscope_core/offer?page_number=1&page_size=1000', { withCredentials: true })
+            .subscribe({
+              next: (offers) => {
+                const offersRaw = Array.isArray(offers) ? offers : (offers?.items || offers?.offers || offers?.data || offers?.results || []);
+                
+                // Count offers per category
+                const offerCountMap: { [categoryId: number]: number } = {};
+                offersRaw.forEach((offer: any) => {
+                  if (offer.category_id) {
+                    offerCountMap[offer.category_id] = (offerCountMap[offer.category_id] || 0) + 1;
+                  }
+                });
+                
+                const mapped: CategoryRow[] = (Array.isArray(categoriesRaw) ? categoriesRaw : []).map((c: any) => ({
+                  id: c.category_id ?? c.id,
+                  name: c.name ?? '',
+                  description: c.description ?? '',
+                  container_id: c.container_id ?? c.container?.container_id,
+                  container_name: c.container?.name,
+                  offers_count: offerCountMap[c.category_id ?? c.id] || 0
+                }));
+                this.categories.set(mapped);
+                this.loading.set(false);
+              },
+              error: (err) => {
+                console.error('Error loading offers for category count:', err);
+                // Still show categories even if offers count fails
+                const mapped: CategoryRow[] = (Array.isArray(categoriesRaw) ? categoriesRaw : []).map((c: any) => ({
+                  id: c.category_id ?? c.id,
+                  name: c.name ?? '',
+                  description: c.description ?? '',
+                  container_id: c.container_id ?? c.container?.container_id,
+                  container_name: c.container?.name,
+                  offers_count: 0
+                }));
+                this.categories.set(mapped);
+                this.loading.set(false);
+              }
+            });
+        },
+        error: (err) => { 
+          console.error('Error loading categories:', err);
+          this.errorMessage.set(err?.error?.message || 'Failed to load categories'); 
+          this.loading.set(false); 
+        }
+      });
   }
 
   openAdd(): void {

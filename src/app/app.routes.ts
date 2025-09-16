@@ -15,6 +15,7 @@ import { UserMyOffers } from './user/my-offers/my-offers';
 import { Logout } from './auth/logout/logout';
 import { AiCategories } from './ai-categories/ai-categories';
 import { CategoryOffers } from './category-offers/category-offers';
+import { AdvertiseAI } from './advertise-ai/advertise-ai';
 
 export const routes: Routes = [
 {path : "",  component: Homepage},
@@ -22,6 +23,7 @@ export const routes: Routes = [
 {path : "register", component: Register},
 {path : "logout", component: Logout},
 {path : "ai-categories", component: AiCategories},
+{path : "advertise-ai", component: AdvertiseAI},
 {path : "user/dashboard", component: UserDashbord, canActivate: [AuthGuard]},
 {path : "admin/dashboard", component: DashboardComponent,canActivate: [AdminGuard]},
 {path : "admin/users", component: AdminUsersComponent, canActivate: [AdminGuard]},

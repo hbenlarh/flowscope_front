@@ -10,10 +10,11 @@ import { forkJoin } from 'rxjs';
 import { ContainerService, Container } from '../../services/container/container.service';
 import { UserMenu } from '../user-menu/user-menu';
 import { Footer } from '../../shared/footer/footer';
+import { DashboardHeader } from '../../shared/dashboard-header/dashboard-header';
 
 @Component({
   selector: 'app-user-offre',
-  imports: [ReactiveFormsModule, Button, CommonModule, UserMenu, Footer],
+  imports: [ReactiveFormsModule, Button, CommonModule, UserMenu, Footer, DashboardHeader],
   templateUrl: './user-offre.html',
   styleUrl: './user-offre.scss'
 })

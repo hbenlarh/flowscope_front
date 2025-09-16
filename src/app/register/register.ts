@@ -54,13 +54,10 @@ export class Register implements OnInit {
       password: this.signupForm.get('password')?.value,
       email: this.signupForm.get('email')?.value,
     };
-    console.log('Request Data:', this.signupData);
+ 
     this.http.post('/api/flowscope_core/client', this.signupData, { withCredentials: true })
       .subscribe(
         (response) => {
-          console.log("hello");
-          console.log(response);
-          console.log(this.signupData);
           this.loading = false;
           this.signupForm.enable({ emitEvent: false });
           this.router.navigate(['/login']); // Navigate after successful signup
@@ -70,7 +67,6 @@ export class Register implements OnInit {
           this.serverError = error?.error?.message || 'Registration failed. Please try again.';
           this.loading = false;
           this.signupForm.enable({ emitEvent: false });
-          console.log("im here bad");
         }
       );
   }

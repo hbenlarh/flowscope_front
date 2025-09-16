@@ -1,4 +1,9 @@
 <section class="dashboard-section">
+  <app-dashboard-header 
+    title="Categories" 
+    subtitle="Manage categories and link them to containers.">
+  </app-dashboard-header>
+  
   <div class="container-fluid">
     <div class="row dashboard-layout">
       <div class="col-md-3">
@@ -6,11 +11,7 @@
       </div>
       <div class="col-md-9">
         <div class="main-content">
-          <div class="dashboard-header d-flex justify-content-between align-items-end flex-wrap gap-2">
-            <div>
-              <h1>Categories</h1>
-              <p>Manage categories and link them to containers.</p>
-            </div>
+          <div class="d-flex justify-content-end mb-3">
             <button class="btn btn-primary" (click)="openAdd()">Add Category</button>
           </div>
 

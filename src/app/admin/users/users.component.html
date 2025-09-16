@@ -1,4 +1,9 @@
 <section class="dashboard-section">
+  <app-dashboard-header 
+    title="Clients" 
+    subtitle="Search and filter the clients list.">
+  </app-dashboard-header>
+  
   <div class="container-fluid">
     <div class="row dashboard-layout">
       <div class="col-md-3">
@@ -7,23 +12,27 @@
 
       <div class="col-md-9">
         <div class="main-content">
-          <div class="dashboard-header">
-            <h1>Clients</h1>
-            <p>Search and filter the clients list.</p>
-          </div>
 
           <div class="card p-3 mb-3">
             <div class="row g-2 align-items-end">
-              <div class="col-sm-6">
+              <div class="col-sm-4">
                 <label class="form-label">Search</label>
                 <input type="text" class="form-control" placeholder="Name or email" [ngModel]="search()" (ngModelChange)="search.set($event)" />
               </div>
-              <div class="col-sm-4">
+              <div class="col-sm-3">
                 <label class="form-label">Role</label>
                 <select class="form-select" [ngModel]="roleFilter()" (ngModelChange)="roleFilter.set($event)">
                   <option value="all">All</option>
                   <option value="admin">Admins</option>
                   <option value="client">Clients</option>
+                </select>
+              </div>
+              <div class="col-sm-3">
+                <label class="form-label">Status</label>
+                <select class="form-select" [ngModel]="statusFilter()" (ngModelChange)="statusFilter.set($event)">
+                  <option value="all">All</option>
+                  <option value="active">Active</option>
+                  <option value="inactive">Inactive</option>
                 </select>
               </div>
               <div class="col-sm-2 text-sm-end">
@@ -35,6 +44,7 @@
           </div>
 
           <div *ngIf="errorMessage()" class="alert alert-danger">{{ errorMessage() }}</div>
+          <div *ngIf="successMessage()" class="alert alert-success">{{ successMessage() }}</div>
 
           <div class="table-responsive card p-0 overflow-hidden">
             <table class="table mb-0 align-middle">
@@ -44,6 +54,8 @@
                   <th scope="col">Name</th>
                   <th scope="col">Email</th>
                   <th scope="col">Role</th>
+                  <th scope="col">Status</th>
+                  <th scope="col">Actions</th>
                 </tr>
               </thead>
               <tbody>
@@ -56,9 +68,37 @@
                       {{ c.is_admin ? 'Admin' : 'Client' }}
                     </span>
                   </td>
+                  <td>
+                    <span class="badge" [class.bg-success]="c.is_active" [class.bg-danger]="!c.is_active">
+                      {{ c.is_active ? 'Active' : 'Inactive' }}
+                    </span>
+                  </td>
+                  <td>
+                    <div class="btn-group" role="group">
+                      <button 
+                        *ngIf="c.is_active && !c.is_admin" 
+                        type="button" 
+                        class="btn btn-sm btn-outline-danger"
+                        (click)="deactivateClient(c)"
+                        [disabled]="deactivatingClient() === c.id">
+                        <span *ngIf="deactivatingClient() === c.id" class="spinner-border spinner-border-sm me-1" role="status"></span>
+                        {{ deactivatingClient() === c.id ? 'Deactivating...' : 'Deactivate' }}
+                      </button>
+                      <button 
+                        *ngIf="!c.is_active && !c.is_admin" 
+                        type="button" 
+                        class="btn btn-sm btn-outline-success"
+                        (click)="reactivateClient(c)"
+                        [disabled]="deactivatingClient() === c.id">
+                        <span *ngIf="deactivatingClient() === c.id" class="spinner-border spinner-border-sm me-1" role="status"></span>
+                        {{ deactivatingClient() === c.id ? 'Reactivating...' : 'Reactivate' }}
+                      </button>
+                      <span *ngIf="c.is_admin" class="text-muted small">No actions</span>
+                    </div>
+                  </td>
                 </tr>
                 <tr *ngIf="!loading() && filteredClients().length === 0">
-                  <td colspan="4" class="text-center text-muted py-4">No clients found.</td>
+                  <td colspan="6" class="text-center text-muted py-4">No clients found.</td>
                 </tr>
               </tbody>
             </table>

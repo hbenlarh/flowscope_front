@@ -1,4 +1,9 @@
 <section class="dashboard-section">
+  <app-dashboard-header 
+    [title]="'Hello ' + (user?.full_name || 'Admin') + '!'" 
+    [subtitle]="'Welcome back to your admin dashboard.'">
+  </app-dashboard-header>
+  
   <div class="container-fluid">
     <div class="row dashboard-layout">
       <div class="col-md-3 order-md-1">
@@ -6,10 +11,6 @@
       </div>
       <div class="col-md-9 order-md-2">
         <div class="main-content">
-          <div class="dashboard-header">
-            <h1>Hello {{ user?.full_name }}!</h1>
-            <p>Welcome back to your admin dashboard.</p>
-          </div>
 
           <div class="cards">
             <div class="card users">

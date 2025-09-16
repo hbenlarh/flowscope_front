@@ -1,4 +1,9 @@
 <section class="dashboard-section">
+  <app-dashboard-header 
+    title="New Offer" 
+    subtitle="Create a new offer under a category.">
+  </app-dashboard-header>
+  
   <div class="container-fluid">
     <div class="row dashboard-layout">
       <div class="col-md-3">
@@ -6,10 +11,6 @@
       </div>
       <div class="col-md-9">
         <div class="main-content">
-          <div class="dashboard-header">
-            <h1>New Offer</h1>
-            <p>Create a new offer under a category.</p>
-          </div>
 
           <div class="card p-3">
             <form [formGroup]="offreForm" (ngSubmit)="onSubmit()" class="mt-3">

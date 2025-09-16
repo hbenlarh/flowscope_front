@@ -51,14 +51,13 @@ export class Login implements OnInit {
     body.set('username', this.loginForm.get('email')?.value);
     body.set('password', this.loginForm.get('password')?.value);
 
-    console.log('Request Data:', body.toString());
+   
     this.http.post('/api/flowscope_core/auth/login', body.toString(), {
       withCredentials: true,
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
     }).subscribe(
       (response: any) => {
         if (!response.client.is_admin) {
-          console.log("im here good");
            this.router.navigate(['/user/dashboard']);
         } else {
            this.router.navigate(['/admin/dashboard']);
@@ -71,7 +70,6 @@ export class Login implements OnInit {
         this.serverError = error?.error?.message || 'Login failed. Please check your credentials.';
         this.loading = false;
         this.loginForm.enable({ emitEvent: false });
-        console.log("im here bad");
       }
     );
   }

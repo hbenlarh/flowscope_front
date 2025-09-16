@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, map } from 'rxjs';
-import { Offer } from '../models/offredata.model';
+import { Offer, PaginatedResponse, PaginationParams } from '../models/offredata.model';
 
 @Injectable({
   providedIn: 'root'
@@ -14,11 +14,24 @@ export class OfferService {
   createOffer(data: any): Observable<any> {
     return this.http.post(this.apiUrl, data, { withCredentials: true });
   }
+
+  // Legacy method for backward compatibility
   getOffers(): Observable<Offer[]> {
-    return this.http.get<{ offers: Offer[] }>(this.apiUrl, { withCredentials: true })
-      .pipe(
-        map(res => res.offers)
-      );
+    return this.getOffersPaginated({ page_number: 1, page_size: 100 }).pipe(
+      map(response => response.items || response.offers || response.data || response.results || [])
+    );
+  }
+
+  // New paginated method
+  getOffersPaginated(params: PaginationParams): Observable<PaginatedResponse<Offer>> {
+    let httpParams = new HttpParams()
+      .set('page_number', params.page_number.toString())
+      .set('page_size', params.page_size.toString());
+
+    return this.http.get<PaginatedResponse<Offer>>(this.apiUrl, { 
+      params: httpParams,
+      withCredentials: true 
+    });
   }
 
   

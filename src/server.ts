@@ -12,6 +12,27 @@ const browserDistFolder = join(import.meta.dirname, '../browser');
 const app = express();
 const angularApp = new AngularNodeAppEngine();
 
+// Add security headers including CSP
+app.use((req, res, next) => {
+  // Content Security Policy - Allow Angular and Bootstrap
+  res.setHeader('Content-Security-Policy', 
+    "default-src 'self'; " +
+    "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net; " +
+    "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net; " +
+    "font-src 'self' https://fonts.gstatic.com https://cdn.jsdelivr.net; " +
+    "img-src 'self' data: blob:; " +
+    "connect-src 'self' http://127.0.0.1:8000; " +
+    "frame-ancestors 'none';"
+  );
+  
+  // Other security headers
+  res.setHeader('X-Frame-Options', 'DENY');
+  res.setHeader('X-Content-Type-Options', 'nosniff');
+  res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
+  
+  next();
+});
+
 /**
  * Example Express Rest API endpoints can be defined here.
  * Uncomment and define endpoints as necessary.

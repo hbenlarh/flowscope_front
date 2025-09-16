@@ -16,3 +16,20 @@ export interface Offer {
     is_featured?: boolean; // whether the offer is featured
     is_top?: boolean; // whether the offer is marked as top
   }
+
+export interface PaginatedResponse<T> {
+  items?: T[];
+  offers?: T[];
+  data?: T[];
+  results?: T[];
+  total_items?: number;
+  total?: number;
+  page_number?: number;
+  page_size?: number;
+  total_pages?: number;
+}
+
+export interface PaginationParams {
+  page_number: number;
+  page_size: number;
+}

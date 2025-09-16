@@ -86,6 +86,46 @@
                 </div>
             </div>
         </div>
+        
+        <!-- Pagination Controls -->
+        <div class="pagination-container" *ngIf="!loading && !error && totalPages > 1">
+            <nav aria-label="Offers pagination">
+                <ul class="pagination justify-content-center">
+                    <!-- Previous Button -->
+                    <li class="page-item" [class.disabled]="currentPage === 1">
+                        <a class="page-link" href="#" (click)="previousPage(); $event.preventDefault()" 
+                           [attr.aria-disabled]="currentPage === 1">
+                            <i class="bi bi-chevron-left"></i> Previous
+                        </a>
+                    </li>
+                    
+                    <!-- Page Numbers -->
+                    <li class="page-item" *ngFor="let page of getPageNumbers()" 
+                        [class.active]="page === currentPage">
+                        <a class="page-link" href="#" (click)="goToPage(page); $event.preventDefault()">
+                            {{ page }}
+                        </a>
+                    </li>
+                    
+                    <!-- Next Button -->
+                    <li class="page-item" [class.disabled]="currentPage === totalPages">
+                        <a class="page-link" href="#" (click)="nextPage(); $event.preventDefault()" 
+                           [attr.aria-disabled]="currentPage === totalPages">
+                            Next <i class="bi bi-chevron-right"></i>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            
+            <!-- Pagination Info -->
+            <div class="pagination-info text-center mt-3">
+                <small class="text-muted">
+                    Showing {{ (currentPage - 1) * pageSize + 1 }} to 
+                    {{ Math.min(currentPage * pageSize, totalItems) }} of 
+                    {{ totalItems }} offers
+                </small>
+            </div>
+        </div>
     </div>
 </section>
 <app-footer></app-footer>

@@ -9,11 +9,12 @@ import { ContainerService, Container } from '../../services/container/container.
 import { forkJoin } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
+import { DashboardHeader } from '../../shared/dashboard-header/dashboard-header';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [Footer, Menu, CommonModule],
+  imports: [Footer, Menu, CommonModule, DashboardHeader],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss'
 })

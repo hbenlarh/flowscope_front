@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule, FormBuilder, FormGroup, Validators } 
 import { HttpClient } from '@angular/common/http';
 import { Menu } from '../menu/menu';
 import { Footer } from '../../shared/footer/footer';
+import { DashboardHeader } from '../../shared/dashboard-header/dashboard-header';
 
 interface ContainerRow {
   id?: number | string;
@@ -15,7 +16,7 @@ interface ContainerRow {
 @Component({
   selector: 'app-admin-containers',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, Menu,Footer],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, Menu,Footer,DashboardHeader],
   templateUrl: './containers.component.html',
   styleUrl: './containers.component.scss'
 })

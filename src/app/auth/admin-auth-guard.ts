@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
 import { AuthService } from './auth';
 import { Observable, of } from 'rxjs';
-import { switchMap, tap } from 'rxjs/operators';
+import { switchMap, tap, catchError } from 'rxjs/operators';
 import { Userdata } from '../services/userdata.model';
 import { UserDataService } from '../services/userdata.service';
 
@@ -39,6 +39,11 @@ export class AdminGuard implements CanActivate {
           this.router.navigate(['/login']);
           return of(false);
         }
+      }),
+      catchError(() => {
+        // If API call fails, redirect to login
+        this.router.navigate(['/login']);
+        return of(false);
       })
     );
   }

@@ -6,7 +6,7 @@ import { Header } from '../shared/header/header';
 import { Footer } from '../shared/footer/footer';
 import { OfferService } from '../services/offer/offer';
 import { CategoryService, Category } from '../services/category/category';
-import { Offer } from '../services/models/offredata.model';
+import { Offer, PaginatedResponse, PaginationParams } from '../services/models/offredata.model';
 
 @Component({
   selector: 'app-category-offers',
@@ -23,6 +23,16 @@ export class CategoryOffers {
   loading = true;
   error = '';
   searchTerm = '';
+  
+  // Pagination properties
+  currentPage = 1;
+  pageSize = 12;
+  totalItems = 0;
+  totalPages = 0;
+  paginationInfo: PaginatedResponse<Offer> | null = null;
+  
+  // Make Math available in template
+  Math = Math;
 
   constructor(
     private route: ActivatedRoute,
@@ -41,10 +51,30 @@ export class CategoryOffers {
       error: () => {}
     });
 
-    this.offerService.getOffers().subscribe({
-      next: (offers) => {
-        this.offers = offers.filter(o => o.category_id === this.categoryId);
+    this.loadOffers();
+  }
+
+  loadOffers() {
+    this.loading = true;
+    this.error = '';
+    
+    const paginationParams: PaginationParams = {
+      page_number: this.currentPage,
+      page_size: this.pageSize
+    };
+
+    this.offerService.getOffersPaginated(paginationParams).subscribe({
+      next: (response: PaginatedResponse<Offer>) => {
+        this.paginationInfo = response;
+        
+        // Handle different response structures
+        const items = response.items || response.offers || response.data || response.results || [];
+        const allOffers = Array.isArray(items) ? items : [];
+        
+        this.offers = allOffers.filter(o => o.category_id === this.categoryId);
         this.filteredOffers = [...this.offers];
+        this.totalItems = response.total_items || response.total || allOffers.length;
+        this.totalPages = response.total_pages || Math.ceil(this.totalItems / this.pageSize);
         this.loading = false;
       },
       error: () => {
@@ -55,10 +85,44 @@ export class CategoryOffers {
   }
 
   onSearchChange() {
-    const term = this.searchTerm.toLowerCase();
-    this.filteredOffers = this.offers.filter(o =>
-      !term || o.name.toLowerCase().includes(term) || o.description.toLowerCase().includes(term)
-    );
+    this.currentPage = 1; // Reset to first page when searching
+    this.loadOffers();
+  }
+
+  // Pagination methods
+  goToPage(page: number) {
+    if (page >= 1 && page <= this.totalPages) {
+      this.currentPage = page;
+      this.loadOffers();
+    }
+  }
+
+  nextPage() {
+    if (this.currentPage < this.totalPages) {
+      this.goToPage(this.currentPage + 1);
+    }
+  }
+
+  previousPage() {
+    if (this.currentPage > 1) {
+      this.goToPage(this.currentPage - 1);
+    }
+  }
+
+  getPageNumbers(): number[] {
+    const pages: number[] = [];
+    const maxVisiblePages = 5;
+    let startPage = Math.max(1, this.currentPage - Math.floor(maxVisiblePages / 2));
+    let endPage = Math.min(this.totalPages, startPage + maxVisiblePages - 1);
+    
+    if (endPage - startPage + 1 < maxVisiblePages) {
+      startPage = Math.max(1, endPage - maxVisiblePages + 1);
+    }
+    
+    for (let i = startPage; i <= endPage; i++) {
+      pages.push(i);
+    }
+    return pages;
   }
 }
 

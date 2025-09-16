@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { AuthService } from './auth';
-import { switchMap } from 'rxjs/operators';
+import { switchMap, catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -26,6 +26,11 @@ export class AuthGuard implements CanActivate {
           this.router.navigate(['/login']);
           return of(false);
         }
+      }),
+      catchError(() => {
+        // If API call fails, redirect to login
+        this.router.navigate(['/login']);
+        return of(false);
       })
     );
   }

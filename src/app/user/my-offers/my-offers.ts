@@ -1,9 +1,11 @@
 import { Component, OnInit, signal, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { UserMenu } from '../user-menu/user-menu';
 import { Footer } from '../../shared/footer/footer';
+import { PaginatedResponse, PaginationParams } from '../../services/models/offredata.model';
+import { DashboardHeader } from '../../shared/dashboard-header/dashboard-header';
 
 interface OfferRow {
   id?: number | string;
@@ -22,7 +24,7 @@ interface ContainerOption { id: number | string; name: string; }
 @Component({
   selector: 'app-user-my-offers',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, UserMenu, Footer],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, UserMenu, Footer, DashboardHeader],
   templateUrl: './my-offers.html',
   styleUrl: './my-offers.scss'
 })
@@ -38,6 +40,16 @@ export class UserMyOffers implements OnInit {
   showModal = signal<boolean>(false);
   form!: FormGroup;
   editingId: number | string | null = null;
+  
+  // Pagination properties
+  currentPage = signal<number>(1);
+  pageSize = signal<number>(10);
+  totalItems = signal<number>(0);
+  totalPages = signal<number>(0);
+  paginationInfo = signal<PaginatedResponse<OfferRow> | null>(null);
+  
+  // Make Math available in template
+  Math = Math;
 
   constructor(private http: HttpClient, private fb: FormBuilder) {}
 
@@ -97,13 +109,27 @@ export class UserMyOffers implements OnInit {
     });
   }
 
-  private fetchOffers(): void {
+  fetchOffers(): void {
     if (this.loading()) return;
     this.loading.set(true);
     this.errorMessage.set('');
-    this.http.get<any>('/api/flowscope_core/offer', { withCredentials: true }).subscribe({
+    
+    const paginationParams: PaginationParams = {
+      page_number: this.currentPage(),
+      page_size: this.pageSize()
+    };
+    
+    let httpParams = new HttpParams()
+      .set('page_number', paginationParams.page_number.toString())
+      .set('page_size', paginationParams.page_size.toString());
+
+    this.http.get<PaginatedResponse<any>>('/api/flowscope_core/offer', { 
+      params: httpParams,
+      withCredentials: true 
+    }).subscribe({
       next: (res) => {
-        const raw = Array.isArray(res) ? res : (res?.offers || res?.items || res?.data || res?.results || []);
+        this.paginationInfo.set(res);
+        const raw = res.items || res.offers || res.data || res.results || [];
         const mapped: OfferRow[] = (Array.isArray(raw) ? raw : []).map((o: any) => ({
           id: o.offer_id ?? o.id,
           title: o.name ?? o.title ?? '',
@@ -124,6 +150,8 @@ export class UserMyOffers implements OnInit {
           })()
         }));
         this.offers.set(this.enrichAndFilter(mapped));
+        this.totalItems.set(res.total_items || res.total || raw.length);
+        this.totalPages.set(res.total_pages || Math.ceil(this.totalItems() / this.pageSize()));
         this.loading.set(false);
       },
       error: (err) => { this.errorMessage.set(err?.error?.message || 'Failed to load offers'); this.loading.set(false); }
@@ -188,6 +216,42 @@ export class UserMyOffers implements OnInit {
       next: () => { this.loading.set(false); this.fetchOffers(); },
       error: (err) => { this.errorMessage.set(err?.error?.message || 'Failed to delete offer'); this.loading.set(false); }
     });
+  }
+
+  // Pagination methods
+  goToPage(page: number): void {
+    if (page >= 1 && page <= this.totalPages()) {
+      this.currentPage.set(page);
+      this.fetchOffers();
+    }
+  }
+
+  nextPage(): void {
+    if (this.currentPage() < this.totalPages()) {
+      this.goToPage(this.currentPage() + 1);
+    }
+  }
+
+  previousPage(): void {
+    if (this.currentPage() > 1) {
+      this.goToPage(this.currentPage() - 1);
+    }
+  }
+
+  getPageNumbers(): number[] {
+    const pages: number[] = [];
+    const maxVisiblePages = 5;
+    let startPage = Math.max(1, this.currentPage() - Math.floor(maxVisiblePages / 2));
+    let endPage = Math.min(this.totalPages(), startPage + maxVisiblePages - 1);
+    
+    if (endPage - startPage + 1 < maxVisiblePages) {
+      startPage = Math.max(1, endPage - maxVisiblePages + 1);
+    }
+    
+    for (let i = startPage; i <= endPage; i++) {
+      pages.push(i);
+    }
+    return pages;
   }
 }
 
