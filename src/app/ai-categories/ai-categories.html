@@ -9,11 +9,38 @@
       <p>{{ error }}</p>
     </div>
 
+    <!-- Search Section -->
+    <div *ngIf="!loading && !error" class="search-section">
+      <div class="search-container">
+        <input 
+          type="text" 
+          [(ngModel)]="searchTerm" 
+          (input)="onSearchChange()"
+          placeholder="Search for categories..."
+          class="search-input"
+        />
+        <span class="search-icon">🔍</span>
+        <button 
+          *ngIf="searchTerm" 
+          (click)="clearSearch()" 
+          class="clear-search-btn"
+          title="Clear search"
+        >
+          ✕
+        </button>
+      </div>
+    </div>
+
+    <!-- No results message -->
+    <div *ngIf="!loading && !error && searchTerm && filteredContainers.length === 0" class="no-results">
+      <p>No containers or categories found matching "{{ searchTerm }}"</p>
+    </div>
+
     <div *ngIf="!loading && !error && containers.length === 0" class="no-data">
       <p>No categories available.</p>
     </div>
 
-    <div *ngFor="let container of containers" class="container-card">
+    <div *ngFor="let container of filteredContainers" class="container-card">
       <div class="container-header">
         <h2>{{ container.name }}</h2>
         <p>{{ container.description }}</p>
