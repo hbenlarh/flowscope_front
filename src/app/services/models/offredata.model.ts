@@ -32,4 +32,6 @@ export interface PaginatedResponse<T> {
 export interface PaginationParams {
   page_number: number;
   page_size: number;
+  search?: string;
+  category_id?: number;
 }

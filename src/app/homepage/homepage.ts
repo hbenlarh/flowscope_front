@@ -73,7 +73,9 @@ constructor(private offerService: OfferService,private CategoryService: Category
         
         this.totalItems = response.total_items || response.total || items.length;
         this.totalPages = response.total_pages || Math.ceil(this.totalItems / this.pageSize);
-        this.filteredOffers = [...this.offers]; // Initialize filtered offers
+        
+        // Apply filters after loading offers
+        this.applyFilters();
         this.loading = false;
       },
       error: (error) => {
@@ -96,26 +98,59 @@ constructor(private offerService: OfferService,private CategoryService: Category
 
   onCategoryChange() {
     this.currentPage = 1; // Reset to first page when filtering
-    this.loadOffers();
+    this.applyFilters();
   }
 
   onSearchChange() {
     this.currentPage = 1; // Reset to first page when searching
-    this.loadOffers();
+    this.applyFilters();
+  }
+
+  applyFilters() {
+    let filtered = [...this.offers];
+
+    // Apply category filter
+    if (this.selectedCategoryId !== null) {
+      filtered = filtered.filter(offer => offer.category_id === this.selectedCategoryId);
+    }
+
+    // Apply search term filter
+    if (this.searchTerm && this.searchTerm.trim()) {
+      const searchLower = this.searchTerm.toLowerCase().trim();
+      filtered = filtered.filter(offer => 
+        offer.name.toLowerCase().includes(searchLower) ||
+        offer.description.toLowerCase().includes(searchLower) ||
+        (offer.category_name && offer.category_name.toLowerCase().includes(searchLower))
+      );
+    }
+
+    // Update pagination info for filtered results
+    this.totalItems = filtered.length;
+    this.totalPages = Math.ceil(this.totalItems / this.pageSize);
+    
+    // Reset to page 1 if current page is beyond available pages
+    if (this.currentPage > this.totalPages && this.totalPages > 0) {
+      this.currentPage = 1;
+    }
+    
+    // Apply pagination to filtered results
+    const startIndex = (this.currentPage - 1) * this.pageSize;
+    const endIndex = startIndex + this.pageSize;
+    this.filteredOffers = filtered.slice(startIndex, endIndex);
   }
 
   clearFilters() {
     this.selectedCategoryId = null;
     this.searchTerm = '';
     this.currentPage = 1;
-    this.loadOffers();
+    this.applyFilters();
   }
 
   // Pagination methods
   goToPage(page: number) {
     if (page >= 1 && page <= this.totalPages) {
       this.currentPage = page;
-      this.loadOffers();
+      this.applyFilters();
     }
   }
 

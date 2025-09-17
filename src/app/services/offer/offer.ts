@@ -22,11 +22,21 @@ export class OfferService {
     );
   }
 
-  // New paginated method
+  // New paginated method with optional search and category filtering
   getOffersPaginated(params: PaginationParams): Observable<PaginatedResponse<Offer>> {
     let httpParams = new HttpParams()
       .set('page_number', params.page_number.toString())
       .set('page_size', params.page_size.toString());
+
+    // Add optional search parameter
+    if (params.search && params.search.trim()) {
+      httpParams = httpParams.set('search', params.search.trim());
+    }
+
+    // Add optional category filter
+    if (params.category_id !== undefined && params.category_id !== null) {
+      httpParams = httpParams.set('category_id', params.category_id.toString());
+    }
 
     return this.http.get<PaginatedResponse<Offer>>(this.apiUrl, { 
       params: httpParams,
