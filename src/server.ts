@@ -21,7 +21,7 @@ app.use((req, res, next) => {
     "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net; " +
     "font-src 'self' https://fonts.gstatic.com https://cdn.jsdelivr.net; " +
     "img-src 'self' data: blob:; " +
-    "connect-src 'self' http://127.0.0.1:8000; " +
+    "connect-src 'self' https://test1.jcloud-ver-jpe.ik-server.com; " +
     "frame-ancestors 'none';"
   );
   
