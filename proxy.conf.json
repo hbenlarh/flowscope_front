@@ -1,8 +1,0 @@
-{
-  "/api": {
-    "target": "https://test1.jcloud-ver-jpe.ik-server.com",
-    "secure": false,
-    "changeOrigin": true,
-    "logLevel": "debug"
-  }
-}

@@ -1,11 +1,19 @@
 <header>
     <div class="container">
-        <div class="row">
+        <div class="row align-items-center">
             <div class="col-sm-3">
                 <app-logo></app-logo>
             </div>
-            <div class="col-sm-9">
+            <div class="col-sm-7">
                 <app-menu></app-menu>
+            </div>
+            <div class="col-sm-2 text-end">
+                <div class="btn-group btn-group-sm" role="group">
+                    <button type="button" class="btn btn-outline-secondary" [class.active]="currentLang === 'en'"
+                        (click)="switchLanguage('en')">EN</button>
+                    <button type="button" class="btn btn-outline-secondary" [class.active]="currentLang === 'fr'"
+                        (click)="switchLanguage('fr')">FR</button>
+                </div>
             </div>
         </div>
     </div>

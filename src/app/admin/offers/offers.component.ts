@@ -59,7 +59,7 @@ export class AdminOffersComponent implements OnInit {
   }
 
   private fetchClients(): void {
-    this.http.get<any>('/api/flowscope_core/client', { withCredentials: true })
+    this.http.get<any>('https://test1.jcloud-ver-jpe.ik-server.com/api/flowscope_core/client', { withCredentials: true })
       .subscribe({
         next: (res) => {
           const raw = Array.isArray(res) ? res : (res?.clients || res?.items || res?.data || res?.results || []);
@@ -83,7 +83,7 @@ export class AdminOffersComponent implements OnInit {
   }
 
   private fetchCategories(): void {
-    this.http.get<any>('/api/flowscope_core/category', { withCredentials: true })
+    this.http.get<any>('https://test1.jcloud-ver-jpe.ik-server.com/api/flowscope_core/category', { withCredentials: true })
       .subscribe({
         next: (res) => {
           const raw = Array.isArray(res) ? res : (res?.categories || res?.items || res?.data || res?.results || []);
@@ -119,7 +119,7 @@ export class AdminOffersComponent implements OnInit {
       .set('page_number', paginationParams.page_number.toString())
       .set('page_size', paginationParams.page_size.toString());
 
-    this.http.get<PaginatedResponse<any>>('/api/flowscope_core/offer', { 
+    this.http.get<PaginatedResponse<any>>('https://test1.jcloud-ver-jpe.ik-server.com/api/flowscope_core/offer', { 
       params: httpParams,
       withCredentials: true 
     })
@@ -172,7 +172,7 @@ export class AdminOffersComponent implements OnInit {
   delete(row: OfferRow): void {
     if (!row?.id || this.deleting()) return;
     this.deleting.set(true);
-    this.http.post('/api/flowscope_core/offer/delete', { offer_id: row.id }, { withCredentials: true })
+    this.http.post('https://test1.jcloud-ver-jpe.ik-server.com/api/flowscope_core/offer/delete', { offer_id: row.id }, { withCredentials: true })
       .subscribe({ next: () => { this.deleting.set(false); this.fetchOffers(); }, error: (err) => { this.errorMessage.set(err?.error?.message || 'Failed to delete offer'); this.deleting.set(false); } });
   }
 

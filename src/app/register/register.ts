@@ -55,7 +55,7 @@ export class Register implements OnInit {
       email: this.signupForm.get('email')?.value,
     };
  
-    this.http.post('/api/flowscope_core/client', this.signupData, { withCredentials: true })
+    this.http.post('https://test1.jcloud-ver-jpe.ik-server.com/api/flowscope_core/client', this.signupData, { withCredentials: true })
       .subscribe(
         (response) => {
           this.loading = false;

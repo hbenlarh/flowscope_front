@@ -52,7 +52,7 @@ export class Login implements OnInit {
     body.set('password', this.loginForm.get('password')?.value);
 
    
-    this.http.post('/api/flowscope_core/auth/login', body.toString(), {
+    this.http.post('https://test1.jcloud-ver-jpe.ik-server.com/api/flowscope_core/auth/login', body.toString(), {
       withCredentials: true,
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
     }).subscribe(

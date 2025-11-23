@@ -7,24 +7,15 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Full list</a>
+                    <a class="nav-link active" aria-current="page" href="#">{{ 'HEADER.FULL_LIST' | translate }}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="/ai-categories" routerLinkActive="active">AI Categories</a>
+                    <a class="nav-link" routerLink="/ai-categories" routerLinkActive="active">{{ 'HEADER.AI_CATEGORIES'
+                        | translate }}</a>
                 </li>
-                
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                        data-bs-toggle="dropdown" aria-expanded="false">
-                        + more
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" routerLink="/advertise-ai" routerLinkActive="active">Advertise AI</a></li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="dropdown-item" href="/login">Login / register</a></li>
-                    </ul>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/login" routerLinkActive="active">{{ 'HEADER.LOGIN_REGISTER' |
+                        translate }}</a>
                 </li>
             </ul>
         </div>

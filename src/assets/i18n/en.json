@@ -1,0 +1,217 @@
+{
+    "HEADER": {
+        "FULL_LIST": "Full list",
+        "AI_CATEGORIES": "AI Categories",
+        "LOGIN_REGISTER": "Login / register",
+        "ADVERTISE_AI": "Advertise AI"
+    },
+    "FOOTER": {
+        "COPYRIGHT": "© 2025 Bindeye, All rights reserved ⚡",
+        "COOKIE_POLICY": "Cookie Policy",
+        "TERMS": "Conditions of use",
+        "PRIVACY_POLICY": "Privacy Policy",
+        "CONTACT": "Contact Us"
+    },
+    "HOMEPAGE": {
+        "LOADING": "Loading offers...",
+        "SEARCH_PLACEHOLDER": "Search offers by name or description...",
+        "ALL_CATEGORIES": "All Categories",
+        "CLEAR_FILTERS": "Clear Filters",
+        "NO_RESULTS": "No offers match your search criteria.",
+        "NO_OFFERS": "No offers available.",
+        "VISIT": "VISIT",
+        "PREVIOUS": "Previous",
+        "NEXT": "Next",
+        "PAGINATION_INFO": "Showing {{start}} to {{end}} of {{total}} offers",
+        "POPULAR_PLATFORMS": "Popular Platforms",
+        "POPULAR_PLATFORMS_INFO": "List of the most active and popular artificial intelligence platforms"
+    },
+    "COOKIE_POLICY": {
+        "TITLE": "Cookie Policy (EU)",
+        "BREADCRUMB": "Home → Cookie Policy (EU)",
+        "INTRO": "This Cookie Policy was last updated on 16 October 2025 and applies to citizens and legal permanent residents of the European Economic Area and Switzerland.",
+        "SECTIONS": {
+            "1": {
+                "TITLE": "1. Introduction",
+                "TEXT": "Our website, https://www.bindeye.com (hereinafter: \"the website\"), uses cookies and similar technologies (collectively referred to as \"cookies\")."
+            },
+            "2": {
+                "TITLE": "2. What are cookies?",
+                "TEXT": "Cookies are small text files stored on your device to ensure proper website functionality and improve user experience."
+            },
+            "3": {
+                "TITLE": "3. Why we use cookies",
+                "TEXT": "We use cookies to make our website work correctly, remember your preferences, and analyze anonymous traffic data to improve performance."
+            },
+            "4": {
+                "TITLE": "4. Placed cookies",
+                "TEXT": "Only functional and essential cookies are used to ensure website performance and security."
+            },
+            "5": {
+                "TITLE": "5. Consent",
+                "TEXT": "By continuing to browse www.bindeye.com, you consent to the use of these essential cookies. You can disable cookies in your browser settings, but parts of the website may not function properly."
+            },
+            "6": {
+                "TITLE": "6. Manage your consent settings",
+                "TEXT": "Only strictly necessary cookies are active."
+            },
+            "7": {
+                "TITLE": "7. Your rights",
+                "TEXT": "You can request access, correction, or deletion of your personal data at any time."
+            },
+            "8": {
+                "TITLE": "8. Contact details",
+                "TEXT": "Bindeye Registered Agents Inc<br>30 N Gould St Ste R<br>Sheridan, WY 82801<br>United States<br>Email: contact@bindeye.com<br>Website: https://www.bindeye.com"
+            },
+            "SYNC": "This Cookie Policy was synchronized with cookiedatabase.org on 28 May 2025."
+        }
+    },
+    "TERMS": {
+        "TITLE": "Terms & Conditions",
+        "BREADCRUMB": "Home → Terms & Conditions Last updated: 28 June 2024",
+        "SECTIONS": {
+            "1": {
+                "TITLE": "1. Introduction",
+                "TEXT": "These Terms and Conditions apply to the website https://www.bindeye.com and to all transactions related to our products and services. By accessing or using this website, you agree to these Terms."
+            },
+            "2": {
+                "TITLE": "2. Intellectual Property",
+                "TEXT": "All content, designs, data, and materials on this website are the property of Bindeye or its licensors. You may not reproduce, copy, or distribute any material without prior written consent."
+            },
+            "3": {
+                "TITLE": "3. Use of the Website",
+                "TEXT": "You agree to use this website only for lawful purposes and in accordance with these Terms. Any unauthorized use, such as data scraping, hacking, or misuse of content, is strictly prohibited."
+            },
+            "4": {
+                "TITLE": "4. Third-Party Links",
+                "TEXT": "Our website may contain links to third-party websites. Bindeye is not responsible for the content, privacy practices, or reliability of those sites."
+            },
+            "5": {
+                "TITLE": "5. Liability Disclaimer",
+                "TEXT": "The website and all content are provided \"as is.\" Bindeye does not guarantee uninterrupted access or the accuracy of information. We are not liable for any direct or indirect damages arising from your use of the website."
+            },
+            "6": {
+                "TITLE": "6. Privacy & Cookies",
+                "TEXT": "We value your privacy and handle all personal data according to our Privacy Policy and Cookie Policy."
+            },
+            "7": {
+                "TITLE": "7. Termination",
+                "TEXT": "We may suspend or terminate your access to the website at any time if you violate these Terms or misuse our services."
+            },
+            "8": {
+                "TITLE": "8. Governing Law",
+                "TEXT": "These Terms and Conditions shall be governed by the laws of Wyoming, USA. Any disputes will fall under the exclusive jurisdiction of the competent courts in Sheridan, Wyoming."
+            },
+            "9": {
+                "TITLE": "9. Contact Information",
+                "TEXT": "Bindeye Registered Agents Inc<br>30 N Gould St Ste R<br>Sheridan, WY 82801<br>United States<br>Email: contact@bindeye.com<br>Website: https://www.bindeye.com"
+            },
+            "10": {
+                "TITLE": "10. Updates to These Terms",
+                "TEXT": "We may revise these Terms at any time. Continued use of this website after updates constitutes acceptance of the revised Terms."
+            }
+        }
+    },
+    "PRIVACY": {
+        "TITLE": "Privacy Policy",
+        "BREADCRUMB": "Home → Privacy Policy Last updated: 28 June 2024",
+        "SECTIONS": {
+            "1": {
+                "TITLE": "1. Introduction",
+                "TEXT": "This Privacy Policy explains how Bindeye collects, uses, and protects your personal information when you visit https://www.bindeye.com or interact with our products and services. By using our website, you agree to the terms of this Policy."
+            },
+            "2": {
+                "TITLE": "2. Data We Collect",
+                "TEXT": "We may collect the following information:",
+                "LIST": "<li><strong>Account information:</strong> name, email address, or wallet address (if applicable).</li><li><strong>Technical data:</strong> IP address, browser type, and usage analytics.</li><li><strong>Communication data:</strong> messages or inquiries sent through our contact forms or email.</li>",
+                "TEXT2": "We only collect information necessary to operate our services and ensure security and performance."
+            },
+            "3": {
+                "TITLE": "3. How We Use Your Data",
+                "TEXT": "Bindeye processes data to:",
+                "LIST": "<li>Provide access to our services.</li><li>Improve website performance and user experience.</li><li>Communicate with you regarding support, updates, or important notifications.</li><li>Comply with legal and regulatory obligations.</li>",
+                "TEXT2": "We never sell or rent your personal data."
+            },
+            "4": {
+                "TITLE": "4. Data Sharing",
+                "TEXT": "We may share limited data with:",
+                "LIST": "<li>Trusted service providers (hosting, analytics, payment processors).</li><li>Legal authorities, if required by law.</li><li>Partners assisting in the secure operation of our platform.</li>",
+                "TEXT2": "All third parties are bound by strict confidentiality and security agreements."
+            },
+            "5": {
+                "TITLE": "5. Data Retention",
+                "TEXT": "We retain your data only as long as necessary for the purposes listed above or as required by law."
+            },
+            "6": {
+                "TITLE": "6. Security",
+                "TEXT": "We implement technical and organizational measures to protect your data against unauthorized access, alteration, or loss. However, no digital transmission or storage method is entirely risk-free."
+            },
+            "7": {
+                "TITLE": "7. Cookies",
+                "TEXT": "Our website uses minimal essential cookies to ensure proper functionality. For more details, please see our Cookie Policy."
+            },
+            "8": {
+                "TITLE": "8. Your Rights",
+                "TEXT": "You have the right to:",
+                "LIST": "<li>Access, correct, or delete your personal data.</li><li>Withdraw consent for data processing.</li><li>Request data portability (when applicable).</li>",
+                "TEXT2": "To exercise your rights, contact us at contact@bindeye.com"
+            },
+            "9": {
+                "TITLE": "9. International Transfers",
+                "TEXT": "Data may be processed or stored in the United States, following safeguards consistent with data protection regulations."
+            },
+            "10": {
+                "TITLE": "10. Updates to This Policy",
+                "TEXT": "We may update this Privacy Policy from time to time. Updates will be posted on this page with a revised \"last updated\" date."
+            },
+            "11": {
+                "TITLE": "11. Contact Information",
+                "TEXT": "Bindeye Registered Agents Inc<br>30 N Gould St Ste R<br>Sheridan, WY 82801<br>United States<br>Email: contact@bindeye.com<br>Website: https://www.bindeye.com"
+            }
+        }
+    },
+    "CONTACT": {
+        "TITLE": "Contact Us",
+        "SUBTITLE": "Here are a few quick answers about submitting, updating, or promoting AI tools on Flowscope.",
+        "CONNECT": "Connect with us",
+        "FORM": {
+            "TITLE": "Send us a message",
+            "NAME": "Name",
+            "EMAIL": "Email",
+            "COMPANY": "Company Name",
+            "REASON": "Reason for Contact",
+            "MESSAGE": "Your message",
+            "SUBMIT": "Submit",
+            "REQUIRED": "is required",
+            "VALID_EMAIL": "Please enter a valid email"
+        },
+        "FAQ": {
+            "TITLE": "Frequently Asked Questions",
+            "SUBTITLE": "Here are a few quick answers about submitting, updating, or promoting AI tools on Flowscope.",
+            "SUBMIT_TOOL": {
+                "QUESTION": "How do I submit a new AI tool?",
+                "ANSWER": "To submit a new AI tool, please use our dedicated submission page. Fill in the details about your product and our team will review your submission before it goes live.",
+                "LINK": "Submit an AI Tool"
+            },
+            "FEATURE_TOOL": {
+                "QUESTION": "How can I feature my tool on Flowscope?",
+                "ANSWER": "If you want extra visibility, you can request a featured placement. Find details about highlight options and how your listing can stand out.",
+                "LINK": "Feature your tool"
+            },
+            "ADVERTISE": {
+                "QUESTION": "How can I advertise on Flowscope?",
+                "ANSWER": "For advertising opportunities, please visit our Advertise section. You will find more information about placements, formats, and how to reach our audience.",
+                "LINK": "Advertise"
+            },
+            "UPDATE_TOOL": {
+                "QUESTION": "How do I update information about my AI tool?",
+                "ANSWER": "If your tool is already listed and you need to update the description, pricing, or links, use the update page and provide the changes.",
+                "LINK": "Update your tool"
+            },
+            "CONTACT_DIRECT": {
+                "QUESTION": "Can I contact you directly by email?",
+                "ANSWER": "Yes. If you prefer contacting us directly, you can email us. We usually reply within 24 to 48 business hours."
+            }
+        }
+    }
+}

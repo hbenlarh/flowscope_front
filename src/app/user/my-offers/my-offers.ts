@@ -67,14 +67,14 @@ export class UserMyOffers implements OnInit {
   }
 
   private fetchMe(): void {
-    this.http.get<any>('/api/flowscope_core/client/me', { withCredentials: true }).subscribe({
+    this.http.get<any>('https://test1.jcloud-ver-jpe.ik-server.com/api/flowscope_core/client/me', { withCredentials: true }).subscribe({
       next: (me) => { this.meClientId = me?.client_id ?? me?.id ?? null; },
       error: () => { this.meClientId = null; }
     });
   }
 
   private fetchCategories(): void {
-    this.http.get<any>('/api/flowscope_core/category', { withCredentials: true }).subscribe({
+    this.http.get<any>('https://test1.jcloud-ver-jpe.ik-server.com/api/flowscope_core/category', { withCredentials: true }).subscribe({
       next: (res) => {
         const raw = Array.isArray(res) ? res : (res?.categories || res?.items || res?.data || res?.results || []);
         const dict: Record<string, string> = {};
@@ -96,7 +96,7 @@ export class UserMyOffers implements OnInit {
   }
 
   private fetchContainers(): void {
-    this.http.get<any>('/api/flowscope_core/container', { withCredentials: true }).subscribe({
+    this.http.get<any>('https://test1.jcloud-ver-jpe.ik-server.com/api/flowscope_core/container', { withCredentials: true }).subscribe({
       next: (res) => {
         const raw = Array.isArray(res) ? res : (res?.containers || res?.items || res?.data || res?.results || []);
         const mapped: ContainerOption[] = (Array.isArray(raw) ? raw : []).map((c: any) => ({
@@ -123,7 +123,7 @@ export class UserMyOffers implements OnInit {
       .set('page_number', paginationParams.page_number.toString())
       .set('page_size', paginationParams.page_size.toString());
 
-    this.http.get<PaginatedResponse<any>>('/api/flowscope_core/offer', { 
+    this.http.get<PaginatedResponse<any>>('https://test1.jcloud-ver-jpe.ik-server.com/api/flowscope_core/offer', { 
       params: httpParams,
       withCredentials: true 
     }).subscribe({
@@ -197,7 +197,7 @@ export class UserMyOffers implements OnInit {
       category_id: this.form.value.category_id,
       url: this.form.value.url
     };
-    this.http.patch('/api/flowscope_core/offer', payload, { withCredentials: true }).subscribe({
+    this.http.patch('https://test1.jcloud-ver-jpe.ik-server.com/api/flowscope_core/offer', payload, { withCredentials: true }).subscribe({
       next: () => {
         this.loading.set(false);
         this.showModal.set(false);
@@ -212,7 +212,7 @@ export class UserMyOffers implements OnInit {
     const ok = window.confirm('Delete this offer?');
     if (!ok) return;
     this.loading.set(true);
-    this.http.post('/api/flowscope_core/offer/delete', { offer_id: row.id }, { withCredentials: true }).subscribe({
+    this.http.post('https://test1.jcloud-ver-jpe.ik-server.com/api/flowscope_core/offer/delete', { offer_id: row.id }, { withCredentials: true }).subscribe({
       next: () => { this.loading.set(false); this.fetchOffers(); },
       error: (err) => { this.errorMessage.set(err?.error?.message || 'Failed to delete offer'); this.loading.set(false); }
     });

@@ -54,7 +54,7 @@ export class AdminContainersComponent implements OnInit {
     if (this.loading()) return;
     this.loading.set(true);
     this.errorMessage.set('');
-    this.http.get<any>('/api/flowscope_core/container', { withCredentials: true })
+    this.http.get<any>('https://test1.jcloud-ver-jpe.ik-server.com/api/flowscope_core/container', { withCredentials: true })
       .subscribe({
         next: (res) => {
           const raw = Array.isArray(res) ? res : (res?.containers || res?.items || res?.data || res?.results || []);
@@ -98,14 +98,14 @@ export class AdminContainersComponent implements OnInit {
     const payload = this.form.value;
     if (this.isEdit()) {
       // Update existing
-      this.http.patch('/api/flowscope_core/container', { container_id: this.editingId, ...payload }, { withCredentials: true })
+      this.http.patch('https://test1.jcloud-ver-jpe.ik-server.com/api/flowscope_core/container', { container_id: this.editingId, ...payload }, { withCredentials: true })
         .subscribe({
           next: () => { this.saving.set(false); this.showModal.set(false); this.fetchContainers(); },
           error: (err) => { this.errorMessage.set(err?.error?.message || 'Failed to update'); this.saving.set(false); }
         });
     } else {
       // Create new
-      this.http.post('/api/flowscope_core/container', payload, { withCredentials: true })
+      this.http.post('https://test1.jcloud-ver-jpe.ik-server.com/api/flowscope_core/container', payload, { withCredentials: true })
         .subscribe({
           next: () => { this.saving.set(false); this.showModal.set(false); this.fetchContainers(); },
           error: (err) => { this.errorMessage.set(err?.error?.message || 'Failed to create'); this.saving.set(false); }
@@ -116,7 +116,7 @@ export class AdminContainersComponent implements OnInit {
   delete(row: ContainerRow): void {
     if (!row?.id || this.saving()) return;
     this.saving.set(true);
-    this.http.post('/api/flowscope_core/container/delete', { container_id: row.id }, { withCredentials: true })
+    this.http.post('https://test1.jcloud-ver-jpe.ik-server.com/api/flowscope_core/container/delete', { container_id: row.id }, { withCredentials: true })
       .subscribe({
         next: () => { this.saving.set(false); this.fetchContainers(); },
         error: (err) => { this.errorMessage.set(err?.error?.message || 'Failed to delete'); this.saving.set(false); }

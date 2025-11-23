@@ -7,7 +7,7 @@ import { Offer, PaginatedResponse, PaginationParams } from '../models/offredata.
   providedIn: 'root'
 })
 export class OfferService {
-  private apiUrl = '/api/flowscope_core/offer';
+  private apiUrl = 'https://test1.jcloud-ver-jpe.ik-server.com/api/flowscope_core/offer';
 
   constructor(private http: HttpClient) {}
 

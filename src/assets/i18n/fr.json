@@ -1,0 +1,217 @@
+{
+    "HEADER": {
+        "FULL_LIST": "Liste complète",
+        "AI_CATEGORIES": "Catégories IA",
+        "LOGIN_REGISTER": "Connexion / Inscription",
+        "ADVERTISE_AI": "Publicité IA"
+    },
+    "FOOTER": {
+        "COPYRIGHT": "© 2025 Bindeye, Tous droits réservés ⚡",
+        "COOKIE_POLICY": "Politique de Cookies",
+        "TERMS": "Conditions d'utilisation",
+        "PRIVACY_POLICY": "Politique de Confidentialité",
+        "CONTACT": "Contactez-nous"
+    },
+    "HOMEPAGE": {
+        "LOADING": "Chargement des offres...",
+        "SEARCH_PLACEHOLDER": "Rechercher des offres par nom ou description...",
+        "ALL_CATEGORIES": "Toutes les catégories",
+        "CLEAR_FILTERS": "Effacer les filtres",
+        "NO_RESULTS": "Aucune offre ne correspond à vos critères.",
+        "NO_OFFERS": "Aucune offre disponible.",
+        "VISIT": "VISITER",
+        "PREVIOUS": "Précédent",
+        "NEXT": "Suivant",
+        "PAGINATION_INFO": "Affichage de {{start}} à {{end}} sur {{total}} offres",
+        "POPULAR_PLATFORMS": "Plateformes populaires",
+        "POPULAR_PLATFORMS_INFO": "Liste des plateformes les plus actives et populaires en matière d'intelligence artificielle"
+    },
+    "COOKIE_POLICY": {
+        "TITLE": "Politique de Cookies (UE)",
+        "BREADCRUMB": "Accueil → Politique de Cookies (UE)",
+        "INTRO": "Cette politique de cookies a été mise à jour le 16 octobre 2025 et s'applique aux citoyens et résidents permanents légaux de l'Espace économique européen et de la Suisse.",
+        "SECTIONS": {
+            "1": {
+                "TITLE": "1. Introduction",
+                "TEXT": "Notre site web, https://www.bindeye.com (ci-après : \"le site web\"), utilise des cookies et des technologies similaires (collectivement appelés \"cookies\")."
+            },
+            "2": {
+                "TITLE": "2. Que sont les cookies ?",
+                "TEXT": "Les cookies sont de petits fichiers texte stockés sur votre appareil pour assurer le bon fonctionnement du site web et améliorer l'expérience utilisateur."
+            },
+            "3": {
+                "TITLE": "3. Pourquoi utilisons-nous des cookies",
+                "TEXT": "Nous utilisons des cookies pour faire fonctionner notre site web correctement, mémoriser vos préférences et analyser les données de trafic anonymes pour améliorer les performances."
+            },
+            "4": {
+                "TITLE": "4. Cookies placés",
+                "TEXT": "Seuls des cookies fonctionnels et essentiels sont utilisés pour garantir la performance et la sécurité du site web."
+            },
+            "5": {
+                "TITLE": "5. Consentement",
+                "TEXT": "En continuant à naviguer sur www.bindeye.com, vous consentez à l'utilisation de ces cookies essentiels. Vous pouvez désactiver les cookies dans les paramètres de votre navigateur, mais certaines parties du site web peuvent ne pas fonctionner correctement."
+            },
+            "6": {
+                "TITLE": "6. Gérer vos paramètres de consentement",
+                "TEXT": "Seuls les cookies strictement nécessaires sont actifs."
+            },
+            "7": {
+                "TITLE": "7. Vos droits",
+                "TEXT": "Vous pouvez demander l'accès, la correction ou la suppression de vos données personnelles à tout moment."
+            },
+            "8": {
+                "TITLE": "8. Coordonnées",
+                "TEXT": "Bindeye Registered Agents Inc<br>30 N Gould St Ste R<br>Sheridan, WY 82801<br>États-Unis<br>Email : contact@bindeye.com<br>Site web : https://www.bindeye.com"
+            },
+            "SYNC": "Cette politique de cookies a été synchronisée avec cookiedatabase.org le 28 mai 2025."
+        }
+    },
+    "TERMS": {
+        "TITLE": "Conditions Générales",
+        "BREADCRUMB": "Accueil → Conditions Générales Dernière mise à jour : 28 juin 2024",
+        "SECTIONS": {
+            "1": {
+                "TITLE": "1. Introduction",
+                "TEXT": "Ces Conditions Générales s'appliquent au site web https://www.bindeye.com et à toutes les transactions liées à nos produits et services. En accédant ou en utilisant ce site web, vous acceptez ces Conditions."
+            },
+            "2": {
+                "TITLE": "2. Propriété Intellectuelle",
+                "TEXT": "Tout le contenu, les conceptions, les données et le matériel de ce site web sont la propriété de Bindeye ou de ses concédants de licence. Vous ne pouvez pas reproduire, copier ou distribuer de matériel sans consentement écrit préalable."
+            },
+            "3": {
+                "TITLE": "3. Utilisation du site web",
+                "TEXT": "Vous acceptez d'utiliser ce site web uniquement à des fins légales et conformément à ces Conditions. Toute utilisation non autorisée, telle que le scraping de données, le piratage ou l'utilisation abusive du contenu, est strictement interdite."
+            },
+            "4": {
+                "TITLE": "4. Liens tiers",
+                "TEXT": "Notre site web peut contenir des liens vers des sites web tiers. Bindeye n'est pas responsable du contenu, des pratiques de confidentialité ou de la fiabilité de ces sites."
+            },
+            "5": {
+                "TITLE": "5. Avis de non-responsabilité",
+                "TEXT": "Le site web et tout le contenu sont fournis \"tels quels\". Bindeye ne garantit pas un accès ininterrompu ou l'exactitude des informations. Nous ne sommes pas responsables des dommages directs ou indirects résultant de votre utilisation du site web."
+            },
+            "6": {
+                "TITLE": "6. Confidentialité et Cookies",
+                "TEXT": "Nous accordons de l'importance à votre vie privée et traitons toutes les données personnelles conformément à notre Politique de Confidentialité et notre Politique de Cookies."
+            },
+            "7": {
+                "TITLE": "7. Résiliation",
+                "TEXT": "Nous pouvons suspendre ou résilier votre accès au site web à tout moment si vous violez ces Conditions ou abusez de nos services."
+            },
+            "8": {
+                "TITLE": "8. Loi applicable",
+                "TEXT": "Ces Conditions Générales sont régies par les lois du Wyoming, États-Unis. Tout litige relèvera de la compétence exclusive des tribunaux compétents de Sheridan, Wyoming."
+            },
+            "9": {
+                "TITLE": "9. Coordonnées",
+                "TEXT": "Bindeye Registered Agents Inc<br>30 N Gould St Ste R<br>Sheridan, WY 82801<br>États-Unis<br>Email : contact@bindeye.com<br>Site web : https://www.bindeye.com"
+            },
+            "10": {
+                "TITLE": "10. Mises à jour de ces Conditions",
+                "TEXT": "Nous pouvons réviser ces Conditions à tout moment. L'utilisation continue de ce site web après les mises à jour constitue une acceptation des Conditions révisées."
+            }
+        }
+    },
+    "PRIVACY": {
+        "TITLE": "Politique de Confidentialité",
+        "BREADCRUMB": "Accueil → Politique de Confidentialité Dernière mise à jour : 28 juin 2024",
+        "SECTIONS": {
+            "1": {
+                "TITLE": "1. Introduction",
+                "TEXT": "Cette Politique de Confidentialité explique comment Bindeye collecte, utilise et protège vos informations personnelles lorsque vous visitez https://www.bindeye.com ou interagissez avec nos produits et services. En utilisant notre site web, vous acceptez les termes de cette Politique."
+            },
+            "2": {
+                "TITLE": "2. Données que nous collectons",
+                "TEXT": "Nous pouvons collecter les informations suivantes :",
+                "LIST": "<li><strong>Informations de compte :</strong> nom, adresse email ou adresse de portefeuille (le cas échéant).</li><li><strong>Données techniques :</strong> adresse IP, type de navigateur et analyses d'utilisation.</li><li><strong>Données de communication :</strong> messages ou demandes envoyés via nos formulaires de contact ou par email.</li>",
+                "TEXT2": "Nous ne collectons que les informations nécessaires pour faire fonctionner nos services et assurer la sécurité et la performance."
+            },
+            "3": {
+                "TITLE": "3. Comment nous utilisons vos données",
+                "TEXT": "Bindeye traite les données pour :",
+                "LIST": "<li>Fournir l'accès à nos services.</li><li>Améliorer les performances du site web et l'expérience utilisateur.</li><li>Communiquer avec vous concernant le support, les mises à jour ou les notifications importantes.</li><li>Se conformer aux obligations légales et réglementaires.</li>",
+                "TEXT2": "Nous ne vendons ni ne louons jamais vos données personnelles."
+            },
+            "4": {
+                "TITLE": "4. Partage des données",
+                "TEXT": "Nous pouvons partager des données limitées avec :",
+                "LIST": "<li>Des prestataires de services de confiance (hébergement, analyses, processeurs de paiement).</li><li>Les autorités légales, si la loi l'exige.</li><li>Des partenaires aidant au fonctionnement sécurisé de notre plateforme.</li>",
+                "TEXT2": "Tous les tiers sont liés par des accords stricts de confidentialité et de sécurité."
+            },
+            "5": {
+                "TITLE": "5. Conservation des données",
+                "TEXT": "Nous ne conservons vos données que le temps nécessaire aux fins énumérées ci-dessus ou tel que requis par la loi."
+            },
+            "6": {
+                "TITLE": "6. Sécurité",
+                "TEXT": "Nous mettons en œuvre des mesures techniques et organisationnelles pour protéger vos données contre l'accès non autorisé, l'altération ou la perte. Cependant, aucune méthode de transmission ou de stockage numérique n'est entièrement sans risque."
+            },
+            "7": {
+                "TITLE": "7. Cookies",
+                "TEXT": "Notre site web utilise un minimum de cookies essentiels pour assurer un bon fonctionnement. Pour plus de détails, veuillez consulter notre Politique de Cookies."
+            },
+            "8": {
+                "TITLE": "8. Vos droits",
+                "TEXT": "Vous avez le droit de :",
+                "LIST": "<li>Accéder, corriger ou supprimer vos données personnelles.</li><li>Retirer votre consentement au traitement des données.</li><li>Demander la portabilité des données (le cas échéant).</li>",
+                "TEXT2": "Pour exercer vos droits, contactez-nous à contact@bindeye.com"
+            },
+            "9": {
+                "TITLE": "9. Transferts internationaux",
+                "TEXT": "Les données peuvent être traitées ou stockées aux États-Unis, en suivant des garanties conformes aux réglementations sur la protection des données."
+            },
+            "10": {
+                "TITLE": "10. Mises à jour de cette Politique",
+                "TEXT": "Nous pouvons mettre à jour cette Politique de Confidentialité de temps à autre. Les mises à jour seront publiées sur cette page avec une date de \"dernière mise à jour\" révisée."
+            },
+            "11": {
+                "TITLE": "11. Coordonnées",
+                "TEXT": "Bindeye Registered Agents Inc<br>30 N Gould St Ste R<br>Sheridan, WY 82801<br>États-Unis<br>Email : contact@bindeye.com<br>Site web : https://www.bindeye.com"
+            }
+        }
+    },
+    "CONTACT": {
+        "TITLE": "Contactez-nous",
+        "SUBTITLE": "Voici quelques réponses rapides sur la soumission, la mise à jour ou la promotion d'outils IA sur Flowscope.",
+        "CONNECT": "Connectez-vous avec nous",
+        "FORM": {
+            "TITLE": "Envoyez-nous un message",
+            "NAME": "Nom",
+            "EMAIL": "Email",
+            "COMPANY": "Nom de l'entreprise",
+            "REASON": "Raison du contact",
+            "MESSAGE": "Votre message",
+            "SUBMIT": "Envoyer",
+            "REQUIRED": "est requis",
+            "VALID_EMAIL": "Veuillez entrer un email valide"
+        },
+        "FAQ": {
+            "TITLE": "Foire Aux Questions",
+            "SUBTITLE": "Voici quelques réponses rapides sur la soumission, la mise à jour ou la promotion d'outils IA sur Flowscope.",
+            "SUBMIT_TOOL": {
+                "QUESTION": "Comment soumettre un nouvel outil IA ?",
+                "ANSWER": "Pour soumettre un nouvel outil IA, veuillez utiliser notre page de soumission dédiée. Remplissez les détails de votre produit et notre équipe examinera votre soumission avant sa mise en ligne.",
+                "LINK": "Soumettre un outil IA"
+            },
+            "FEATURE_TOOL": {
+                "QUESTION": "Comment mettre en avant mon outil sur Flowscope ?",
+                "ANSWER": "Si vous souhaitez plus de visibilité, vous pouvez demander un placement en vedette. Trouvez des détails sur les options de mise en avant et comment votre annonce peut se démarquer.",
+                "LINK": "Mettre en avant votre outil"
+            },
+            "ADVERTISE": {
+                "QUESTION": "Comment faire de la publicité sur Flowscope ?",
+                "ANSWER": "Pour les opportunités publicitaires, veuillez visiter notre section Publicité. Vous trouverez plus d'informations sur les placements, les formats et comment atteindre notre audience.",
+                "LINK": "Faire de la publicité"
+            },
+            "UPDATE_TOOL": {
+                "QUESTION": "Comment mettre à jour les informations de mon outil IA ?",
+                "ANSWER": "Si votre outil est déjà listé et que vous devez mettre à jour la description, les prix ou les liens, utilisez la page de mise à jour et fournissez les modifications.",
+                "LINK": "Mettre à jour votre outil"
+            },
+            "CONTACT_DIRECT": {
+                "QUESTION": "Puis-je vous contacter directement par email ?",
+                "ANSWER": "Oui. Si vous préférez nous contacter directement, vous pouvez nous envoyer un email. Nous répondons généralement sous 24 à 48 heures ouvrables."
+            }
+        }
+    }
+}

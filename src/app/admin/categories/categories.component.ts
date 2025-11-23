@@ -66,7 +66,7 @@ export class AdminCategoriesComponent implements OnInit {
   }
 
   fetchContainersOptions(): void {
-    this.http.get<any>('/api/flowscope_core/container', { withCredentials: true })
+    this.http.get<any>('https://test1.jcloud-ver-jpe.ik-server.com/api/flowscope_core/container', { withCredentials: true })
       .subscribe({
         next: (res) => {
           const raw = Array.isArray(res) ? res : (res?.containers || res?.items || res?.data || res?.results || []);
@@ -86,14 +86,14 @@ export class AdminCategoriesComponent implements OnInit {
     this.errorMessage.set('');
     
     // First fetch categories
-    this.http.get<any>('/api/flowscope_core/category', { withCredentials: true })
+    this.http.get<any>('https://test1.jcloud-ver-jpe.ik-server.com/api/flowscope_core/category', { withCredentials: true })
       .subscribe({
         next: (categories) => {
           console.log('Categories API Response:', categories); // Debug log
           const categoriesRaw = Array.isArray(categories) ? categories : (categories?.categories || categories?.items || categories?.data || categories?.results || []);
           
           // Then fetch offers to count them per category
-          this.http.get<any>('/api/flowscope_core/offer?page_number=1&page_size=1000', { withCredentials: true })
+          this.http.get<any>('https://test1.jcloud-ver-jpe.ik-server.com/api/flowscope_core/offer?page_number=1&page_size=1000', { withCredentials: true })
             .subscribe({
               next: (offers) => {
                 const offersRaw = Array.isArray(offers) ? offers : (offers?.items || offers?.offers || offers?.data || offers?.results || []);
@@ -164,10 +164,10 @@ export class AdminCategoriesComponent implements OnInit {
     this.saving.set(true);
     const payload = this.form.value;
     if (this.isEdit()) {
-      this.http.patch('/api/flowscope_core/category', { category_id: this.editingId, ...payload }, { withCredentials: true })
+      this.http.patch('https://test1.jcloud-ver-jpe.ik-server.com/api/flowscope_core/category', { category_id: this.editingId, ...payload }, { withCredentials: true })
         .subscribe({ next: () => { this.saving.set(false); this.showModal.set(false); this.fetchCategories(); }, error: (err) => { this.errorMessage.set(err?.error?.message || 'Failed to update'); this.saving.set(false); } });
     } else {
-      this.http.post('/api/flowscope_core/category', payload, { withCredentials: true })
+      this.http.post('https://test1.jcloud-ver-jpe.ik-server.com/api/flowscope_core/category', payload, { withCredentials: true })
         .subscribe({ next: () => { this.saving.set(false); this.showModal.set(false); this.fetchCategories(); }, error: (err) => { this.errorMessage.set(err?.error?.message || 'Failed to create'); this.saving.set(false); } });
     }
   }
@@ -175,7 +175,7 @@ export class AdminCategoriesComponent implements OnInit {
   delete(row: CategoryRow): void {
     if (!row?.id || this.saving()) return;
     this.saving.set(true);
-    this.http.post('/api/flowscope_core/category/delete', { category_id: row.id }, { withCredentials: true })
+    this.http.post('https://test1.jcloud-ver-jpe.ik-server.com/api/flowscope_core/category/delete', { category_id: row.id }, { withCredentials: true })
       .subscribe({ next: () => { this.saving.set(false); this.fetchCategories(); }, error: (err) => { this.errorMessage.set(err?.error?.message || 'Failed to delete'); this.saving.set(false); } });
   }
 }

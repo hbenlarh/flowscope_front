@@ -3,7 +3,7 @@
     <div class="container">
         <!-- Loading indicator -->
         <div *ngIf="loading" class="loading-indicator">
-            <p>Loading offers...</p>
+            <p>{{ 'HOMEPAGE.LOADING' | translate }}</p>
         </div>
 
         <!-- Error message -->
@@ -11,44 +11,38 @@
             <p>{{ error }}</p>
         </div>
 
+
+
         <!-- Filters section -->
         <div *ngIf="!loading && !error" class="filters-section">
             <div class="row">
                 <div class="col-md-6">
                     <div class="search-container">
-                        <input 
-                            type="text" 
-                            [(ngModel)]="searchTerm" 
-                            (input)="onSearchChange()"
-                            placeholder="Search offers by name or description..."
-                            class="search-input"
-                        />
+                        <input type="text" [(ngModel)]="searchTerm" (input)="onSearchChange()"
+                            [placeholder]="'HOMEPAGE.SEARCH_PLACEHOLDER' | translate" class="search-input" />
                         <span class="search-icon">🔍</span>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="category-filter-container">
-                        <select 
-                            [(ngModel)]="selectedCategoryId" 
-                            (change)="onCategoryChange()"
-                            class="category-select"
-                        >
-                            <option [ngValue]="null">All Categories</option>
+                        <select [(ngModel)]="selectedCategoryId" (change)="onCategoryChange()" class="category-select">
+                            <option [ngValue]="null">{{ 'HOMEPAGE.ALL_CATEGORIES' | translate }}</option>
                             <ng-container *ngFor="let container of containers">
-                              <optgroup [label]="container.name">
-                                <ng-container *ngFor="let category of categories">
-                                  <option *ngIf="category.container_id === container.container_id" [ngValue]="category.category_id">
-                                    {{ category.name }}
-                                  </option>
-                                </ng-container>
-                              </optgroup>
+                                <optgroup [label]="container.name">
+                                    <ng-container *ngFor="let category of categories">
+                                        <option *ngIf="category.container_id === container.container_id"
+                                            [ngValue]="category.category_id">
+                                            {{ category.name }}
+                                        </option>
+                                    </ng-container>
+                                </optgroup>
                             </ng-container>
                         </select>
                     </div>
                 </div>
                 <div class="col-md-2">
                     <button (click)="clearFilters()" class="clear-filters-btn">
-                        Clear Filters
+                        {{ 'HOMEPAGE.CLEAR_FILTERS' | translate }}
                     </button>
                 </div>
             </div>
@@ -56,11 +50,11 @@
 
         <!-- No offers message -->
         <div *ngIf="!loading && !error && filteredOffers.length === 0 && offers.length > 0" class="no-results">
-            <p>No offers match your search criteria.</p>
+            <p>{{ 'HOMEPAGE.NO_RESULTS' | translate }}</p>
         </div>
 
         <div *ngIf="!loading && !error && offers.length === 0" class="no-offers">
-            No offers available.
+            {{ 'HOMEPAGE.NO_OFFERS' | translate }}
         </div>
 
         <!-- Offers grid -->
@@ -70,62 +64,66 @@
                     <div class="offer-card">
                         <div class="card-body">
                             <div class="offer-logo">
-                                <img *ngIf="offer.file" [src]="'data:' + (offer.file_extension === '.svg' ? 'image/svg+xml' : offer.file_extension === '.jpg' || offer.file_extension === '.jpeg' ? 'image/jpeg' : 'image/png') + ';base64,' + offer.file" [alt]="offer.file_name" />
+                                <img *ngIf="offer.file"
+                                    [src]="'data:' + (offer.file_extension === '.svg' ? 'image/svg+xml' : offer.file_extension === '.jpg' || offer.file_extension === '.jpeg' ? 'image/jpeg' : 'image/png') + ';base64,' + offer.file"
+                                    [alt]="offer.file_name" />
                                 <img *ngIf="!offer.file" src="assets/placeholder-logo.svg" alt="Default logo" />
                             </div>
                             <h3 class="offer-title">{{ offer.name }}</h3>
-                            <p class="offer-description">{{ offer.description | slice:0:120 }}{{ offer.description.length > 120 ? '...' : '' }}</p>
+                            <p class="offer-description">{{ offer.description | slice:0:120 }}{{
+                                offer.description.length > 120 ? '...' : '' }}</p>
                             <div class="offer-category" *ngIf="offer.category_name">
                                 <span class="category-badge">{{ offer.category_name }}</span>
                             </div>
                         </div>
                         <div class="card-footer">
-                            <a [href]="offer.url" target="_blank" class="visit-btn">VISIT</a>
+                            <a [href]="offer.url" target="_blank" class="visit-btn">{{ 'HOMEPAGE.VISIT' | translate
+                                }}</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        
+
         <!-- Pagination Controls -->
         <div class="pagination-container" *ngIf="!loading && !error && totalPages > 1">
             <nav aria-label="Offers pagination">
                 <ul class="pagination justify-content-center">
                     <!-- Previous Button -->
                     <li class="page-item" [class.disabled]="currentPage === 1">
-                        <a class="page-link" href="#" (click)="previousPage(); $event.preventDefault()" 
-                           [attr.aria-disabled]="currentPage === 1">
-                            <i class="bi bi-chevron-left"></i> Previous
+                        <a class="page-link" href="#" (click)="previousPage(); $event.preventDefault()"
+                            [attr.aria-disabled]="currentPage === 1">
+                            <i class="bi bi-chevron-left"></i> {{ 'HOMEPAGE.PREVIOUS' | translate }}
                         </a>
                     </li>
-                    
+
                     <!-- Page Numbers -->
-                    <li class="page-item" *ngFor="let page of getPageNumbers()" 
-                        [class.active]="page === currentPage">
+                    <li class="page-item" *ngFor="let page of getPageNumbers()" [class.active]="page === currentPage">
                         <a class="page-link" href="#" (click)="goToPage(page); $event.preventDefault()">
                             {{ page }}
                         </a>
                     </li>
-                    
+
                     <!-- Next Button -->
                     <li class="page-item" [class.disabled]="currentPage === totalPages">
-                        <a class="page-link" href="#" (click)="nextPage(); $event.preventDefault()" 
-                           [attr.aria-disabled]="currentPage === totalPages">
-                            Next <i class="bi bi-chevron-right"></i>
+                        <a class="page-link" href="#" (click)="nextPage(); $event.preventDefault()"
+                            [attr.aria-disabled]="currentPage === totalPages">
+                            {{ 'HOMEPAGE.NEXT' | translate }} <i class="bi bi-chevron-right"></i>
                         </a>
                     </li>
                 </ul>
             </nav>
-            
+
             <!-- Pagination Info -->
             <div class="pagination-info text-center mt-3">
                 <small class="text-muted">
-                    Showing {{ (currentPage - 1) * pageSize + 1 }} to 
-                    {{ Math.min(currentPage * pageSize, totalItems) }} of 
-                    {{ totalItems }} offers
+                    {{ 'HOMEPAGE.PAGINATION_INFO' | translate:{start: (currentPage - 1) * pageSize + 1, end:
+                    Math.min(currentPage * pageSize, totalItems), total: totalItems} }}
                 </small>
             </div>
         </div>
     </div>
 </section>
+<!-- Popular Platforms Section -->
+<app-popular-platforms></app-popular-platforms>
 <app-footer></app-footer>

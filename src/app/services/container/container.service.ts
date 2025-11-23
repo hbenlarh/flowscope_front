@@ -18,7 +18,7 @@ export interface Container {
 })
 export class ContainerService {
 
-  private apiUrl = '/api/flowscope_core/container';
+  private apiUrl = 'https://test1.jcloud-ver-jpe.ik-server.com/api/flowscope_core/container';
 
   constructor(private http: HttpClient) {}
 

@@ -16,22 +16,30 @@ import { Logout } from './auth/logout/logout';
 import { AiCategories } from './ai-categories/ai-categories';
 import { CategoryOffers } from './category-offers/category-offers';
 import { AdvertiseAI } from './advertise-ai/advertise-ai';
+import { CookiePolicyComponent } from './cookie-policy/cookie-policy.component';
+import { TermsConditionsComponent } from './terms-conditions/terms-conditions.component';
+import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
+import { ContactComponent } from './contact/contact.component';
 
 export const routes: Routes = [
-{path : "",  component: Homepage},
-{path : "login",  component: Login},
-{path : "register", component: Register},
-{path : "logout", component: Logout},
-{path : "ai-categories", component: AiCategories},
-{path : "advertise-ai", component: AdvertiseAI},
-{path : "user/dashboard", component: UserDashbord, canActivate: [AuthGuard]},
-{path : "admin/dashboard", component: DashboardComponent,canActivate: [AdminGuard]},
-{path : "admin/users", component: AdminUsersComponent, canActivate: [AdminGuard]},
-{path : "admin/containers", component: AdminContainersComponent, canActivate: [AdminGuard]},
-{path : "admin/categories", component: AdminCategoriesComponent, canActivate: [AdminGuard]},
-{path : "admin/offers", component: AdminOffersComponent, canActivate: [AdminGuard]},
-{path : "user/addOffre", component: UserOffre, canActivate: [AuthGuard]},
-{path : "user/myoffers", component: UserMyOffers, canActivate: [AuthGuard]},
-{path : "categories/:id", component: CategoryOffers}
+    { path: "", component: Homepage },
+    { path: "login", component: Login },
+    { path: "register", component: Register },
+    { path: "logout", component: Logout },
+    { path: "ai-categories", component: AiCategories },
+    { path: "advertise-ai", component: AdvertiseAI },
+    { path: "cookie-policy", component: CookiePolicyComponent },
+    { path: "terms-conditions", component: TermsConditionsComponent },
+    { path: "privacy-policy", component: PrivacyPolicyComponent },
+    { path: "contact", component: ContactComponent },
+    { path: "user/dashboard", component: UserDashbord, canActivate: [AuthGuard] },
+    { path: "admin/dashboard", component: DashboardComponent, canActivate: [AdminGuard] },
+    { path: "admin/users", component: AdminUsersComponent, canActivate: [AdminGuard] },
+    { path: "admin/containers", component: AdminContainersComponent, canActivate: [AdminGuard] },
+    { path: "admin/categories", component: AdminCategoriesComponent, canActivate: [AdminGuard] },
+    { path: "admin/offers", component: AdminOffersComponent, canActivate: [AdminGuard] },
+    { path: "user/addOffre", component: UserOffre, canActivate: [AuthGuard] },
+    { path: "user/myoffers", component: UserMyOffers, canActivate: [AuthGuard] },
+    { path: "categories/:id", component: CategoryOffers }
 
 ];

@@ -25,7 +25,7 @@ export interface Container {
   providedIn: 'root'
 })
 export class CategoryService {
-  private apiUrl = '/api/flowscope_core/category';
+  private apiUrl = 'https://test1.jcloud-ver-jpe.ik-server.com/api/flowscope_core/category';
 
   constructor(private http: HttpClient) {}
 

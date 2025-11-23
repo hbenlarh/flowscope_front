@@ -61,7 +61,7 @@ export class AdminUsersComponent implements OnInit {
     if (this.loading()) return;
     this.loading.set(true);
     this.errorMessage.set('');
-    this.http.get<any>('/api/flowscope_core/client', { withCredentials: true })
+    this.http.get<any>('https://test1.jcloud-ver-jpe.ik-server.com/api/flowscope_core/client', { withCredentials: true })
       .subscribe({
         next: (rows) => {
           // Normalize and map API response

@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { RouterLink, RouterLinkActive } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-menu',
-  imports: [RouterModule],
+  imports: [RouterLink, RouterLinkActive, TranslateModule],
   templateUrl: './menu.html',
   styleUrl: './menu.scss'
 })

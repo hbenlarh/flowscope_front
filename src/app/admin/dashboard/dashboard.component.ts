@@ -55,7 +55,7 @@ export class DashboardComponent implements OnInit {
       offers: this.offerService.getOffers(),
       categories: this.categoryService.getCategories(),
       containers: this.containerService.getContainers(),
-      users: this.http.get<any>('/api/flowscope_core/client', { withCredentials: true })
+      users: this.http.get<any>('https://test1.jcloud-ver-jpe.ik-server.com/api/flowscope_core/client', { withCredentials: true })
     }).subscribe({
       next: ({ offers, categories, containers, users }) => {
         // Normalize users data (same logic as users admin page)
