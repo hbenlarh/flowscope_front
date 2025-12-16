@@ -24,7 +24,7 @@ export interface PricingPlan {
   styleUrl: './advertise-ai.scss'
 })
 export class AdvertiseAI {
-  
+
   pricingPlans: PricingPlan[] = [
     {
       id: 'quick-boost',
@@ -82,7 +82,7 @@ export class AdvertiseAI {
 
   selectPlan(plan: PricingPlan) {
     console.log('Selected plan:', plan.name);
-    // TODO: Implement payment logic or contact form
+
     if (plan.buttonText === 'Get Started') {
       // Handle direct payment for Quick Boost
       this.handlePayment(plan);
@@ -93,12 +93,10 @@ export class AdvertiseAI {
   }
 
   private handlePayment(plan: PricingPlan) {
-    // TODO: Integrate with payment gateway
     alert(`Redirecting to payment for ${plan.name} - $${plan.price}`);
   }
 
   private handleContact(plan: PricingPlan) {
-    // TODO: Open contact form or redirect to contact page
     alert(`Contact us for ${plan.name} - $${plan.price}`);
   }
 }
