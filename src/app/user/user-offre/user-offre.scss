@@ -1,24 +1,57 @@
         :root {
-            --bg-main: #f0f2f5;
+            --bg-main: #f7fafc;
             --bg-card: #ffffff;
-            --bg-sidebar: #2c3e50;
-            --text-dark: #333333;
-            --text-light: #ecf0f1;
-            --primary-color: #3498db;
-            --secondary-color: #e74c3c;
-            --border-color: #dddddd;
-            --shadow-light: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --bg-sidebar: #1a202c;
+            --text-dark: #2d3748;
+            --text-light: #e2e8f0;
+            --primary-color: #667eea;
+            --secondary-color: #764ba2;
+            --border-color: #e2e8f0;
+            --shadow-light: 0 4px 6px rgba(0, 0, 0, 0.07);
+            --shadow-medium: 0 10px 25px rgba(0, 0, 0, 0.1);
             --footer-height: 90px;
         }
 
         .dashboard-section {
-            min-height: calc(100vh - var(--footer-height));
-            display: block;
-            background-color: var(--bg-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background: var(--bg-main);
+            margin: 0;
+            padding: 0;
+            width: 100%;
+        }
+
+        .dashboard-section .container-fluid {
+            padding-left: 0 !important;
+            padding-right: 0 !important;
+            margin: 0;
+            width: 100%;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
         }
 
         .dashboard-layout {
-            min-height: calc(100vh - var(--footer-height));
+            flex: 1;
+            display: flex;
+            background: var(--bg-main);
+            margin: 0;
+            width: 100%;
+            min-height: 0;
+        }
+
+        .dashboard-layout > [class*="col-"] {
+            padding-left: 0 !important;
+            padding-right: 0 !important;
+        }
+
+        .dashboard-layout > .col-md-3 {
+            padding-left: 0 !important;
+        }
+
+        .dashboard-layout > .col-md-9 {
+            padding-right: 0 !important;
         }
 
         .main-content {
@@ -27,4 +60,5 @@
             box-sizing: border-box;
             display: flex;
             flex-direction: column;
+            background: var(--bg-main);
         }

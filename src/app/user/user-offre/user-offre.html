@@ -1,9 +1,7 @@
 <section class="dashboard-section">
-  <app-dashboard-header 
-    title="New Offer" 
-    subtitle="Create a new offer under a category.">
+  <app-dashboard-header title="New Offer" subtitle="Create a new offer under a category.">
   </app-dashboard-header>
-  
+
   <div class="container-fluid">
     <div class="row dashboard-layout">
       <div class="col-md-3">
@@ -31,14 +29,28 @@
                 <div class="col-12">
                   <label class="form-label">Description</label>
                   <textarea formControlName="description" class="form-control" rows="4"></textarea>
+                  <div
+                    *ngIf="offreForm.get('description')?.invalid && (offreForm.get('description')?.dirty || offreForm.get('description')?.touched)"
+                    class="text-danger mt-1">
+                    <small *ngIf="offreForm.get('description')?.errors?.['required']">Description is required.</small>
+                    <small *ngIf="offreForm.get('description')?.errors?.['maxlength']">Description cannot exceed 255
+                      characters.</small>
+                  </div>
                 </div>
                 <div class="col-md-6">
                   <label class="form-label">URL</label>
                   <input type="url" formControlName="url" class="form-control" />
+                  <div
+                    *ngIf="offreForm.get('url')?.invalid && (offreForm.get('url')?.dirty || offreForm.get('url')?.touched)"
+                    class="text-danger mt-1">
+                    <small *ngIf="offreForm.get('url')?.errors?.['required']">URL is required.</small>
+                    <small *ngIf="offreForm.get('url')?.errors?.['pattern']">Please enter a valid URL.</small>
+                  </div>
                 </div>
                 <div class="col-md-6">
                   <label class="form-label">File</label>
                   <input type="file" (change)="onFileSelected($event)" class="form-control" />
+                  <p><i>please only provide the logo icon </i></p>
                 </div>
               </div>
               <input type="hidden" formControlName="file_name" />
@@ -53,4 +65,4 @@
     </div>
   </div>
 </section>
-<app-footer></app-footer>
+<app-admin-footer></app-admin-footer>

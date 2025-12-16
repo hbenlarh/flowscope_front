@@ -1,6 +1,19 @@
         :root { --footer-height: 90px; }
-        .dashboard-section { min-height: calc(100vh - var(--footer-height)); }
-        .dashboard-layout { min-height: calc(100vh - var(--footer-height)); }
+        .dashboard-section { 
+            min-height: 100vh; 
+            display: flex;
+            flex-direction: column;
+        }
+        .dashboard-section .container-fluid {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .dashboard-layout { 
+            flex: 1;
+            display: flex;
+            min-height: 0;
+        }
         .main-content { padding: 40px; }
 
         .modal-backdrop { position: fixed; inset: 0; background: rgba(0,0,0,0.4); z-index: 1050; }

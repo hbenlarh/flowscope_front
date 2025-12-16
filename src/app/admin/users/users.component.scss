@@ -10,8 +10,22 @@
             --footer-height: 90px;
         }
 
-        .dashboard-section { min-height: calc(100vh - var(--footer-height)); background: var(--bg-main); }
-        .dashboard-layout { min-height: calc(100vh - var(--footer-height)); }
+        .dashboard-section { 
+            min-height: 100vh; 
+            display: flex;
+            flex-direction: column;
+            background: var(--bg-main); 
+        }
+        .dashboard-section .container-fluid {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .dashboard-layout { 
+            flex: 1;
+            display: flex;
+            min-height: 0;
+        }
         .main-content { padding: 40px; }
 
         .sidebar-right {
@@ -20,7 +34,7 @@
             color: var(--text-light);
             padding: 30px 20px;
             box-shadow: 5px 0 15px rgba(0, 0, 0, 0.1);
-            min-height: calc(100vh - var(--footer-height));
+            height: 100%;
         }
         .sidebar-right h2 { color: var(--primary-color); font-weight: 700; font-size: 1.4rem; margin-bottom: 24px; }
         .sidebar-right nav ul { list-style: none; padding: 0; margin: 0; }

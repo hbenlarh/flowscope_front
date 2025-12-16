@@ -9,7 +9,7 @@ import { Offer, PaginatedResponse, PaginationParams } from '../models/offredata.
 export class OfferService {
   private apiUrl = 'https://test1.jcloud-ver-jpe.ik-server.com/api/flowscope_core/offer';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   createOffer(data: any): Observable<any> {
     return this.http.post(this.apiUrl, data, { withCredentials: true });
@@ -38,11 +38,22 @@ export class OfferService {
       httpParams = httpParams.set('category_id', params.category_id.toString());
     }
 
-    return this.http.get<PaginatedResponse<Offer>>(this.apiUrl, { 
+    // Add timestamp to prevent caching
+    httpParams = httpParams.set('_t', new Date().getTime().toString());
+
+    return this.http.get<PaginatedResponse<Offer>>(this.apiUrl, {
       params: httpParams,
-      withCredentials: true 
+      withCredentials: true
     });
   }
 
-  
+  updateOffer(data: any): Observable<any> {
+    return this.http.patch(this.apiUrl, data, { withCredentials: true });
+  }
+
+  deleteOffer(offerId: number | string): Observable<any> {
+    return this.http.post(`${this.apiUrl}/delete`, { offer_id: offerId }, { withCredentials: true });
+  }
+
+
 }

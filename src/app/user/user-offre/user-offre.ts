@@ -9,12 +9,12 @@ import { CommonModule } from '@angular/common';
 import { forkJoin } from 'rxjs';
 import { ContainerService, Container } from '../../services/container/container.service';
 import { UserMenu } from '../user-menu/user-menu';
-import { Footer } from '../../shared/footer/footer';
+import { AdminFooter } from '../../shared/admin-footer/admin-footer';
 import { DashboardHeader } from '../../shared/dashboard-header/dashboard-header';
 
 @Component({
   selector: 'app-user-offre',
-  imports: [ReactiveFormsModule, Button, CommonModule, UserMenu, Footer, DashboardHeader],
+  imports: [ReactiveFormsModule, Button, CommonModule, UserMenu, AdminFooter, DashboardHeader],
   templateUrl: './user-offre.html',
   styleUrl: './user-offre.scss'
 })
@@ -27,8 +27,8 @@ export class UserOffre {
     this.offreForm = this.fb.group({
       name: ['', Validators.required],
       category_id: ['', Validators.required], 
-      description: ['', Validators.required],
-      url: ['', [Validators.required, Validators.pattern('https?://.+')]],
+      description: ['', [Validators.required, Validators.maxLength(255)]],
+      url: ['', [Validators.required, Validators.pattern('https?://(www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{1,256}\\.[a-zA-Z0-9()]{1,6}\\b([-a-zA-Z0-9()@:%_\\+.~#?&//=]*)')]],
       file_name: ['', Validators.required],
       file_base64: ['', Validators.required], // here you’ll set the base64 string
       

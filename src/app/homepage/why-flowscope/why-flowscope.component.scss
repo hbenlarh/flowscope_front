@@ -1,0 +1,67 @@
+/* Why Section */
+.why-section {
+  padding: 60px 0;
+  background: white;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #33464f;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.section-text {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #555;
+  margin-bottom: 20px;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.features-list {
+  list-style: none;
+  padding: 0;
+  max-width: 600px;
+  margin: 20px auto;
+  text-align: left;
+  
+  li {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #555;
+    margin-bottom: 15px;
+    padding-left: 30px;
+    position: relative;
+    
+    &::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: #667eea;
+      font-weight: bold;
+      font-size: 1.3rem;
+    }
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .section-title {
+    font-size: 2rem;
+  }
+
+  .section-text {
+    font-size: 1rem;
+    padding: 0 20px;
+  }
+
+  .features-list {
+    padding: 0 20px;
+  }
+}
+

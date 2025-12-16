@@ -3,9 +3,10 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { UserMenu } from '../user-menu/user-menu';
-import { Footer } from '../../shared/footer/footer';
+import { AdminFooter } from '../../shared/admin-footer/admin-footer';
 import { PaginatedResponse, PaginationParams } from '../../services/models/offredata.model';
 import { DashboardHeader } from '../../shared/dashboard-header/dashboard-header';
+import { OfferService } from '../../services/offer/offer';
 
 interface OfferRow {
   id?: number | string;
@@ -16,6 +17,9 @@ interface OfferRow {
   category_id?: number | string;
   category_name?: string;
   url?: string;
+  file_name?: string;
+  file_base64?: string;
+  file_id?: number | string;
 }
 
 interface CategoryOption { id: number | string; name: string; container_id?: number | string; }
@@ -24,7 +28,7 @@ interface ContainerOption { id: number | string; name: string; }
 @Component({
   selector: 'app-user-my-offers',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, UserMenu, Footer, DashboardHeader],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, UserMenu, AdminFooter, DashboardHeader],
   templateUrl: './my-offers.html',
   styleUrl: './my-offers.scss'
 })
@@ -40,18 +44,18 @@ export class UserMyOffers implements OnInit {
   showModal = signal<boolean>(false);
   form!: FormGroup;
   editingId: number | string | null = null;
-  
+
   // Pagination properties
   currentPage = signal<number>(1);
   pageSize = signal<number>(10);
   totalItems = signal<number>(0);
   totalPages = signal<number>(0);
   paginationInfo = signal<PaginatedResponse<OfferRow> | null>(null);
-  
+
   // Make Math available in template
   Math = Math;
 
-  constructor(private http: HttpClient, private fb: FormBuilder) {}
+  constructor(private http: HttpClient, private fb: FormBuilder, private offerService: OfferService) { }
 
   ngOnInit(): void {
     this.form = this.fb.group({
@@ -91,7 +95,7 @@ export class UserMyOffers implements OnInit {
         this.categoriesList.set(list);
         if (this.offers().length) this.offers.set(this.enrichAndFilter(this.offers()));
       },
-      error: () => {}
+      error: () => { }
     });
   }
 
@@ -105,7 +109,7 @@ export class UserMyOffers implements OnInit {
         }));
         this.containersList.set(mapped);
       },
-      error: () => {}
+      error: () => { }
     });
   }
 
@@ -113,19 +117,19 @@ export class UserMyOffers implements OnInit {
     if (this.loading()) return;
     this.loading.set(true);
     this.errorMessage.set('');
-    
+
     const paginationParams: PaginationParams = {
       page_number: this.currentPage(),
       page_size: this.pageSize()
     };
-    
+
     let httpParams = new HttpParams()
       .set('page_number', paginationParams.page_number.toString())
       .set('page_size', paginationParams.page_size.toString());
 
-    this.http.get<PaginatedResponse<any>>('https://test1.jcloud-ver-jpe.ik-server.com/api/flowscope_core/offer', { 
+    this.http.get<PaginatedResponse<any>>('https://test1.jcloud-ver-jpe.ik-server.com/api/flowscope_core/offer', {
       params: httpParams,
-      withCredentials: true 
+      withCredentials: true
     }).subscribe({
       next: (res) => {
         this.paginationInfo.set(res);
@@ -138,6 +142,9 @@ export class UserMyOffers implements OnInit {
           category_id: o.category_id ?? o.category?.id,
           category_name: o.category?.name,
           url: o.url ?? '',
+          file_name: o.file_name ?? '',
+          file_base64: o.file ?? '',
+          file_id: o.file_id ?? 0,
           imageUrl: (() => {
             const base64 = o.file;
             if (!base64) return '';
@@ -190,14 +197,18 @@ export class UserMyOffers implements OnInit {
     }
     if (!this.editingId) return;
     this.loading.set(true);
+    const original = this.offers().find(o => o.id === this.editingId);
     const payload = {
       offer_id: this.editingId,
       name: this.form.value.title,
       description: this.form.value.description,
       category_id: this.form.value.category_id,
-      url: this.form.value.url
+      url: this.form.value.url,
+      file_name: original?.file_name || '',
+      file_base64: original?.file_base64 || '',
+      file_id: original?.file_id || 0
     };
-    this.http.patch('https://test1.jcloud-ver-jpe.ik-server.com/api/flowscope_core/offer', payload, { withCredentials: true }).subscribe({
+    this.offerService.updateOffer(payload).subscribe({
       next: () => {
         this.loading.set(false);
         this.showModal.set(false);
@@ -212,7 +223,7 @@ export class UserMyOffers implements OnInit {
     const ok = window.confirm('Delete this offer?');
     if (!ok) return;
     this.loading.set(true);
-    this.http.post('https://test1.jcloud-ver-jpe.ik-server.com/api/flowscope_core/offer/delete', { offer_id: row.id }, { withCredentials: true }).subscribe({
+    this.offerService.deleteOffer(row.id).subscribe({
       next: () => { this.loading.set(false); this.fetchOffers(); },
       error: (err) => { this.errorMessage.set(err?.error?.message || 'Failed to delete offer'); this.loading.set(false); }
     });
@@ -243,11 +254,11 @@ export class UserMyOffers implements OnInit {
     const maxVisiblePages = 5;
     let startPage = Math.max(1, this.currentPage() - Math.floor(maxVisiblePages / 2));
     let endPage = Math.min(this.totalPages(), startPage + maxVisiblePages - 1);
-    
+
     if (endPage - startPage + 1 < maxVisiblePages) {
       startPage = Math.max(1, endPage - maxVisiblePages + 1);
     }
-    
+
     for (let i = startPage; i <= endPage; i++) {
       pages.push(i);
     }

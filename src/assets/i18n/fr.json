@@ -24,7 +24,69 @@
         "NEXT": "Suivant",
         "PAGINATION_INFO": "Affichage de {{start}} à {{end}} sur {{total}} offres",
         "POPULAR_PLATFORMS": "Plateformes populaires",
-        "POPULAR_PLATFORMS_INFO": "Liste des plateformes les plus actives et populaires en matière d'intelligence artificielle"
+        "POPULAR_PLATFORMS_INFO": "Liste des plateformes les plus actives et populaires en matière d'intelligence artificielle",
+        "HERO": {
+            "TITLE": "Le Meilleur Répertoire d'Outils IA au Monde",
+            "SUBTITLE": "Meilleur Répertoire d'Outils IA",
+            "DESC1": "Bindeye est un site web dédié à l'intelligence artificielle qui vous aide à découvrir les meilleurs outils IA disponibles en ligne. Notre plateforme propose un répertoire organisé en catégories claires pour que vous puissiez instantanément trouver les outils qui correspondent à vos besoins.",
+            "DESC2": "Vous trouverez le plus grand répertoire d'outils IA mis à jour quotidiennement, faisant de Bindeye le hub le plus fiable pour découvrir des solutions IA innovantes.",
+            "DESC3": "Nous publions également des articles expliquant le fonctionnement de chaque IA. Vous avez trouvé un outil qui n'est pas encore listé ? Vous pouvez maintenant soumettre vos propres IA pour qu'elles soient ajoutées aux classements ou au Top 10.",
+            "DESC4": "Bindeye est à la fois un répertoire et un moteur de recherche entièrement dédié à l'IA—simple, clair et efficace. Recherchez simplement en utilisant des mots-clés, comme sur un moteur de recherche standard."
+        },
+        "GUIDE": {
+            "TITLE": "Bindeye : Votre Guide pour Découvrir la Meilleure IA",
+            "SUBTITLE": "Un Guide Pratique de l'IA",
+            "TEXT1": "Notre site web est clair, optimisé et conçu pour fournir des résultats rapides. Il est gratuit, ne nécessite aucune inscription et est entièrement compatible avec les ordinateurs, tablettes et smartphones.",
+            "TEXT2": "Que vous recherchiez un outil de traduction automatique, un générateur d'images IA ou toute autre application intelligente, Bindeye offre une grande variété d'options de haute qualité.",
+            "TEXT3": "Nous publions également du contenu créé par des experts en IA pour vous aider à comprendre les dernières tendances et les technologies les plus prometteuses."
+        },
+        "TOP10": {
+            "TITLE": "Top 10 des Meilleurs Outils IA",
+            "TEXT1": "Bindeye propose désormais une section unique Top 10 IA qui se met à jour en temps réel. Vous pouvez instantanément voir les outils IA les mieux classés dans chaque catégorie—une fonctionnalité essentielle lorsque de nouvelles applications apparaissent chaque jour.",
+            "TEXT2": "Avec cette expansion constante, les répertoires IA peuvent rapidement devenir illisibles. Le Top 10 simplifie tout en mettant en avant uniquement les IA les plus innovantes et utiles.",
+            "TEXT3": "Consultez l'onglet \"Top 10\" en haut de la page pour explorer le classement."
+        },
+        "ENTHUSIASTS": {
+            "TITLE": "Un Site Web pour Tous les Passionnés et Aficionados de l'IA",
+            "TEXT1": "Bindeye est intentionnellement conçu pour être simple et accessible, ce qui le rend idéal à la fois pour les débutants et les experts à la recherche d'innovations IA de pointe.",
+            "TEXT2": "Puisque les outils IA font désormais partie intégrante de la vie quotidienne—et de l'avenir—rester informé est essentiel. Bindeye vous aide à rester à jour et à avoir une longueur d'avance sur la concurrence."
+        },
+        "WHY": {
+            "TITLE": "Pourquoi Venir sur ce Répertoire d'Outils IA ?",
+            "TEXT1": "Que vous soyez curieux, que vous fassiez des recherches ou que vous recherchiez une IA spécifique, Bindeye vous donne accès à la collection d'IA la plus vaste, catégorisée et facile à parcourir.",
+            "TEXT2": "Vous pouvez également apprendre comment fonctionne chaque IA de notre répertoire et découvrir des outils partagés par d'autres membres de la communauté.",
+            "TEXT3": "Deux nouvelles sections ont récemment été ajoutées :",
+            "FEATURE1": "Actualités IA (articles écrits)",
+            "FEATURE2": "Actualités IA YouTube (format vidéo)",
+            "TEXT4": "Les deux sont extrêmement populaires et mises à jour régulièrement."
+        },
+        "COMMUNITY": {
+            "TITLE": "Contribuez à la Communauté en Partageant Vos Découvertes sur Bindeye",
+            "TEXT1": "Bindeye encourage la participation communautaire car la découverte de l'IA est un voyage collectif.",
+            "TEXT2": "Tout le monde peut contribuer—débutants, développeurs et passionnés d'IA—en partageant de nouveaux outils IA via notre formulaire de soumission.",
+            "TEXT3": "Cela nous aide à maintenir le répertoire à jour tout en vous permettant de partager vos découvertes avec des milliers d'utilisateurs."
+        },
+        "CLOSING": {
+            "TEXT1": "Merci pour votre soutien et pour faire partie de la communauté Bindeye.",
+            "TEXT2": "À bientôt sur Bindeye !"
+        }
+    },
+    "EXPLORE_POTENTIAL": {
+        "SUBTITLE": "Explorez plus de potentiel avec l'IA",
+        "CARDS": {
+            "HUBSPOT": { "TITLE": "Outils IA HubSpot", "DESC": "Découvrez des outils sécurisés et de qualité pour les entreprises." },
+            "NEWS": { "TITLE": "Actualités IA", "DESC": "L'actualité de l'IA en temps réel, en un coup d'œil." },
+            "GPTS": { "TITLE": "Liste GPTs", "DESC": "Une liste des meilleurs GPTs personnalisés." },
+            "YOUTUBE": { "TITLE": "YouTube IA", "DESC": "Accédez aux meilleures chaînes YouTube parlant d'IA." },
+            "TOP100": { "TITLE": "Top 100 IA (bêta)", "DESC": "Les 100 IA les plus populaires et tendances." },
+            "TUTORIALS": { "TITLE": "Tutoriels Vidéo IA", "DESC": "Apprenez à maîtriser les meilleurs outils IA en vidéo." },
+            "BLOG": { "TITLE": "Blog & Astuces", "DESC": "Tous les conseils, tutoriels et tendances IA du moment." },
+            "APPS": { "TITLE": "Mini Apps Gratuites", "DESC": "Explorez des mini-apps IA gratuites et utiles pour des résultats rapides." },
+            "HUGGING": { "TITLE": "Explorateur Hugging Face", "DESC": "Recherchez les meilleurs 'Spaces' gratuits disponibles sur Hugging Face." },
+            "DISCORD": { "TITLE": "Top 200 Discord IA", "DESC": "Découvrez la liste des meilleures communautés Discord IA." },
+            "JOBS": { "TITLE": "Offres d'Emploi IA", "DESC": "Recherchez des milliers d'emplois IA aux États-Unis et dans le monde." },
+            "AGENDA": { "TITLE": "Agenda Conférences IA", "DESC": "Consultez l'agenda de toutes les conférences IA à travers le monde." }
+        }
     },
     "COOKIE_POLICY": {
         "TITLE": "Politique de Cookies (UE)",
@@ -172,7 +234,7 @@
     },
     "CONTACT": {
         "TITLE": "Contactez-nous",
-        "SUBTITLE": "Voici quelques réponses rapides sur la soumission, la mise à jour ou la promotion d'outils IA sur Flowscope.",
+        "SUBTITLE": "Voici quelques réponses rapides sur la soumission, la mise à jour ou la promotion d'outils IA sur Bindeye.",
         "CONNECT": "Connectez-vous avec nous",
         "FORM": {
             "TITLE": "Envoyez-nous un message",
@@ -187,19 +249,19 @@
         },
         "FAQ": {
             "TITLE": "Foire Aux Questions",
-            "SUBTITLE": "Voici quelques réponses rapides sur la soumission, la mise à jour ou la promotion d'outils IA sur Flowscope.",
+            "SUBTITLE": "Voici quelques réponses rapides sur la soumission, la mise à jour ou la promotion d'outils IA sur Bindeye.",
             "SUBMIT_TOOL": {
                 "QUESTION": "Comment soumettre un nouvel outil IA ?",
                 "ANSWER": "Pour soumettre un nouvel outil IA, veuillez utiliser notre page de soumission dédiée. Remplissez les détails de votre produit et notre équipe examinera votre soumission avant sa mise en ligne.",
                 "LINK": "Soumettre un outil IA"
             },
             "FEATURE_TOOL": {
-                "QUESTION": "Comment mettre en avant mon outil sur Flowscope ?",
+                "QUESTION": "Comment mettre en avant mon outil sur Bindeye ?",
                 "ANSWER": "Si vous souhaitez plus de visibilité, vous pouvez demander un placement en vedette. Trouvez des détails sur les options de mise en avant et comment votre annonce peut se démarquer.",
                 "LINK": "Mettre en avant votre outil"
             },
             "ADVERTISE": {
-                "QUESTION": "Comment faire de la publicité sur Flowscope ?",
+                "QUESTION": "Comment faire de la publicité sur Bindeye ?",
                 "ANSWER": "Pour les opportunités publicitaires, veuillez visiter notre section Publicité. Vous trouverez plus d'informations sur les placements, les formats et comment atteindre notre audience.",
                 "LINK": "Faire de la publicité"
             },

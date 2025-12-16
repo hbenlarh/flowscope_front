@@ -31,22 +31,46 @@
     h5 {
         white-space: nowrap;
         margin-right: 1rem;
+        position: relative;
+        /* Ensure it stays above the scrolling content if needed */
+    }
+
+    .marquee-container {
+        overflow: hidden;
+        /* Hide the scrolling content outside the container */
+        width: 100%;
+    }
+
+    .marquee-wrapper {
+        flex: 1;
+        overflow: hidden;
+        mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+        -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
     }
 
     .platforms-list {
-        overflow-x: auto;
-        padding-bottom: 5px;
+        display: flex;
+        gap: 3rem !important;
+        /* Increase gap for better spacing */
+        width: max-content;
+        /* Ensure width fits all items */
+        animation: scroll 30s linear infinite;
 
-        /* Hide scrollbar for Chrome, Safari and Opera */
-        &::-webkit-scrollbar {
-            display: none;
+        &:hover {
+            animation-play-state: paused;
+            /* Pause on hover */
+        }
+    }
+
+    @keyframes scroll {
+        0% {
+            transform: translateX(0);
         }
 
-        /* Hide scrollbar for IE, Edge and Firefox */
-        -ms-overflow-style: none;
-        /* IE and Edge */
-        scrollbar-width: none;
-        /* Firefox */
+        100% {
+            transform: translateX(-50%);
+            /* Move half the width (since we duplicated the list) */
+        }
     }
 
     .platform-item {

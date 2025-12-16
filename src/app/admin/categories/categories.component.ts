@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Menu } from '../menu/menu';
-import { Footer } from '../../shared/footer/footer';
+import { AdminFooter } from '../../shared/admin-footer/admin-footer';
 import { forkJoin } from 'rxjs';
 import { DashboardHeader } from '../../shared/dashboard-header/dashboard-header';
 
@@ -21,7 +21,7 @@ interface ContainerOption { id: number | string; name: string; }
 @Component({
   selector: 'app-admin-categories',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, Menu,Footer,DashboardHeader],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, Menu,AdminFooter,DashboardHeader],
   templateUrl: './categories.component.html',
   styleUrl: './categories.component.scss'
 })

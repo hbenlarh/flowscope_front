@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Menu } from '../menu/menu';
-import { Footer } from '../../shared/footer/footer';
+import { AdminFooter } from '../../shared/admin-footer/admin-footer';
 import { PaginatedResponse, PaginationParams } from '../../services/models/offredata.model';
 import { DashboardHeader } from '../../shared/dashboard-header/dashboard-header';
 
@@ -23,7 +23,7 @@ interface OfferRow {
 @Component({
   selector: 'app-admin-offers',
   standalone: true,
-  imports: [CommonModule, FormsModule, Menu, Footer, DashboardHeader],
+  imports: [CommonModule, FormsModule, Menu, AdminFooter, DashboardHeader],
   templateUrl: './offers.component.html',
   styleUrl: './offers.component.scss'
 })

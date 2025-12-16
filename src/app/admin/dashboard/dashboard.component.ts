@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Footer } from '../../shared/footer/footer';
+import { AdminFooter } from '../../shared/admin-footer/admin-footer';
 import { UserDataService } from '../../services/userdata.service';
 import { Userdata } from '../../services/userdata.model';
 import { Menu } from '../menu/menu';
@@ -14,7 +14,7 @@ import { DashboardHeader } from '../../shared/dashboard-header/dashboard-header'
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [Footer, Menu, CommonModule, DashboardHeader],
+  imports: [AdminFooter, Menu, CommonModule, DashboardHeader],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss'
 })

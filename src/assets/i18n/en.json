@@ -24,7 +24,69 @@
         "NEXT": "Next",
         "PAGINATION_INFO": "Showing {{start}} to {{end}} of {{total}} offers",
         "POPULAR_PLATFORMS": "Popular Platforms",
-        "POPULAR_PLATFORMS_INFO": "List of the most active and popular artificial intelligence platforms"
+        "POPULAR_PLATFORMS_INFO": "List of the most active and popular artificial intelligence platforms",
+        "HERO": {
+            "TITLE": "The World's Best AI Tools Directory",
+            "SUBTITLE": "Best AI Tools Directory",
+            "DESC1": "Bindeye is a website dedicated to artificial intelligence that helps you discover the best AI tools available online. Our platform features a curated directory organized into clear categories so you can instantly find the tools that match your needs.",
+            "DESC2": "You will find the largest AI tools listing updated daily, making Bindeye the most reliable hub for discovering innovative AI solutions.",
+            "DESC3": "We also publish articles explaining how each AI works. Found a tool not listed yet? You can now submit your own AIs so they can be added to the rankings or to the Top 10.",
+            "DESC4": "Bindeye is both a directory and a search engine fully dedicated to AI—simple, clean, and efficient. Just search using keywords, like on a standard search engine."
+        },
+        "GUIDE": {
+            "TITLE": "Bindeye: Your Guide to Discovering the Best AI",
+            "SUBTITLE": "A Practical AI Guide",
+            "TEXT1": "Our website is clean, clear, and optimized to provide fast results. It is free, requires no registration, and is fully compatible with computers, tablets, and smartphones.",
+            "TEXT2": "Whether you're looking for a machine translation tool, an AI image generator, or any other intelligent application, Bindeye offers a wide variety of high-quality options.",
+            "TEXT3": "We also publish content created by AI experts to help you understand the latest trends and most promising technologies."
+        },
+        "TOP10": {
+            "TITLE": "Top 10 Best AI Tools",
+            "TEXT1": "Bindeye now features a unique Top 10 AI section that updates in real time. You can instantly see the top-ranked AI tools in each category—an essential feature when new apps appear every day.",
+            "TEXT2": "With this constant expansion, AI directories can quickly become unreadable. The Top 10 simplifies everything by highlighting only the most innovative and useful AIs.",
+            "TEXT3": "Check the \"Top 10\" tab at the top of the page to explore the ranking."
+        },
+        "ENTHUSIASTS": {
+            "TITLE": "A Website for All AI Enthusiasts and Aficionados",
+            "TEXT1": "Bindeye is intentionally designed to be simple and accessible, making it ideal both for beginners and experts looking for cutting-edge AI innovations.",
+            "TEXT2": "Since AI tools are now a major part of daily life—and the future—staying informed is essential. Bindeye helps you remain up to date and one step ahead of the competition."
+        },
+        "WHY": {
+            "TITLE": "Why Come to This AI Tools Directory?",
+            "TEXT1": "Whether you're curious, researching, or searching for a specific AI, Bindeye gives you access to the most extensive AI collection categorized and easy to browse.",
+            "TEXT2": "You can also learn how each AI in our directory works and discover tools shared by other members of the community.",
+            "TEXT3": "Two new sections have recently been added:",
+            "FEATURE1": "AI News (written articles)",
+            "FEATURE2": "AI News YouTube (video format)",
+            "TEXT4": "Both are extremely popular and updated regularly."
+        },
+        "COMMUNITY": {
+            "TITLE": "Contribute to the Community by Sharing Your Findings on Bindeye",
+            "TEXT1": "Bindeye promotes community participation because AI discovery is a collective journey.",
+            "TEXT2": "Everyone can contribute—beginners, developers, and AI enthusiasts—by sharing new AI tools via our submission form.",
+            "TEXT3": "This helps us keep the directory updated while allowing you to share your discoveries with thousands of users."
+        },
+        "CLOSING": {
+            "TEXT1": "Thank you for your support and for being part of the Bindeye community.",
+            "TEXT2": "See you on Bindeye!"
+        }
+    },
+    "EXPLORE_POTENTIAL": {
+        "SUBTITLE": "Explore more potential with AI",
+        "CARDS": {
+            "HUBSPOT": { "TITLE": "HubSpot AI Tools", "DESC": "Discover top-quality and secure tools for business and enterprise." },
+            "NEWS": { "TITLE": "AI News", "DESC": "AI news in real time, at a glance." },
+            "GPTS": { "TITLE": "GPTs List", "DESC": "A list of the best Custom GPTs." },
+            "YOUTUBE": { "TITLE": "YouTube AI", "DESC": "Access the best YouTube channels talking about AI." },
+            "TOP100": { "TITLE": "Top 100 AI (beta)", "DESC": "Top 100 most popular and trending AIs." },
+            "TUTORIALS": { "TITLE": "AI Video Tutorials", "DESC": "Learn how to master the best AI tools on video." },
+            "BLOG": { "TITLE": "Blog & Tips", "DESC": "All the tips, tutorials, and AI trends at the moment." },
+            "APPS": { "TITLE": "Mini Free Apps", "DESC": "Explore free and helpful AI mini-apps for quick results." },
+            "HUGGING": { "TITLE": "Hugging Face Explorer", "DESC": "Search for the best free 'Spaces' available on Hugging Face." },
+            "DISCORD": { "TITLE": "Top 200 AI Discord", "DESC": "Check out the list of the best AI Discord communities." },
+            "JOBS": { "TITLE": "AI Job Offers", "DESC": "Search thousands of AI jobs in the United States and worldwide." },
+            "AGENDA": { "TITLE": "AI Conferences Agenda", "DESC": "Check out the agenda for all the AI conferences around the world." }
+        }
     },
     "COOKIE_POLICY": {
         "TITLE": "Cookie Policy (EU)",
@@ -172,7 +234,7 @@
     },
     "CONTACT": {
         "TITLE": "Contact Us",
-        "SUBTITLE": "Here are a few quick answers about submitting, updating, or promoting AI tools on Flowscope.",
+        "SUBTITLE": "Here are a few quick answers about submitting, updating, or promoting AI tools on Bindeye.",
         "CONNECT": "Connect with us",
         "FORM": {
             "TITLE": "Send us a message",
@@ -187,19 +249,19 @@
         },
         "FAQ": {
             "TITLE": "Frequently Asked Questions",
-            "SUBTITLE": "Here are a few quick answers about submitting, updating, or promoting AI tools on Flowscope.",
+            "SUBTITLE": "Here are a few quick answers about submitting, updating, or promoting AI tools on Bindeye.",
             "SUBMIT_TOOL": {
                 "QUESTION": "How do I submit a new AI tool?",
                 "ANSWER": "To submit a new AI tool, please use our dedicated submission page. Fill in the details about your product and our team will review your submission before it goes live.",
                 "LINK": "Submit an AI Tool"
             },
             "FEATURE_TOOL": {
-                "QUESTION": "How can I feature my tool on Flowscope?",
+                "QUESTION": "How can I feature my tool on Bindeye?",
                 "ANSWER": "If you want extra visibility, you can request a featured placement. Find details about highlight options and how your listing can stand out.",
                 "LINK": "Feature your tool"
             },
             "ADVERTISE": {
-                "QUESTION": "How can I advertise on Flowscope?",
+                "QUESTION": "How can I advertise on Bindeye?",
                 "ANSWER": "For advertising opportunities, please visit our Advertise section. You will find more information about placements, formats, and how to reach our audience.",
                 "LINK": "Advertise"
             },
