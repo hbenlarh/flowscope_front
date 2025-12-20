@@ -4,6 +4,7 @@ import { Login } from './login/login';
 import { Register } from './register/register';
 import { UserDashbord } from './user/user-dashbord/user-dashbord';
 import { UserOffre } from './user/user-offre/user-offre';
+import { UserEditOffre } from './user/user-edit-offre/user-edit-offre';
 import { AuthGuard } from './auth/auth-guard';
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { AdminGuard } from './auth/admin-auth-guard';
@@ -11,6 +12,7 @@ import { AdminUsersComponent } from './admin/users/users.component';
 import { AdminContainersComponent } from './admin/containers/containers.component';
 import { AdminCategoriesComponent } from './admin/categories/categories.component';
 import { AdminOffersComponent } from './admin/offers/offers.component';
+import { EditOfferComponent } from './admin/offers/edit-offer.component';
 import { UserMyOffers } from './user/my-offers/my-offers';
 import { Logout } from './auth/logout/logout';
 import { AiCategories } from './ai-categories/ai-categories';
@@ -20,6 +22,7 @@ import { CookiePolicyComponent } from './cookie-policy/cookie-policy.component';
 import { TermsConditionsComponent } from './terms-conditions/terms-conditions.component';
 import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
 import { ContactComponent } from './contact/contact.component';
+import { OfferDetailComponent } from './offer-detail/offer-detail.component';
 
 export const routes: Routes = [
     { path: "", component: Homepage },
@@ -32,13 +35,16 @@ export const routes: Routes = [
     { path: "terms-conditions", component: TermsConditionsComponent },
     { path: "privacy-policy", component: PrivacyPolicyComponent },
     { path: "contact", component: ContactComponent },
+    { path: "offers/:slug", component: OfferDetailComponent },
     { path: "user/dashboard", component: UserDashbord, canActivate: [AuthGuard] },
     { path: "admin/dashboard", component: DashboardComponent, canActivate: [AdminGuard] },
     { path: "admin/users", component: AdminUsersComponent, canActivate: [AdminGuard] },
     { path: "admin/containers", component: AdminContainersComponent, canActivate: [AdminGuard] },
     { path: "admin/categories", component: AdminCategoriesComponent, canActivate: [AdminGuard] },
     { path: "admin/offers", component: AdminOffersComponent, canActivate: [AdminGuard] },
+    { path: "admin/offers/edit/:id", component: EditOfferComponent, canActivate: [AdminGuard] },
     { path: "user/addOffre", component: UserOffre, canActivate: [AuthGuard] },
+    { path: "user/editOffre/:id", component: UserEditOffre, canActivate: [AuthGuard] },
     { path: "user/myoffers", component: UserMyOffers, canActivate: [AuthGuard] },
     { path: "categories/:id", component: CategoryOffers }
 

@@ -275,5 +275,21 @@
                 "ANSWER": "Yes. If you prefer contacting us directly, you can email us. We usually reply within 24 to 48 business hours."
             }
         }
+    },
+    "OFFER_DETAIL": {
+        "BACK_TO_OFFERS": "Back to Offers",
+        "VERIFIED": "Verified",
+        "IN_CATEGORY": "in category",
+        "VISIT_WEBSITE": "Visit Website",
+        "KEY_FEATURES": "Key Features",
+        "PROS_CONS": "Pros & Cons",
+        "ADVANTAGES": "Advantages",
+        "DISADVANTAGES": "Disadvantages",
+        "PRICING": "Pricing",
+        "PER_MONTH": "/mo",
+        "YOU_MAY_ALSO_LIKE": "You May Also Like",
+        "LOADING": "Loading offer details...",
+        "ERROR": "Offer not found",
+        "BACK_TO_HOME": "Back to Home"
     }
 }

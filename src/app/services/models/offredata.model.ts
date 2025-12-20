@@ -1,3 +1,16 @@
+export interface PricingTier {
+  name: string;
+  price: number;
+  description: string;
+  features: string[];
+}
+
+export interface Feature {
+  icon: string;
+  title: string;
+  description: string;
+}
+
 export interface Offer {
     offer_id: number;
     client_id: number;
@@ -15,6 +28,19 @@ export interface Offer {
     upvotes?: number; // number of upvotes
     is_featured?: boolean; // whether the offer is featured
     is_top?: boolean; // whether the offer is marked as top
+    
+    // New detail page fields
+    slug?: string;
+    subtitle?: string;
+    long_description?: string;
+    features?: Feature[];
+    pros?: string[];
+    cons?: string[];
+    pricing_tiers?: PricingTier[];
+    screenshot_url?: string;
+    ranking?: number;
+    is_verified?: boolean;
+    related_offer_ids?: number[];
   }
 
 export interface PaginatedResponse<T> {

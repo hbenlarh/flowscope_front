@@ -1,0 +1,159 @@
+<app-header></app-header>
+
+<div class="offer-detail-page" *ngIf="!loading && offer">
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="container">
+      <button class="back-button" (click)="goBack()">
+        <i class="bi bi-arrow-left"></i> {{ 'OFFER_DETAIL.BACK_TO_OFFERS' | translate }}
+      </button>
+      
+      <div class="hero-content">
+        <div class="offer-header">
+          <div class="offer-logo">
+            <img *ngIf="offer.file"
+              [src]="'data:' + (offer.file_extension === '.svg' ? 'image/svg+xml' : offer.file_extension === '.jpg' || offer.file_extension === '.jpeg' ? 'image/jpeg' : 'image/png') + ';base64,' + offer.file"
+              [alt]="offer.file_name" />
+            <img *ngIf="!offer.file" src="assets/placeholder-logo.svg" alt="Default logo" />
+          </div>
+          <div class="offer-title-section">
+            <div class="title-with-badge">
+              <h1>{{ offer.name }}</h1>
+              <span class="verified-badge" *ngIf="offer.is_verified">
+                <i class="bi bi-patch-check-fill"></i> {{ 'OFFER_DETAIL.VERIFIED' | translate }}
+              </span>
+            </div>
+            <p class="subtitle" *ngIf="offer.subtitle">{{ offer.subtitle }}</p>
+            <div class="meta-info">
+              <span class="ranking" *ngIf="offer.ranking">
+                #{{ offer.ranking }} {{ 'OFFER_DETAIL.IN_CATEGORY' | translate }}
+              </span>
+            </div>
+          </div>
+        </div>
+        
+        <p class="short-description">{{ offer.description }}</p>
+        
+        <div class="action-buttons">
+          <button class="visit-button" (click)="visitOffer()">
+            <i class="bi bi-box-arrow-up-right"></i> {{ 'OFFER_DETAIL.VISIT_WEBSITE' | translate }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <section class="main-content">
+    <div class="container">
+      <div class="row">
+        <!-- Main Column: Description and Features -->
+        <div class="col-lg-9">
+          <!-- Screenshot Section -->
+          <div class="content-section" *ngIf="offer.screenshot_url">
+            <img [src]="offer.screenshot_url" [alt]="offer.name + ' screenshot'" class="screenshot-img" />
+          </div>
+
+          <!-- Long Description -->
+          <div class="content-section" *ngIf="offer.long_description">
+            <div class="description-content" [innerHTML]="offer.long_description"></div>
+          </div>
+
+          <!-- Features -->
+          <div class="content-section" *ngIf="offer.features && offer.features.length > 0">
+            <h2>{{ 'OFFER_DETAIL.KEY_FEATURES' | translate }}</h2>
+            <div class="features-grid">
+              <div class="feature-card" *ngFor="let feature of offer.features">
+                <div class="feature-icon">{{ feature.icon }}</div>
+                <h3>{{ feature.title }}</h3>
+                <p>{{ feature.description }}</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Pros & Cons -->
+          <div class="content-section" *ngIf="(offer.pros && offer.pros.length > 0) || (offer.cons && offer.cons.length > 0)">
+            <h2>{{ 'OFFER_DETAIL.PROS_CONS' | translate }}</h2>
+            <div class="row">
+              <div class="col-md-6" *ngIf="offer.pros && offer.pros.length > 0">
+                <div class="pros-section">
+                  <h3><i class="bi bi-check-circle-fill text-success"></i> {{ 'OFFER_DETAIL.ADVANTAGES' | translate }}</h3>
+                  <ul class="pros-list">
+                    <li *ngFor="let pro of offer.pros">{{ pro }}</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="col-md-6" *ngIf="offer.cons && offer.cons.length > 0">
+                <div class="cons-section">
+                  <h3><i class="bi bi-x-circle-fill text-danger"></i> {{ 'OFFER_DETAIL.DISADVANTAGES' | translate }}</h3>
+                  <ul class="cons-list">
+                    <li *ngFor="let con of offer.cons">{{ con }}</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Pricing Tiers -->
+          <div class="content-section pricing-section" *ngIf="offer.pricing_tiers && offer.pricing_tiers.length > 0">
+            <h2>{{ 'OFFER_DETAIL.PRICING' | translate }}</h2>
+            <div class="pricing-tiers-grid">
+              <div class="pricing-card" *ngFor="let tier of offer.pricing_tiers">
+                <div class="tier-header">
+                  <h3>{{ tier.name }}</h3>
+                  <div class="price">
+                    <span class="currency">$</span>
+                    <span class="amount">{{ tier.price }}</span>
+                    <span class="period" *ngIf="tier.price > 0">{{ 'OFFER_DETAIL.PER_MONTH' | translate }}</span>
+                  </div>
+                </div>
+                <p class="tier-description">{{ tier.description }}</p>
+                <ul class="features-list" *ngIf="tier.features && tier.features.length > 0">
+                  <li *ngFor="let feature of tier.features">
+                    <i class="bi bi-check"></i> {{ feature }}
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: Related Products -->
+        <div class="col-lg-3">
+          <div class="sidebar-sticky">
+            <!-- Related Offers -->
+            <div class="related-section-sidebar" *ngIf="relatedOffers.length > 0">
+              <h3>{{ 'OFFER_DETAIL.YOU_MAY_ALSO_LIKE' | translate }}</h3>
+              <div class="related-list">
+                <a [routerLink]="['/offers', relatedOffer.slug]" class="related-item" *ngFor="let relatedOffer of relatedOffers">
+                  <img [src]="'data:image/png;base64,' + relatedOffer.file" [alt]="relatedOffer.name" />
+                  <div class="related-info">
+                    <h4>{{ relatedOffer.name }}</h4>
+                    <p>{{ relatedOffer.description | slice:0:60 }}...</p>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<app-footer></app-footer>
+
+<!-- Loading State -->
+<div class="loading-container" *ngIf="loading">
+  <div class="spinner"></div>
+  <p>{{ 'OFFER_DETAIL.LOADING' | translate }}</p>
+</div>
+
+<!-- Error State -->
+<div class="error-container" *ngIf="error && !loading">
+  <div class="error-content">
+    <i class="bi bi-exclamation-triangle"></i>
+    <h2>{{ 'OFFER_DETAIL.ERROR' | translate }}</h2>
+    <button class="back-button" (click)="goBack()">{{ 'OFFER_DETAIL.BACK_TO_HOME' | translate }}</button>
+  </div>
+</div>

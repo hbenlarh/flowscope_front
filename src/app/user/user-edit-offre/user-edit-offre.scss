@@ -1,0 +1,130 @@
+        :root {
+            --bg-main: #f7fafc;
+            --bg-card: #ffffff;
+            --bg-sidebar: #1a202c;
+            --text-dark: #2d3748;
+            --text-light: #e2e8f0;
+            --primary-color: #667eea;
+            --secondary-color: #764ba2;
+            --border-color: #e2e8f0;
+            --shadow-light: 0 4px 6px rgba(0, 0, 0, 0.07);
+            --shadow-medium: 0 10px 25px rgba(0, 0, 0, 0.1);
+            --footer-height: 90px;
+        }
+
+        .dashboard-section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background: var(--bg-main);
+            margin: 0;
+            padding: 0;
+            width: 100%;
+        }
+
+        .dashboard-section .container-fluid {
+            padding-left: 0 !important;
+            padding-right: 0 !important;
+            margin: 0;
+            width: 100%;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .dashboard-layout {
+            flex: 1;
+            display: flex;
+            background: var(--bg-main);
+            margin: 0;
+            width: 100%;
+            min-height: 0;
+        }
+
+        .dashboard-layout > [class*="col-"] {
+            padding-left: 0 !important;
+            padding-right: 0 !important;
+        }
+
+        .dashboard-layout > .col-md-3 {
+            padding-left: 0 !important;
+        }
+
+        .main-content {
+            padding: 40px;
+            overflow-y: auto;
+            flex: 1;
+        }
+
+.editor-toolbar {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 10px;
+  padding: 8px;
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 4px 4px 0 0;
+  flex-wrap: wrap;
+
+  button {
+    padding: 4px 8px;
+    border: 1px solid #ced4da;
+    background-color: white;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.2s;
+
+    &:hover {
+      background-color: #e9ecef;
+    }
+
+    &:active {
+      background-color: #dee2e6;
+    }
+  }
+
+  .toolbar-separator {
+    width: 1px;
+    background-color: #dee2e6;
+    margin: 0 4px;
+  }
+}
+
+.editor-content {
+  min-height: 200px;
+  max-height: 400px;
+  overflow-y: auto;
+  padding: 12px;
+  border: 1px solid #dee2e6;
+  border-top: none;
+  border-radius: 0 0 4px 4px;
+  background-color: white;
+  font-size: 14px;
+  line-height: 1.6;
+
+  &:focus {
+    outline: none;
+    border-color: #86b7fe;
+    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+  }
+
+  &[contenteditable="true"]:empty:before {
+    content: attr(data-placeholder);
+    color: #6c757d;
+  }
+
+  h3 {
+    font-size: 1.5em;
+    margin: 0.5em 0;
+  }
+
+  ul, ol {
+    margin: 0.5em 0;
+    padding-left: 2em;
+  }
+
+  p {
+    margin: 0.5em 0;
+  }
+}

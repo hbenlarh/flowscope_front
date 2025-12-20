@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { forkJoin } from 'rxjs';
 import { OfferService } from '../../services/offer/offer';
@@ -11,7 +12,7 @@ import { Offer, PaginatedResponse, PaginationParams } from '../../services/model
 @Component({
   selector: 'app-offers-listing',
   standalone: true,
-  imports: [CommonModule, FormsModule, TranslateModule],
+  imports: [CommonModule, FormsModule, RouterModule, TranslateModule],
   templateUrl: './offers-listing.component.html',
   styleUrls: ['./offers-listing.component.scss']
 })

@@ -275,5 +275,21 @@
                 "ANSWER": "Oui. Si vous préférez nous contacter directement, vous pouvez nous envoyer un email. Nous répondons généralement sous 24 à 48 heures ouvrables."
             }
         }
+    },
+    "OFFER_DETAIL": {
+        "BACK_TO_OFFERS": "Retour aux offres",
+        "VERIFIED": "Vérifié",
+        "IN_CATEGORY": "dans la catégorie",
+        "VISIT_WEBSITE": "Visiter le site web",
+        "KEY_FEATURES": "Fonctionnalités clés",
+        "PROS_CONS": "Avantages & Inconvénients",
+        "ADVANTAGES": "Avantages",
+        "DISADVANTAGES": "Inconvénients",
+        "PRICING": "Tarifs",
+        "PER_MONTH": "/mois",
+        "YOU_MAY_ALSO_LIKE": "Vous aimerez aussi",
+        "LOADING": "Chargement des détails de l'offre...",
+        "ERROR": "Offre introuvable",
+        "BACK_TO_HOME": "Retour à l'accueil"
     }
 }

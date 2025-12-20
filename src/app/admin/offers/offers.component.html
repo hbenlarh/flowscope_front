@@ -36,6 +36,8 @@
                   <th scope="col">Title</th>
                   <th scope="col">Description</th>
                   <th scope="col">Category</th>
+                  <th scope="col">Ranking</th>
+                  <th scope="col">Verified</th>
                   <th scope="col">User Email</th>
                   <th scope="col" class="text-end">Actions</th>
                 </tr>
@@ -49,52 +51,25 @@
                   <td>{{ o.title || '-' }}</td>
                   <td>{{ (o.description || '').slice(0,50) }}{{ (o.description?.length || 0) > 50 ? '…' : '' }}</td>
                   <td>{{ o.category_name || '-' }}</td>
+                  <td>
+                    <input type="number" [(ngModel)]="o.ranking" (change)="updateOfferField(o, 'ranking', o.ranking)" 
+                           class="form-control form-control-sm" style="width: 70px;" min="0" />
+                  </td>
+                  <td>
+                    <input type="checkbox" [(ngModel)]="o.is_verified" (change)="updateOfferField(o, 'is_verified', o.is_verified)" 
+                           class="form-check-input" />
+                  </td>
                   <td>{{ o.user_email || '-' }}</td>
                   <td class="text-end">
-                    <button class="btn btn-sm btn-outline-secondary me-2" (click)="showModal.set(true); selectedOffer.set(o)">Details</button>
+                    <a [routerLink]="['/admin/offers/edit', o.id]" class="btn btn-sm btn-outline-primary me-2">Edit</a>
                     <button class="btn btn-sm btn-outline-danger" (click)="delete(o)" [disabled]="deleting()">Delete</button>
                   </td>
                 </tr>
                 <tr *ngIf="!loading() && filtered().length === 0">
-                  <td colspan="7" class="text-center text-muted py-4">No offers found.</td>
+                  <td colspan="9" class="text-center text-muted py-4">No offers found.</td>
                 </tr>
               </tbody>
             </table>
-
-            <!-- Details Modal -->
-            <div class="modal-backdrop" *ngIf="showModal()" (click)="showModal.set(false)"></div>
-            <div class="modal-sheet" *ngIf="showModal()">
-              <div class="card p-3" (click)="$event.stopPropagation()">
-                <h5 class="mb-3">Offer Details</h5>
-                <div *ngIf="selectedOffer() as s">
-                  <div class="row g-3">
-                    <div class="col-12 d-flex align-items-center gap-3">
-                      <img *ngIf="s.imageUrl" [src]="s.imageUrl" alt="logo" style="width:56px;height:56px;object-fit:contain;" />
-                      <div>
-                        <div class="fw-bold">{{ s.title }}</div>
-                        <div class="text-muted small">{{ s.user_email }}</div>
-                      </div>
-                    </div>
-                    <div class="col-12">
-                      <div class="small text-muted">Category</div>
-                      <div>{{ s.category_name || '-' }}</div>
-                    </div>
-                    <div class="col-12">
-                      <div class="small text-muted">Description</div>
-                      <div>{{ s.description || '-' }}</div>
-                    </div>
-                    <div class="col-12">
-                      <div class="small text-muted">URL</div>
-                      <a *ngIf="s['url']" [href]="s['url']" target="_blank" rel="noopener">{{ s['url'] }}</a>
-                      <span *ngIf="!s['url']">-</span>
-                    </div>
-                  </div>
-                </div>
-                <div class="text-end mt-3">
-                  <button class="btn btn-light" (click)="showModal.set(false)">Close</button>
-                </div>
-              </div>
-            </div>
           </div>
 
         </div>

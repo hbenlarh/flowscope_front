@@ -59,7 +59,7 @@
             <div class="offers-list row">
                 <div *ngFor="let offer of offers" class="col-md-4 col-sm-6 mb-4">
                     <div class="offer-card">
-                        <div class="card-body">
+                        <div class="card-body" [routerLink]="['/offers', offer.slug || offer.offer_id]" style="cursor: pointer;">
                             <div class="offer-header-content">
                                 <div class="offer-logo">
                                     <img *ngIf="offer.file"
@@ -76,7 +76,7 @@
                             </div>
                         </div>
                         <div class="card-footer">
-                            <a [href]="offer.url" target="_blank" class="visit-btn">{{ 'HOMEPAGE.VISIT' | translate
+                            <a [href]="offer.url" target="_blank" class="visit-btn" (click)="$event.stopPropagation()">{{ 'HOMEPAGE.VISIT' | translate
                                 }}</a>
                         </div>
                     </div>
