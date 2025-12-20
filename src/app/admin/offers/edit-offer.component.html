@@ -1,0 +1,206 @@
+<section class="dashboard-section">
+  <app-dashboard-header title="Edit Offer" subtitle="Update offer details and settings.">
+  </app-dashboard-header>
+
+  <div class="container-fluid">
+    <div class="row dashboard-layout">
+      <div class="col-md-3">
+        <app-menu></app-menu>
+      </div>
+      <div class="col-md-9">
+        <div class="main-content">
+
+          <div class="card p-3">
+            <form [formGroup]="offerForm" (ngSubmit)="onSubmit()" class="mt-3">
+              
+              <!-- Basic Information -->
+              <h5 class="mb-3">Basic Information</h5>
+              <div class="row g-3 mb-4">
+                <div class="col-md-6">
+                  <label class="form-label">Name *</label>
+                  <input type="text" formControlName="name" class="form-control" placeholder="e.g., ChatBot AI" />
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Category *</label>
+                  <select class="form-select" formControlName="category_id">
+                    <option value="">Select a category</option>
+                    <optgroup *ngFor="let container of containers" [attr.label]="container.name">
+                      <option *ngFor="let cat of container.categories" [value]="cat.category_id">{{ cat.name }}</option>
+                    </optgroup>
+                  </select>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Subtitle</label>
+                  <input type="text" formControlName="subtitle" class="form-control" placeholder="Short tagline (optional)" />
+                  <small class="text-muted">e.g., "AI-Powered Customer Service Assistant"</small>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">URL Slug *</label>
+                  <input type="text" formControlName="slug" class="form-control" placeholder="e.g., chatbot-ai" readonly />
+                  <small class="text-muted">Auto-generated from name</small>
+                </div>
+                <div class="col-12">
+                  <label class="form-label">Short Description *</label>
+                  <textarea formControlName="description" class="form-control" rows="3" placeholder="Brief overview of your offer"></textarea>
+                </div>
+                <div class="col-12">
+                  <label class="form-label">Detailed Description</label>
+                  <div class="editor-container">
+                    <div class="editor-toolbar">
+                      <button type="button" (click)="formatText('bold')" class="btn btn-sm btn-outline-secondary" title="Bold"><b>B</b></button>
+                      <button type="button" (click)="formatText('italic')" class="btn btn-sm btn-outline-secondary" title="Italic"><i>I</i></button>
+                      <button type="button" (click)="formatText('underline')" class="btn btn-sm btn-outline-secondary" title="Underline"><u>U</u></button>
+                      <span class="toolbar-separator"></span>
+                      <button type="button" (click)="formatText('insertUnorderedList')" class="btn btn-sm btn-outline-secondary" title="Bullet List">• List</button>
+                      <button type="button" (click)="formatText('insertOrderedList')" class="btn btn-sm btn-outline-secondary" title="Numbered List">1. List</button>
+                      <span class="toolbar-separator"></span>
+                      <button type="button" (click)="formatHeading('h3')" class="btn btn-sm btn-outline-secondary" title="Heading">H3</button>
+                      <button type="button" (click)="formatHeading('p')" class="btn btn-sm btn-outline-secondary" title="Paragraph">P</button>
+                    </div>
+                    <div 
+                      #editorContent
+                      contenteditable="true" 
+                      class="editor-content form-control" 
+                      (input)="onEditorInput($event)"
+                      [innerHTML]="offerForm.get('long_description')?.value || ''"
+                      placeholder="Full description with details...">
+                    </div>
+                  </div>
+                  <small class="text-muted">Rich text editor with formatting options</small>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Website URL *</label>
+                  <input type="url" formControlName="url" class="form-control" placeholder="https://example.com" />
+                </div>
+                <div class="col-md-3">
+                  <label class="form-label">Ranking</label>
+                  <input type="number" formControlName="ranking" class="form-control" placeholder="e.g., 1" />
+                  <small class="text-muted">Position in category</small>
+                </div>
+                <div class="col-md-3">
+                  <label class="form-label">Verified</label>
+                  <select class="form-select" formControlName="is_verified">
+                    <option [value]="false">No</option>
+                    <option [value]="true">Yes</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Images -->
+              <h5 class="mb-3">Images</h5>
+              <div class="row g-3 mb-4">
+                <div class="col-md-6">
+                  <label class="form-label">Logo Icon</label>
+                  <input type="file" (change)="onFileSelected($event)" class="form-control" accept="image/*" />
+                  <small class="text-muted">Upload new logo (PNG, JPG, SVG) - leave empty to keep current</small>
+                  <div *ngIf="currentLogoUrl" class="mt-2">
+                    <img [src]="currentLogoUrl" alt="Current logo" style="max-width: 100px; max-height: 100px; border: 1px solid #ddd; border-radius: 4px;" />
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Screenshot Image</label>
+                  <input type="file" (change)="onScreenshotSelected($event)" class="form-control" accept="image/*" />
+                  <small class="text-muted">Upload new screenshot (PNG, JPG) - leave empty to keep current</small>
+                  <div *ngIf="screenshotPreview || currentScreenshotUrl" class="mt-2">
+                    <img [src]="screenshotPreview || currentScreenshotUrl" alt="Screenshot preview" style="max-width: 200px; max-height: 150px; border: 1px solid #ddd; border-radius: 4px;" />
+                  </div>
+                </div>
+              </div>
+
+              <!-- Features -->
+              <h5 class="mb-3">Features</h5>
+              <div class="features-section mb-4">
+                <div *ngFor="let feature of features; let i = index" class="feature-item mb-3 p-3 border rounded">
+                  <div class="row g-2">
+                    <div class="col-md-2">
+                      <input type="text" [(ngModel)]="feature.icon" [ngModelOptions]="{standalone: true}" class="form-control" placeholder="🚀" />
+                      <small class="text-muted">Icon/Emoji</small>
+                    </div>
+                    <div class="col-md-4">
+                      <input type="text" [(ngModel)]="feature.title" [ngModelOptions]="{standalone: true}" class="form-control" placeholder="Feature title" />
+                    </div>
+                    <div class="col-md-5">
+                      <input type="text" [(ngModel)]="feature.description" [ngModelOptions]="{standalone: true}" class="form-control" placeholder="Feature description" />
+                    </div>
+                    <div class="col-md-1">
+                      <button type="button" class="btn btn-danger btn-sm" (click)="removeFeature(i)">×</button>
+                    </div>
+                  </div>
+                </div>
+                <button type="button" class="btn btn-sm btn-outline-primary" (click)="addFeature()">+ Add Feature</button>
+              </div>
+
+              <!-- Pros & Cons -->
+              <div class="row g-3 mb-4">
+                <div class="col-md-6">
+                  <h5 class="mb-3">Advantages</h5>
+                  <div *ngFor="let pro of pros; let i = index" class="mb-2">
+                    <div class="input-group">
+                      <input type="text" [(ngModel)]="pros[i]" [ngModelOptions]="{standalone: true}" class="form-control" placeholder="Enter advantage" />
+                      <button type="button" class="btn btn-outline-danger" (click)="removePro(i)">×</button>
+                    </div>
+                  </div>
+                  <button type="button" class="btn btn-sm btn-outline-success" (click)="addPro()">+ Add Pro</button>
+                </div>
+                <div class="col-md-6">
+                  <h5 class="mb-3">Disadvantages</h5>
+                  <div *ngFor="let con of cons; let i = index" class="mb-2">
+                    <div class="input-group">
+                      <input type="text" [(ngModel)]="cons[i]" [ngModelOptions]="{standalone: true}" class="form-control" placeholder="Enter disadvantage" />
+                      <button type="button" class="btn btn-outline-danger" (click)="removeCon(i)">×</button>
+                    </div>
+                  </div>
+                  <button type="button" class="btn btn-sm btn-outline-success" (click)="addCon()">+ Add Con</button>
+                </div>
+              </div>
+
+              <!-- Pricing Tiers - Hidden -->
+              <!-- <h5 class="mb-3">Pricing Plans</h5>
+              <div class="pricing-section mb-4">
+                <div *ngFor="let tier of pricingTiers; let i = index" class="pricing-tier mb-3 p-3 border rounded">
+                  <div class="row g-2 mb-2">
+                    <div class="col-md-3">
+                      <input type="text" [(ngModel)]="tier.name" [ngModelOptions]="{standalone: true}" class="form-control" placeholder="Plan name (e.g., FREE)" />
+                    </div>
+                    <div class="col-md-2">
+                      <input type="number" [(ngModel)]="tier.price" [ngModelOptions]="{standalone: true}" class="form-control" placeholder="Price" />
+                    </div>
+                    <div class="col-md-6">
+                      <input type="text" [(ngModel)]="tier.description" [ngModelOptions]="{standalone: true}" class="form-control" placeholder="Plan description" />
+                    </div>
+                    <div class="col-md-1">
+                      <button type="button" class="btn btn-danger btn-sm" (click)="removePricingTier(i)">×</button>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-12">
+                      <label class="form-label small">Features (comma-separated)</label>
+                      <textarea [(ngModel)]="tier.featuresText" [ngModelOptions]="{standalone: true}" class="form-control" rows="2" placeholder="Feature 1, Feature 2, Feature 3"></textarea>
+                    </div>
+                  </div>
+                </div>
+                <button type="button" class="btn btn-sm btn-outline-primary" (click)="addPricingTier()">+ Add Pricing Plan</button>
+              </div> -->
+
+              <input type="hidden" formControlName="file_name" />
+              <input type="hidden" formControlName="file_base64" />
+              <input type="hidden" formControlName="screenshot_url" />
+              <input type="hidden" formControlName="features" />
+              <input type="hidden" formControlName="pros" />
+              <input type="hidden" formControlName="cons" />
+              <input type="hidden" formControlName="pricing_tiers" />
+
+              <div class="mt-4 d-flex gap-2">
+                <button type="submit" class="btn btn-primary" [disabled]="!offerForm.valid || loading">
+                  {{ loading ? 'Updating...' : 'Update Offer' }}
+                </button>
+                <button type="button" class="btn btn-secondary" (click)="goBack()">Cancel</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<app-admin-footer></app-admin-footer>
