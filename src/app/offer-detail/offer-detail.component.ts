@@ -47,7 +47,7 @@ export class OfferDetailComponent implements OnInit {
         // Load random related offers
         this.loadRandomRelatedOffers(offer.offer_id);
       },
-      error: (error) => {
+      error: (error: any) => {
         console.error('Error loading offer details:', error);
         this.error = 'Offer not found';
         this.loading = false;

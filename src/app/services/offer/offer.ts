@@ -55,5 +55,9 @@ export class OfferService {
     return this.http.post(`${this.apiUrl}/delete`, { offer_id: offerId }, { withCredentials: true });
   }
 
+  getOfferBySlug(slug: string): Observable<Offer> {
+    return this.http.get<Offer>(`${this.apiUrl}/by-slug/${slug}`, { withCredentials: true });
+  }
+
 
 }

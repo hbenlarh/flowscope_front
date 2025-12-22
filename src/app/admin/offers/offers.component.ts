@@ -2,6 +2,7 @@ import { Component, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClient, HttpParams } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
 import { Menu } from '../menu/menu';
 import { AdminFooter } from '../../shared/admin-footer/admin-footer';
 import { PaginatedResponse, PaginationParams } from '../../services/models/offredata.model';
@@ -23,7 +24,7 @@ interface OfferRow {
 @Component({
   selector: 'app-admin-offers',
   standalone: true,
-  imports: [CommonModule, FormsModule, Menu, AdminFooter, DashboardHeader],
+  imports: [CommonModule, FormsModule, RouterModule, Menu, AdminFooter, DashboardHeader],
   templateUrl: './offers.component.html',
   styleUrl: './offers.component.scss'
 })
@@ -167,6 +168,25 @@ export class AdminOffersComponent implements OnInit {
   filtered() {
     const q = this.search().trim().toLowerCase();
     return this.offers().filter(o => !q || o.title?.toLowerCase().includes(q) || o.user_email?.toLowerCase().includes(q));
+  }
+
+  updateOfferField(row: OfferRow, fieldName: string, fieldValue: any): void {
+    if (!row?.id) return;
+    const updatePayload: Record<string, any> = {
+      offer_id: row.id
+    };
+    updatePayload[fieldName] = fieldValue;
+    
+    this.http.patch('https://test1.jcloud-ver-jpe.ik-server.com/api/flowscope_core/offer', updatePayload, { withCredentials: true })
+      .subscribe({
+        next: () => {
+          // Update successful
+        },
+        error: (err) => {
+          this.errorMessage.set(err?.error?.message || `Failed to update ${fieldName}`);
+          this.fetchOffers();
+        }
+      });
   }
 
   delete(row: OfferRow): void {

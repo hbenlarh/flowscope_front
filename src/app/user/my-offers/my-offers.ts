@@ -2,6 +2,7 @@ import { Component, OnInit, signal, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient, HttpParams } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
 import { UserMenu } from '../user-menu/user-menu';
 import { AdminFooter } from '../../shared/admin-footer/admin-footer';
 import { PaginatedResponse, PaginationParams } from '../../services/models/offredata.model';
@@ -28,7 +29,7 @@ interface ContainerOption { id: number | string; name: string; }
 @Component({
   selector: 'app-user-my-offers',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, UserMenu, AdminFooter, DashboardHeader],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, RouterModule, UserMenu, AdminFooter, DashboardHeader],
   templateUrl: './my-offers.html',
   styleUrl: './my-offers.scss'
 })

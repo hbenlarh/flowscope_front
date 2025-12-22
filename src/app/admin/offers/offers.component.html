@@ -52,11 +52,11 @@
                   <td>{{ (o.description || '').slice(0,50) }}{{ (o.description?.length || 0) > 50 ? '…' : '' }}</td>
                   <td>{{ o.category_name || '-' }}</td>
                   <td>
-                    <input type="number" [(ngModel)]="o.ranking" (change)="updateOfferField(o, 'ranking', o.ranking)" 
+                    <input type="number" [(ngModel)]="o['ranking']" (change)="updateOfferField(o, 'ranking', o['ranking'])" 
                            class="form-control form-control-sm" style="width: 70px;" min="0" />
                   </td>
                   <td>
-                    <input type="checkbox" [(ngModel)]="o.is_verified" (change)="updateOfferField(o, 'is_verified', o.is_verified)" 
+                    <input type="checkbox" [(ngModel)]="o['is_verified']" (change)="updateOfferField(o, 'is_verified', o['is_verified'])" 
                            class="form-check-input" />
                   </td>
                   <td>{{ o.user_email || '-' }}</td>
