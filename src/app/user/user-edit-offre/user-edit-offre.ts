@@ -338,7 +338,7 @@ export class UserEditOffre implements OnInit {
     this.capturingScreenshot = true;
 
     this.http.post<{ screenshot_url: string }>(
-      'http://localhost:8000/api/flowscope_core/offer/screenshot',
+      'https://test1.jcloud-ver-jpe.ik-server.com/api/flowscope_core/offer/screenshot',
       { url },
       { withCredentials: true }
     ).subscribe({
