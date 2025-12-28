@@ -1,88 +1,66 @@
 import { RenderMode, ServerRoute } from '@angular/ssr';
-import { HttpClient } from '@angular/common/http';
-import { inject } from '@angular/core';
 
 export const serverRoutes: ServerRoute[] = [
+  // Authenticated admin routes - use CSR only
+  {
+    path: 'admin/**',
+    renderMode: RenderMode.Client
+  },
+  // Authenticated user routes - use CSR only
+  {
+    path: 'user/**',
+    renderMode: RenderMode.Client
+  },
+  // Auth routes - use CSR only
+  {
+    path: 'login',
+    renderMode: RenderMode.Client
+  },
+  {
+    path: 'register',
+    renderMode: RenderMode.Client
+  },
+  {
+    path: 'logout',
+    renderMode: RenderMode.Client
+  },
+  // Dynamic routes that need API data - use Server rendering (on-demand)
   {
     path: 'categories/:id',
-    renderMode: RenderMode.Prerender,
-    getPrerenderParams: async () => {
-      const http = inject(HttpClient);
-      try {
-        // Fetch available categories to get their IDs
-        const response = await http.get<{ categories: Array<{ category_id: number }> }>(
-          'https://test1.jcloud-ver-jpe.ik-server.com/api/flowscope_core/category',
-          { withCredentials: true }
-        ).toPromise();
-        
-        // Return the category IDs as parameters for prerendering
-        return response?.categories.map(category => ({ id: category.category_id.toString() })) || [];
-      } catch (error) {
-        console.error('Failed to fetch categories for prerendering:', error);
-        // Return empty array if fetch fails
-        return [];
-      }
-    }
+    renderMode: RenderMode.Server
   },
   {
     path: 'offers/:slug',
-    renderMode: RenderMode.Prerender,
-    getPrerenderParams: async () => {
-      const http = inject(HttpClient);
-      try {
-        // Fetch all offers to get their slugs
-        const response = await http.get<{ items: Array<{ slug: string }> }>(
-          'https://test1.jcloud-ver-jpe.ik-server.com/api/flowscope_core/offer?page_number=1&page_size=1000',
-          { withCredentials: true }
-        ).toPromise();
-        
-        return response?.items.map(offer => ({ slug: offer.slug })) || [];
-      } catch (error) {
-        console.error('Failed to fetch offers for prerendering:', error);
-        return [];
-      }
-    }
+    renderMode: RenderMode.Server
+  },
+  // Static pages - prerender these
+  {
+    path: '',
+    renderMode: RenderMode.Prerender
   },
   {
-    path: 'admin/offers/edit/:id',
-    renderMode: RenderMode.Prerender,
-    getPrerenderParams: async () => {
-      const http = inject(HttpClient);
-      try {
-        // Fetch all offers to get their IDs
-        const response = await http.get<{ items: Array<{ offer_id: number }> }>(
-          'https://test1.jcloud-ver-jpe.ik-server.com/api/flowscope_core/offer?page_number=1&page_size=1000',
-          { withCredentials: true }
-        ).toPromise();
-        
-        return response?.items.map(offer => ({ id: offer.offer_id.toString() })) || [];
-      } catch (error) {
-        console.error('Failed to fetch offers for prerendering:', error);
-        return [];
-      }
-    }
+    path: 'ai-categories',
+    renderMode: RenderMode.Prerender
   },
   {
-    path: 'user/editOffre/:id',
-    renderMode: RenderMode.Prerender,
-    getPrerenderParams: async () => {
-      const http = inject(HttpClient);
-      try {
-        // Fetch all offers to get their IDs
-        const response = await http.get<{ items: Array<{ offer_id: number }> }>(
-          'https://test1.jcloud-ver-jpe.ik-server.com/api/flowscope_core/offer?page_number=1&page_size=1000',
-          { withCredentials: true }
-        ).toPromise();
-        
-        return response?.items.map(offer => ({ id: offer.offer_id.toString() })) || [];
-      } catch (error) {
-        console.error('Failed to fetch offers for prerendering:', error);
-        return [];
-      }
-    }
+    path: 'contact',
+    renderMode: RenderMode.Prerender
   },
+  {
+    path: 'privacy-policy',
+    renderMode: RenderMode.Prerender
+  },
+  {
+    path: 'terms-conditions',
+    renderMode: RenderMode.Prerender
+  },
+  {
+    path: 'cookie-policy',
+    renderMode: RenderMode.Prerender
+  },
+  // Default for any other routes - use server rendering
   {
     path: '**',
-    renderMode: RenderMode.Prerender
+    renderMode: RenderMode.Server
   }
 ];
