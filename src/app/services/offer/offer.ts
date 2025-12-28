@@ -56,7 +56,7 @@ export class OfferService {
   }
 
   getOfferBySlug(slug: string): Observable<Offer> {
-    return this.http.get<Offer>(`${this.apiUrl}/by-slug/${slug}`, { withCredentials: true });
+    return this.http.get<Offer>(`${this.apiUrl}/${slug}`, { withCredentials: true });
   }
 
 

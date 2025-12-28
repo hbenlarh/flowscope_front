@@ -142,24 +142,44 @@ export class EditOfferComponent implements OnInit {
 
           // Load features
           if (offer.features) {
-            this.features = Array.isArray(offer.features) ? offer.features : JSON.parse(offer.features);
+            try {
+              this.features = Array.isArray(offer.features) ? offer.features : JSON.parse(offer.features);
+            } catch (e) {
+              console.error('Error parsing features:', e);
+              this.features = [];
+            }
           }
 
           // Load pros/cons
           if (offer.pros) {
-            this.pros = Array.isArray(offer.pros) ? offer.pros : JSON.parse(offer.pros);
+            try {
+              this.pros = Array.isArray(offer.pros) ? offer.pros : JSON.parse(offer.pros);
+            } catch (e) {
+              console.error('Error parsing pros:', e);
+              this.pros = [];
+            }
           }
           if (offer.cons) {
-            this.cons = Array.isArray(offer.cons) ? offer.cons : JSON.parse(offer.cons);
+            try {
+              this.cons = Array.isArray(offer.cons) ? offer.cons : JSON.parse(offer.cons);
+            } catch (e) {
+              console.error('Error parsing cons:', e);
+              this.cons = [];
+            }
           }
 
           // Load pricing tiers
           if (offer.pricing_tiers) {
-            const tiers = Array.isArray(offer.pricing_tiers) ? offer.pricing_tiers : JSON.parse(offer.pricing_tiers);
-            this.pricingTiers = tiers.map((tier: PricingTier) => ({
-              ...tier,
-              featuresText: Array.isArray(tier.features) ? tier.features.join(', ') : ''
-            }));
+            try {
+              const tiers = Array.isArray(offer.pricing_tiers) ? offer.pricing_tiers : JSON.parse(offer.pricing_tiers);
+              this.pricingTiers = tiers.map((tier: PricingTier) => ({
+                ...tier,
+                featuresText: Array.isArray(tier.features) ? tier.features.join(', ') : ''
+              }));
+            } catch (e) {
+              console.error('Error parsing pricing tiers:', e);
+              this.pricingTiers = [];
+            }
           }
 
           this.loading = false;
