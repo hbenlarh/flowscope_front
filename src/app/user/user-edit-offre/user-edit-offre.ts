@@ -110,7 +110,7 @@ export class UserEditOffre implements OnInit {
     if (!this.offerId) return;
     
     this.loading = true;
-    this.http.get<any>(`http://localhost:8000/api/flowscope_core/offer/id/${this.offerId}`, { withCredentials: true })
+    this.http.get<any>(`https://test1.jcloud-ver-jpe.ik-server.com/api/flowscope_core/offer/id/${this.offerId}`, { withCredentials: true })
       .subscribe({
         next: (offer) => {
           this.offreForm.patchValue({
@@ -416,7 +416,7 @@ export class UserEditOffre implements OnInit {
       screenshot_url: this.screenshotPreview ? this.offreForm.value.screenshot_url : null
     };
 
-    this.http.put(`http://localhost:8000/api/flowscope_core/offer/${this.offerId}`, payload, { withCredentials: true })
+    this.http.put(`https://test1.jcloud-ver-jpe.ik-server.com/api/flowscope_core/offer/${this.offerId}`, payload, { withCredentials: true })
       .subscribe({
         next: () => {
           alert('Offer updated successfully!');

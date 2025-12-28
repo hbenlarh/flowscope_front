@@ -106,7 +106,7 @@ export class EditOfferModalComponent implements OnInit {
     if (!this.offerId) return;
     
     this.loading = true;
-    this.http.get<any>(`http://localhost:8000/api/flowscope_core/offer/${this.offerId}`, { withCredentials: true })
+    this.http.get<any>(`https://test1.jcloud-ver-jpe.ik-server.com/api/flowscope_core/offer/${this.offerId}`, { withCredentials: true })
       .subscribe({
         next: (offer) => {
           this.offerForm.patchValue({
@@ -297,7 +297,7 @@ export class EditOfferModalComponent implements OnInit {
       payload.screenshot_url = this.offerForm.value.screenshot_url;
     }
 
-    this.http.put(`http://localhost:8000/api/flowscope_core/offer/${this.offerId}`, payload, { withCredentials: true })
+    this.http.put(`https://test1.jcloud-ver-jpe.ik-server.com/api/flowscope_core/offer/${this.offerId}`, payload, { withCredentials: true })
       .subscribe({
         next: () => {
           alert('Offer updated successfully!');
